@@ -250,7 +250,7 @@ with open("ANALISIS.md", "w", encoding="utf-8") as f:
         
         # Indicador de estado
         if deviation > 10:
-            estado = "� Muy caliente"
+            estado = "🔥 Muy caliente"
         elif deviation > 5:
             estado = "🌡️ Caliente"
         elif deviation > -5:
