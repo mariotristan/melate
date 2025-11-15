@@ -1,6 +1,16 @@
 # 📊 Análisis de Lotería Melate
 
-**Fecha del análisis**: 15/11/2025 19:45:58
+**Fecha del análisis**: 15/11/2025 15:26:59
+
+---
+
+## 📂 Información de Archivos de Datos
+
+| Archivo | Última Actualización | Sorteos |
+|:-------:|:--------------------:|:-------:|
+| 🎱 Melate.csv | 15/11/2025 11:43:52 | 4,135 |
+| 🔄 Revancha.csv | 15/11/2025 11:44:10 | 3,127 |
+| ⭐ Revanchita.csv | 15/11/2025 11:44:13 | 1,765 |
 
 ---
 
@@ -164,4 +174,4 @@ Estas recomendaciones combinan:
 
 ---
 
-*Generado automáticamente el 15/11/2025 a las 19:45:58*
+*Generado automáticamente el 15/11/2025 a las 15:26:59*

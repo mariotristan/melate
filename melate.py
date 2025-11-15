@@ -3,11 +3,17 @@ from collections import Counter
 from itertools import combinations
 import random
 from datetime import datetime
+import os
 
 # Cargar los tres archivos CSV
 melate_df = pd.read_csv("Melate.csv")
 revancha_df = pd.read_csv("Revancha.csv")
 revanchita_df = pd.read_csv("Revanchita.csv")
+
+# Obtener las fechas de última modificación de los archivos
+melate_mtime = datetime.fromtimestamp(os.path.getmtime("Melate.csv"))
+revancha_mtime = datetime.fromtimestamp(os.path.getmtime("Revancha.csv"))
+revanchita_mtime = datetime.fromtimestamp(os.path.getmtime("Revanchita.csv"))
 
 # Revanchita usa F1-F6, necesitamos renombrar a R1-R6
 revanchita_df = revanchita_df.rename(columns={
@@ -140,6 +146,15 @@ print("\n💾 Guardando resultados en ANALISIS.md...")
 with open("ANALISIS.md", "w", encoding="utf-8") as f:
     f.write("# 📊 Análisis de Lotería Melate\n\n")
     f.write(f"**Fecha del análisis**: {today.strftime('%d/%m/%Y %H:%M:%S')}\n\n")
+    f.write("---\n\n")
+    
+    # Información de archivos de datos
+    f.write("## 📂 Información de Archivos de Datos\n\n")
+    f.write("| Archivo | Última Actualización | Sorteos |\n")
+    f.write("|:-------:|:--------------------:|:-------:|\n")
+    f.write(f"| 🎱 Melate.csv | {melate_mtime.strftime('%d/%m/%Y %H:%M:%S')} | {len(melate_df):,} |\n")
+    f.write(f"| 🔄 Revancha.csv | {revancha_mtime.strftime('%d/%m/%Y %H:%M:%S')} | {len(revancha_df):,} |\n")
+    f.write(f"| ⭐ Revanchita.csv | {revanchita_mtime.strftime('%d/%m/%Y %H:%M:%S')} | {len(revanchita_df):,} |\n\n")
     f.write("---\n\n")
     
     # Resumen
