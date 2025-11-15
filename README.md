@@ -11,6 +11,8 @@
 
 **Análisis estadístico avanzado de sorteos de lotería mexicana** 🇲🇽
 
+**📊 [Ver Análisis en Vivo](https://mariotristan.github.io/melate/)** | **🔗 [GitHub](https://github.com/mariotristan/melate)**
+
 </div>
 
 **🕐 Última ejecución: 15/11/2025 a las 21:28:22 UTC**
