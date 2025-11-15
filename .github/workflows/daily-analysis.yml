@@ -69,15 +69,15 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md
+          git add README.md ANALISIS.md
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "🤖 Update last execution time in README [skip ci]"
+            git commit -m "🤖 Update analysis results and execution time [skip ci]"
             git push
           fi
       
-      - name: �💬 Create summary
+      - name:  Create summary
         run: |
           echo "## 🎲 Lottery Analysis Complete" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
@@ -86,5 +86,6 @@ jobs:
           echo "📊 **Report Details:**" >> $GITHUB_STEP_SUMMARY
           echo "- Analysis file: \`ANALISIS.md\`" >> $GITHUB_STEP_SUMMARY
           echo "- Run number: ${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ ANALISIS.md committed to repository" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ README updated with execution timestamp" >> $GITHUB_STEP_SUMMARY
           echo "- Download the report from the artifacts section above" >> $GITHUB_STEP_SUMMARY
-          echo "- README updated with execution timestamp" >> $GITHUB_STEP_SUMMARY

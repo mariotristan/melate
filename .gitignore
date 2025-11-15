@@ -3,9 +3,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Generated analysis files
-ANALISIS.md
-
 # C extensions
 *.so
 
