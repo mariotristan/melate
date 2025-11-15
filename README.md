@@ -6,6 +6,9 @@
 ![Pandas](https://img.shields.io/badge/Pandas-Required-green.svg)
 ![Status](https://img.shields.io/badge/Status-Active-success.svg)
 
+[![Daily Analysis](https://github.com/mariotristan/melate/actions/workflows/daily-analysis.yml/badge.svg)](https://github.com/mariotristan/melate/actions/workflows/daily-analysis.yml)
+[![Publish Pages](https://github.com/mariotristan/melate/actions/workflows/publish-pages.yml/badge.svg)](https://github.com/mariotristan/melate/actions/workflows/publish-pages.yml)
+
 **Análisis estadístico avanzado de sorteos de lotería mexicana** 🇲🇽
 
 </div>
