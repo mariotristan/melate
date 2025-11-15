@@ -42,12 +42,54 @@ prob = {num: freq[num]/(total_draws*6) for num in freq}  # probabilidad empíric
 
 # Mostrar ranking de los más frecuentes
 ranking = sorted(prob.items(), key=lambda x: x[1], reverse=True)
-print("=" * 70)
+expected_freq = total_draws * 6 / 56  # Frecuencia esperada si todos fueran equiprobables
+
+print("=" * 85)
 print("🎱 TOP 20 NÚMEROS MÁS FRECUENTES")
-print("=" * 70)
+print("=" * 85)
+print(f"{'Pos':>3} │ {'Núm':>3} │ {'Frec':>5} │ {'%Sorteos':>9} │ {'Desv':>7} │ {'Estado'}")
+print("─" * 85)
 for i, (num, p) in enumerate(ranking[:20], 1):
-    bar = "█" * int(p * 500)
-    print(f"{i:2}. Número {int(num):2} │ {freq[num]:3} veces │ {p:6.3%} {bar}")
+    pct_sorteos = (freq[num] / total_draws) * 100
+    deviation = ((freq[num] - expected_freq) / expected_freq) * 100
+    
+    # Indicador de estado
+    if deviation > 10:
+        estado = "🔥 Muy caliente"
+    elif deviation > 5:
+        estado = "🌡️ Caliente"
+    elif deviation > -5:
+        estado = "➡️ Normal"
+    elif deviation > -10:
+        estado = "❄️ Frío"
+    else:
+        estado = "🧊 Muy frío"
+    
+    print(f"{i:3} │ {int(num):3} │ {freq[num]:5} │ {pct_sorteos:8.1f}% │ {deviation:+6.1f}% │ {estado}")
+
+# 1.5 Números más fríos
+print("\n" + "=" * 85)
+print("🧊 TOP 20 NÚMEROS MÁS FRÍOS (MENOS FRECUENTES)")
+print("=" * 85)
+print(f"{'Pos':>3} │ {'Núm':>3} │ {'Frec':>5} │ {'%Sorteos':>9} │ {'Desv':>7} │ {'Estado'}")
+print("─" * 85)
+for i, (num, p) in enumerate(reversed(ranking[-20:]), 1):
+    pct_sorteos = (freq[num] / total_draws) * 100
+    deviation = ((freq[num] - expected_freq) / expected_freq) * 100
+    
+    # Indicador de estado
+    if deviation > 10:
+        estado = "🔥 Muy caliente"
+    elif deviation > 5:
+        estado = "🌡️ Caliente"
+    elif deviation > -5:
+        estado = "➡️ Normal"
+    elif deviation > -10:
+        estado = "❄️ Frío"
+    else:
+        estado = "🧊 Muy frío"
+    
+    print(f"{i:3} │ {int(num):3} │ {freq[num]:5} │ {pct_sorteos:8.1f}% │ {deviation:+6.1f}% │ {estado}")
 
 # 2. Pares más comunes
 pairs = Counter()
@@ -119,26 +161,54 @@ today = datetime.now()
 seed = int(today.strftime("%Y%m%d"))  # Formato: 20251115
 random.seed(seed)
 
-# Obtener los números más frecuentes como base
+# Obtener los números más frecuentes y menos frecuentes
 top_numbers = [int(num) for num, _ in ranking[:30]]  # Top 30 más frecuentes
-all_numbers_list = list(range(1, 56))  # Todos los números del 1 al 55
+cold_numbers = [int(num) for num, _ in reversed(ranking[-20:])]  # 20 más fríos
+all_numbers_list = list(range(1, 57))  # Todos los números del 1 al 56
 
-print("\n" + "=" * 70)
+print("\n" + "=" * 85)
 print(f"🎲 RECOMENDACIONES DEL DÍA ({today.strftime('%d/%m/%Y')})")
-print("=" * 70)
-print("Estrategia: Combinación de números frecuentes + aleatorización por fecha\n")
+print("=" * 85)
 
+# Estrategia 1: Personalizada (Híbrida)
+print("\n📋 ESTRATEGIA 1: HÍBRIDA (4 calientes + 2 aleatorios)\n")
 for i in range(1, 6):
-    # Mezclar estrategia: 4 números de los top + 2 aleatorios
     selected = random.sample(top_numbers, 4)
     remaining = [n for n in all_numbers_list if n not in selected]
     selected.extend(random.sample(remaining, 2))
     selected.sort()
-    
     nums_str = " - ".join([f"{n:2}" for n in selected])
-    print(f"Combinación {i}: [{nums_str}]")
+    print(f"  Combinación {i}: [{nums_str}]")
 
-print("=" * 70)
+# Estrategia 2: Conservadora (solo calientes)
+print("\n🔥 ESTRATEGIA 2: CONSERVADORA (solo números calientes)\n")
+random.seed(seed + 1000)  # Diferente seed para variedad
+for i in range(1, 6):
+    selected = random.sample(top_numbers[:20], 6)  # Top 20 más calientes
+    selected.sort()
+    nums_str = " - ".join([f"{n:2}" for n in selected])
+    print(f"  Combinación {i}: [{nums_str}]")
+
+# Estrategia 3: Contrarian (solo fríos)
+print("\n🧊 ESTRATEGIA 3: CONTRARIAN (números fríos - apuesta a reversión)\n")
+random.seed(seed + 2000)
+for i in range(1, 6):
+    selected = random.sample(cold_numbers[:15], 6)  # 15 más fríos
+    selected.sort()
+    nums_str = " - ".join([f"{n:2}" for n in selected])
+    print(f"  Combinación {i}: [{nums_str}]")
+
+# Estrategia 4: Balanceada (3 calientes + 3 fríos)
+print("\n⚖️ ESTRATEGIA 4: BALANCEADA (3 calientes + 3 fríos)\n")
+random.seed(seed + 3000)
+for i in range(1, 6):
+    hot = random.sample(top_numbers[:15], 3)
+    cold = random.sample(cold_numbers[:12], 3)
+    selected = sorted(hot + cold)
+    nums_str = " - ".join([f"{n:2}" for n in selected])
+    print(f"  Combinación {i}: [{nums_str}]")
+
+print("=" * 85)
 
 # 6. Guardar resultados en archivo markdown
 print("\n💾 Guardando resultados en ANALISIS.md...")
@@ -167,11 +237,53 @@ with open("ANALISIS.md", "w", encoding="utf-8") as f:
     
     # Top números
     f.write("## 🎱 Top 20 Números Más Frecuentes\n\n")
-    f.write("| Posición | Número | Frecuencia | Probabilidad | Gráfica |\n")
-    f.write("|:--------:|:------:|:----------:|:------------:|:--------|\n")
+    
+    # Calcular estadísticas
+    avg_freq = sum(freq.values()) / len(freq)
+    expected_freq = total_draws * 6 / 56  # Frecuencia esperada si todos fueran equiprobables
+    
+    f.write("| Pos | Número | Frecuencia | % Sorteos | Desviación | Estado |\n")
+    f.write("|:---:|:------:|:----------:|:---------:|:----------:|:------:|\n")
     for i, (num, p) in enumerate(ranking[:20], 1):
-        bar = "🟦" * int(p * 500)
-        f.write(f"| {i} | **{int(num)}** | {freq[num]} veces | {p:.3%} | {bar} |\n")
+        pct_sorteos = (freq[num] / total_draws) * 100
+        deviation = ((freq[num] - expected_freq) / expected_freq) * 100
+        
+        # Indicador de estado
+        if deviation > 10:
+            estado = "� Muy caliente"
+        elif deviation > 5:
+            estado = "🌡️ Caliente"
+        elif deviation > -5:
+            estado = "➡️ Normal"
+        elif deviation > -10:
+            estado = "❄️ Frío"
+        else:
+            estado = "🧊 Muy frío"
+        
+        f.write(f"| {i} | **{int(num)}** | {freq[num]} | {pct_sorteos:.1f}% | {deviation:+.1f}% | {estado} |\n")
+    f.write("\n---\n\n")
+    
+    # Números fríos
+    f.write("## 🧊 Top 20 Números Más Fríos (Menos Frecuentes)\n\n")
+    f.write("| Pos | Número | Frecuencia | % Sorteos | Desviación | Estado |\n")
+    f.write("|:---:|:------:|:----------:|:---------:|:----------:|:------:|\n")
+    for i, (num, p) in enumerate(reversed(ranking[-20:]), 1):
+        pct_sorteos = (freq[num] / total_draws) * 100
+        deviation = ((freq[num] - expected_freq) / expected_freq) * 100
+        
+        # Indicador de estado
+        if deviation > 10:
+            estado = "🔥 Muy caliente"
+        elif deviation > 5:
+            estado = "🌡️ Caliente"
+        elif deviation > -5:
+            estado = "➡️ Normal"
+        elif deviation > -10:
+            estado = "❄️ Frío"
+        else:
+            estado = "🧊 Muy frío"
+        
+        f.write(f"| {i} | **{int(num)}** | {freq[num]} | {pct_sorteos:.1f}% | {deviation:+.1f}% | {estado} |\n")
     f.write("\n---\n\n")
     
     # Pares
@@ -220,26 +332,64 @@ with open("ANALISIS.md", "w", encoding="utf-8") as f:
     
     # Recomendaciones
     f.write(f"## 🎲 Recomendaciones del Día ({today.strftime('%d/%m/%Y')})\n\n")
-    f.write("### Estrategia\n\n")
-    f.write("Estas recomendaciones combinan:\n")
-    f.write("- 🔥 **4 números** de los 30 más frecuentes históricamente\n")
-    f.write("- 🎲 **2 números** aleatorios del conjunto completo (1-55)\n")
-    f.write("- 📅 Fecha actual como semilla aleatoria\n\n")
-    f.write("### Combinaciones Recomendadas\n\n")
+    f.write("### 📊 Cuatro Estrategias Diferentes\n\n")
+    f.write("Todas las recomendaciones usan la fecha actual como semilla para generar combinaciones consistentes y reproducibles.\n\n")
     
-    # Regenerar las combinaciones con la misma semilla
+    # Estrategia 1: Híbrida
+    f.write("#### � Estrategia 1: HÍBRIDA (4 calientes + 2 aleatorios)\n\n")
+    f.write("Combina números de alta frecuencia con selección aleatoria para diversificar el riesgo.\n\n")
+    f.write("| # | Combinación |\n")
+    f.write("|:-:|:-----------|\n")
     random.seed(seed)
     for i in range(1, 6):
         selected = random.sample(top_numbers, 4)
         remaining = [n for n in all_numbers_list if n not in selected]
         selected.extend(random.sample(remaining, 2))
         selected.sort()
-        
         nums_str = " - ".join([f"{n:02d}" for n in selected])
-        f.write(f"#### Combinación {i}\n")
-        f.write(f"```\n{nums_str}\n```\n\n")
+        f.write(f"| {i} | **{nums_str}** |\n")
+    f.write("\n")
     
-    f.write("---\n\n")
+    # Estrategia 2: Conservadora
+    f.write("#### � Estrategia 2: CONSERVADORA (solo números calientes)\n\n")
+    f.write("Apuesta exclusivamente por los números más frecuentes históricamente.\n\n")
+    f.write("| # | Combinación |\n")
+    f.write("|:-:|:-----------|\n")
+    random.seed(seed + 1000)
+    for i in range(1, 6):
+        selected = random.sample(top_numbers[:20], 6)
+        selected.sort()
+        nums_str = " - ".join([f"{n:02d}" for n in selected])
+        f.write(f"| {i} | **{nums_str}** |\n")
+    f.write("\n")
+    
+    # Estrategia 3: Contrarian
+    f.write("#### 🧊 Estrategia 3: CONTRARIAN (números fríos)\n\n")
+    f.write("Apuesta a la reversión: números que han salido menos podrían \"compensar\" estadísticamente.\n\n")
+    f.write("| # | Combinación |\n")
+    f.write("|:-:|:-----------|\n")
+    random.seed(seed + 2000)
+    for i in range(1, 6):
+        selected = random.sample(cold_numbers[:15], 6)
+        selected.sort()
+        nums_str = " - ".join([f"{n:02d}" for n in selected])
+        f.write(f"| {i} | **{nums_str}** |\n")
+    f.write("\n")
+    
+    # Estrategia 4: Balanceada
+    f.write("#### ⚖️ Estrategia 4: BALANCEADA (3 calientes + 3 fríos)\n\n")
+    f.write("Equilibrio perfecto entre números frecuentes y poco frecuentes.\n\n")
+    f.write("| # | Combinación |\n")
+    f.write("|:-:|:-----------|\n")
+    random.seed(seed + 3000)
+    for i in range(1, 6):
+        hot = random.sample(top_numbers[:15], 3)
+        cold = random.sample(cold_numbers[:12], 3)
+        selected = sorted(hot + cold)
+        nums_str = " - ".join([f"{n:02d}" for n in selected])
+        f.write(f"| {i} | **{nums_str}** |\n")
+    
+    f.write("\n---\n\n")
     f.write("## ⚠️ Disclaimer\n\n")
     f.write("> Este análisis es con fines educativos y estadísticos únicamente. ")
     f.write("Los sorteos de lotería son eventos aleatorios y los resultados pasados ")
