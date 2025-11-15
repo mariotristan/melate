@@ -10,7 +10,7 @@
 
 </div>
 
-**🕐 Última ejecución: Pendiente de primera ejecución automática**
+**🕐 Última ejecución: 15/11/2025 a las 19:34:56 UTC**
 
 ---
 
