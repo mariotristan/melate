@@ -10,6 +10,8 @@
 
 </div>
 
+**🕐 Última ejecución: Pendiente de primera ejecución automática**
+
 ---
 
 ## 🎰 ¿Qué hace este proyecto?

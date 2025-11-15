@@ -8,6 +8,9 @@ on:
   # Allow manual trigger
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   analyze:
     name: 📊 Run Analysis
@@ -49,7 +52,32 @@ jobs:
           path: ANALISIS.md
           retention-days: 30
       
-      - name: 💬 Create summary
+      - name: � Update README with last execution time
+        run: |
+          CURRENT_DATE=$(date -u +"%d/%m/%Y")
+          CURRENT_TIME=$(date -u +"%H:%M:%S UTC")
+          
+          # Update or add the last execution badge in README
+          if grep -q "Última ejecución:" README.md; then
+            sed -i "s|Última ejecución:.*|Última ejecución: ${CURRENT_DATE} a las ${CURRENT_TIME}**|g" README.md
+          else
+            # Add after the badges section
+            sed -i "s|</div>|</div>\n\n**🕐 Última ejecución: ${CURRENT_DATE} a las ${CURRENT_TIME}**|" README.md
+          fi
+      
+      - name: 💾 Commit and push README update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "🤖 Update last execution time in README [skip ci]"
+            git push
+          fi
+      
+      - name: �💬 Create summary
         run: |
           echo "## 🎲 Lottery Analysis Complete" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
@@ -59,3 +87,4 @@ jobs:
           echo "- Analysis file: \`ANALISIS.md\`" >> $GITHUB_STEP_SUMMARY
           echo "- Run number: ${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
           echo "- Download the report from the artifacts section above" >> $GITHUB_STEP_SUMMARY
+          echo "- README updated with execution timestamp" >> $GITHUB_STEP_SUMMARY
