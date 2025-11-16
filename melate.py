@@ -208,6 +208,30 @@ for i in range(1, 6):
     nums_str = " - ".join([f"{n:2}" for n in selected])
     print(f"  Combinación {i}: [{nums_str}]")
 
+# Estrategia 5: Serendipity (mezcla de todas las estrategias)
+print("\n✨ ESTRATEGIA 5: SERENDIPITY (mezcla aleatoria de todas las estrategias)\n")
+random.seed(seed + 4000)
+for i in range(1, 6):
+    strategy_choice = random.randint(1, 4)
+    
+    if strategy_choice == 1:  # Híbrida
+        selected = random.sample(top_numbers, 4)
+        remaining = [n for n in all_numbers_list if n not in selected]
+        selected.extend(random.sample(remaining, 2))
+    elif strategy_choice == 2:  # Conservadora
+        selected = random.sample(top_numbers[:20], 6)
+    elif strategy_choice == 3:  # Contrarian
+        selected = random.sample(cold_numbers[:15], 6)
+    else:  # Balanceada
+        hot = random.sample(top_numbers[:15], 3)
+        cold = random.sample(cold_numbers[:12], 3)
+        selected = hot + cold
+    
+    selected.sort()
+    strategy_name = ["Híbrida", "Conservadora", "Contrarian", "Balanceada"][strategy_choice - 1]
+    nums_str = " - ".join([f"{n:2}" for n in selected])
+    print(f"  Combinación {i} ({strategy_name}): [{nums_str}]")
+
 print("=" * 85)
 
 # 6. Guardar resultados en archivo markdown
@@ -332,11 +356,11 @@ with open("ANALISIS.md", "w", encoding="utf-8") as f:
     
     # Recomendaciones
     f.write(f"## 🎲 Recomendaciones del Día ({today.strftime('%d/%m/%Y')})\n\n")
-    f.write("### 📊 Cuatro Estrategias Diferentes\n\n")
+    f.write("### 📊 Cinco Estrategias Diferentes\n\n")
     f.write("Todas las recomendaciones usan la fecha actual como semilla para generar combinaciones consistentes y reproducibles.\n\n")
     
     # Estrategia 1: Híbrida
-    f.write("#### � Estrategia 1: HÍBRIDA (4 calientes + 2 aleatorios)\n\n")
+    f.write("#### 📋 Estrategia 1: HÍBRIDA (4 calientes + 2 aleatorios)\n\n")
     f.write("Combina números de alta frecuencia con selección aleatoria para diversificar el riesgo.\n\n")
     f.write("| # | Combinación |\n")
     f.write("|:-:|:-----------|\n")
@@ -351,7 +375,7 @@ with open("ANALISIS.md", "w", encoding="utf-8") as f:
     f.write("\n")
     
     # Estrategia 2: Conservadora
-    f.write("#### � Estrategia 2: CONSERVADORA (solo números calientes)\n\n")
+    f.write("#### 🔥 Estrategia 2: CONSERVADORA (solo números calientes)\n\n")
     f.write("Apuesta exclusivamente por los números más frecuentes históricamente.\n\n")
     f.write("| # | Combinación |\n")
     f.write("|:-:|:-----------|\n")
@@ -388,6 +412,34 @@ with open("ANALISIS.md", "w", encoding="utf-8") as f:
         selected = sorted(hot + cold)
         nums_str = " - ".join([f"{n:02d}" for n in selected])
         f.write(f"| {i} | **{nums_str}** |\n")
+    f.write("\n")
+    
+    # Estrategia 5: Serendipity
+    f.write("#### ✨ Estrategia 5: SERENDIPITY (mezcla de todas)\n\n")
+    f.write("Cada combinación usa aleatoriamente una de las 4 estrategias anteriores. ¡Deja que el destino elija!\n\n")
+    f.write("| # | Estrategia | Combinación |\n")
+    f.write("|:-:|:----------:|:-----------|\n")
+    random.seed(seed + 4000)
+    for i in range(1, 6):
+        strategy_choice = random.randint(1, 4)
+        
+        if strategy_choice == 1:  # Híbrida
+            selected = random.sample(top_numbers, 4)
+            remaining = [n for n in all_numbers_list if n not in selected]
+            selected.extend(random.sample(remaining, 2))
+        elif strategy_choice == 2:  # Conservadora
+            selected = random.sample(top_numbers[:20], 6)
+        elif strategy_choice == 3:  # Contrarian
+            selected = random.sample(cold_numbers[:15], 6)
+        else:  # Balanceada
+            hot = random.sample(top_numbers[:15], 3)
+            cold = random.sample(cold_numbers[:12], 3)
+            selected = hot + cold
+        
+        selected.sort()
+        strategy_name = ["📋 Híbrida", "🔥 Conservadora", "🧊 Contrarian", "⚖️ Balanceada"][strategy_choice - 1]
+        nums_str = " - ".join([f"{n:02d}" for n in selected])
+        f.write(f"| {i} | {strategy_name} | **{nums_str}** |\n")
     
     f.write("\n---\n\n")
     f.write("## ⚠️ Disclaimer\n\n")

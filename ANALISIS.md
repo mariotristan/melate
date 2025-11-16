@@ -1,6 +1,6 @@
 # 📊 Análisis de Lotería Melate
 
-**Fecha del análisis**: 16/11/2025 08:19:25
+**Fecha del análisis**: 16/11/2025 15:43:42
 
 ---
 
@@ -8,9 +8,9 @@
 
 | Archivo | Última Actualización | Sorteos |
 |:-------:|:--------------------:|:-------:|
-| 🎱 Melate.csv | 16/11/2025 08:19:11 | 4,135 |
-| 🔄 Revancha.csv | 16/11/2025 08:19:11 | 3,127 |
-| ⭐ Revanchita.csv | 16/11/2025 08:19:11 | 1,765 |
+| 🎱 Melate.csv | 15/11/2025 11:43:52 | 4,135 |
+| 🔄 Revancha.csv | 15/11/2025 11:44:10 | 3,127 |
+| ⭐ Revanchita.csv | 15/11/2025 11:44:13 | 1,765 |
 
 ---
 
@@ -159,11 +159,11 @@
 
 ## 🎲 Recomendaciones del Día (16/11/2025)
 
-### 📊 Cuatro Estrategias Diferentes
+### 📊 Cinco Estrategias Diferentes
 
 Todas las recomendaciones usan la fecha actual como semilla para generar combinaciones consistentes y reproducibles.
 
-#### � Estrategia 1: HÍBRIDA (4 calientes + 2 aleatorios)
+#### 📋 Estrategia 1: HÍBRIDA (4 calientes + 2 aleatorios)
 
 Combina números de alta frecuencia con selección aleatoria para diversificar el riesgo.
 
@@ -175,7 +175,7 @@ Combina números de alta frecuencia con selección aleatoria para diversificar e
 | 4 | **01 - 03 - 04 - 30 - 32 - 36** |
 | 5 | **10 - 12 - 14 - 18 - 25 - 45** |
 
-#### � Estrategia 2: CONSERVADORA (solo números calientes)
+#### 🔥 Estrategia 2: CONSERVADORA (solo números calientes)
 
 Apuesta exclusivamente por los números más frecuentes históricamente.
 
@@ -211,6 +211,18 @@ Equilibrio perfecto entre números frecuentes y poco frecuentes.
 | 4 | **15 - 24 - 28 - 51 - 55 - 56** |
 | 5 | **13 - 28 - 29 - 46 - 49 - 53** |
 
+#### ✨ Estrategia 5: SERENDIPITY (mezcla de todas)
+
+Cada combinación usa aleatoriamente una de las 4 estrategias anteriores. ¡Deja que el destino elija!
+
+| # | Estrategia | Combinación |
+|:-:|:----------:|:-----------|
+| 1 | 📋 Híbrida | **13 - 30 - 32 - 33 - 37 - 52** |
+| 2 | ⚖️ Balanceada | **05 - 07 - 24 - 46 - 54 - 55** |
+| 3 | 📋 Híbrida | **09 - 13 - 14 - 16 - 17 - 19** |
+| 4 | 🔥 Conservadora | **03 - 07 - 15 - 24 - 32 - 37** |
+| 5 | 🧊 Contrarian | **44 - 45 - 48 - 51 - 52 - 55** |
+
 ---
 
 ## ⚠️ Disclaimer
@@ -219,4 +231,4 @@ Equilibrio perfecto entre números frecuentes y poco frecuentes.
 
 ---
 
-*Generado automáticamente el 16/11/2025 a las 08:19:25*
+*Generado automáticamente el 16/11/2025 a las 15:43:42*
