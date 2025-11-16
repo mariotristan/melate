@@ -240,7 +240,7 @@ print("\n💾 Guardando resultados en ANALISIS.md...")
 with open("ANALISIS.md", "w", encoding="utf-8") as f:
     f.write("# 📊 Análisis de Lotería Melate\n\n")
     f.write(f"**Fecha del análisis**: {today.strftime('%d/%m/%Y %H:%M:%S')}\n\n")
-    f.write("📚 **[Leer Metodología y Fundamentos Estadísticos](METODOLOGIA.md)** - Comprende los fundamentos teóricos, estrategias y limitaciones del análisis.\n\n")
+    f.write("📚 **[Leer Metodología y Fundamentos Estadísticos](https://mariotristan.github.io/melate/METODOLOGIA)** - Comprende los fundamentos teóricos, estrategias y limitaciones del análisis.\n\n")
     f.write("---\n\n")
     
     # Información de archivos de datos
