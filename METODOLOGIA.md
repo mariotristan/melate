@@ -32,9 +32,9 @@ Este documento describe la metodología estadística empleada en el análisis de
 #### Espacio Muestral y Eventos
 
 En un sorteo de lotería tipo Melate:
-- **Espacio muestral (Ω)**: Conjunto de todos los números posibles (1-56)
-- **Evento**: Selección de 6 números sin reemplazo
-- **Cardinalidad**: C(56,6) = 32,468,436 combinaciones posibles
+- **[Espacio muestral](https://es.wikipedia.org/wiki/Espacio_muestral) (Ω)**: Conjunto de todos los números posibles (1-56)
+- **[Evento](https://es.wikipedia.org/wiki/Suceso_(probabilidad))**: Selección de 6 números sin reemplazo
+- **[Cardinalidad](https://es.wikipedia.org/wiki/Cardinal_(matem%C3%A1ticas))**: [C(56,6)](https://es.wikipedia.org/wiki/Coeficiente_binomial) = 32,468,436 combinaciones posibles
 
 La probabilidad de acertar una combinación específica es:
 
@@ -44,7 +44,7 @@ P(acertar) = 1 / C(56,6) ≈ 3.08 × 10⁻⁸
 
 #### Distribución Uniforme Teórica
 
-En un sistema de lotería perfectamente aleatorio, cada número debería tener la misma probabilidad de ser seleccionado:
+En un sistema de lotería perfectamente aleatorio, cada número debería tener la misma [**probabilidad**](https://es.wikipedia.org/wiki/Probabilidad) de ser seleccionado según una [**distribución uniforme discreta**](https://es.wikipedia.org/wiki/Distribuci%C3%B3n_uniforme_discreta):
 
 ```
 P(número i) = 1/56 ≈ 1.786% por sorteo
@@ -54,7 +54,7 @@ P(número i) = 1/56 ≈ 1.786% por sorteo
 
 #### Ley de los Grandes Números
 
-La **Ley de los Grandes Números** establece que cuando el número de experimentos (sorteos) tiende a infinito, la frecuencia relativa observada converge a la probabilidad teórica:
+La [**Ley de los Grandes Números**](https://es.wikipedia.org/wiki/Ley_de_los_grandes_n%C3%BAmeros) establece que cuando el número de experimentos (sorteos) tiende a infinito, la [frecuencia relativa](https://es.wikipedia.org/wiki/Frecuencia_estad%C3%ADstica) observada converge a la probabilidad teórica:
 
 ```
 lim(n→∞) [f(x)/n] = P(x)
@@ -82,7 +82,7 @@ Frecuencia esperada ≈ 967.43 apariciones por número
 
 #### Cálculo de Desviación
 
-La desviación porcentual indica cuánto se aleja la frecuencia observada de la esperada:
+La [desviación](https://es.wikipedia.org/wiki/Desviaci%C3%B3n_(estad%C3%ADstica)) porcentual indica cuánto se aleja la frecuencia observada de la esperada:
 
 ```
 Desviación (%) = [(Frecuencia observada - Frecuencia esperada) / Frecuencia esperada] × 100
@@ -128,7 +128,7 @@ frecuencia[i] = Σ(apariciones del número i en todos los sorteos)
 
 #### Frecuencia Bivariada (Pares)
 
-Análisis de co-ocurrencia de pares de números usando combinaciones:
+Análisis de [co-ocurrencia](https://es.wikipedia.org/wiki/Matriz_de_coocurrencia) de pares de números usando [combinaciones](https://es.wikipedia.org/wiki/Combinaci%C3%B3n):
 
 ```python
 para cada sorteo:
@@ -174,12 +174,13 @@ Examen de la distribución espacial de números:
 #### Fundamento Teórico
 
 Combina dos hipótesis:
+
 1. **Persistencia estadística**: Números frecuentes tienen sesgo positivo
 2. **Cobertura aleatoria**: Diversificación del riesgo
 
 #### Algoritmo
 
-```
+```text
 PARA cada combinación:
     seleccionar 4 números de los 30 más frecuentes
     seleccionar 2 números aleatorios del conjunto completo
@@ -212,13 +213,13 @@ Aunque la teoría de probabilidad indica independencia entre sorteos, la presenc
 
 #### Fundamento Teórico
 
-Basada en la **Ley de Reversión a la Media** (Regression to the Mean):
+Basada en la [**Regresión a la media**](https://es.wikipedia.org/wiki/Regresi%C3%B3n_a_la_media) (Regression to the Mean):
 
 ```
 lim(n→∞) [X̄ₙ] = μ
 ```
 
-Donde X̄ₙ es la media muestral y μ es la media poblacional.
+Donde X̄ₙ es la [media muestral](https://es.wikipedia.org/wiki/Media_aritm%C3%A9tica) y μ es la [media poblacional](https://es.wikipedia.org/wiki/Esperanza_matem%C3%A1tica).
 
 #### Algoritmo
 
@@ -237,13 +238,13 @@ Si el sistema es verdaderamente aleatorio, los números "fríos" eventualmente d
 Esta estrategia asume que:
 1. El sistema es perfectamente aleatorio (no hay sesgo persistente)
 2. Hay tiempo suficiente para la reversión
-3. Los sesgos observados son puramente estocásticos
+3. Los sesgos observados son puramente [estocásticos](https://es.wikipedia.org/wiki/Proceso_estoc%C3%A1stico)
 
 ### 4. Estrategia Balanceada (⚖️)
 
 #### Fundamento Teórico
 
-Diversificación de riesgo mediante **portfolio approach**:
+Diversificación de riesgo mediante **[teoría de carteras](https://es.wikipedia.org/wiki/Teor%C3%ADa_de_carteras)** (portfolio theory):
 
 ```
 Riesgo_total = w₁·Riesgo_calientes + w₂·Riesgo_fríos
@@ -268,7 +269,7 @@ Esta estrategia no asume ninguna hipótesis específica, sino que distribuye la 
 
 #### Fundamento Teórico
 
-Basada en **diversificación de estrategias** y **teoría de decisiones bajo incertidumbre**.
+Basada en **diversificación de estrategias** y **[teoría de decisiones](https://es.wikipedia.org/wiki/Teor%C3%ADa_de_la_decisi%C3%B3n) bajo [incertidumbre](https://es.wikipedia.org/wiki/Incertidumbre)**.
 
 #### Algoritmo
 
@@ -281,7 +282,7 @@ PARA cada combinación:
 
 #### Justificación Epistemológica
 
-Dado que no podemos conocer con certeza qué hipótesis es correcta:
+Dado que no podemos conocer con certeza qué hipótesis es correcta ([epistemología](https://es.wikipedia.org/wiki/Epistemolog%C3%ADa)):
 1. ¿El sistema tiene sesgo? → Conservadora
 2. ¿El sistema es aleatorio? → Contrarian
 3. ¿No sabemos? → Híbrida o Balanceada
@@ -296,7 +297,7 @@ La estrategia Serendipity implementa un **meta-enfoque** que cubre todas las pos
 
 #### Prueba de Hipótesis Implícita
 
-**Hipótesis nula (H₀)**: La lotería es perfectamente aleatoria
+**[Hipótesis nula](https://es.wikipedia.org/wiki/Hip%C3%B3tesis_nula) (H₀)**: La lotería es perfectamente aleatoria
 ```
 H₀: P(número i) = 1/56 para todo i ∈ [1,56]
 ```
@@ -308,13 +309,13 @@ H₁: ∃i tal que P(número i) ≠ 1/56
 
 #### Criterio de Decisión
 
-Con un nivel de confianza del 95%, usamos desviaciones >±10% como indicador de posible sesgo significativo.
+Con un [nivel de confianza](https://es.wikipedia.org/wiki/Nivel_de_confianza) del 95%, usamos desviaciones >±10% como indicador de posible sesgo significativo.
 
 ### 2. Limitaciones del Análisis Frecuentista
 
 #### Falacia del Jugador (Gambler's Fallacy)
 
-**Error conceptual**: Creer que eventos pasados influyen en eventos futuros independientes.
+La [**Falacia del jugador**](https://es.wikipedia.org/wiki/Falacia_del_jugador) (Gambler's Fallacy) es un **error conceptual**: Creer que eventos pasados influyen en eventos futuros independientes.
 
 **Ejemplo**: "El número 24 ha salido mucho, debe dejar de salir pronto" (INCORRECTO)
 
@@ -326,7 +327,7 @@ independientemente de su frecuencia histórica.
 
 #### Independencia de Eventos
 
-Cada sorteo es un **evento independiente**:
+Cada sorteo es un **[evento independiente](https://es.wikipedia.org/wiki/Sucesos_independientes)**:
 ```
 P(A ∩ B) = P(A) · P(B)
 ```
@@ -359,11 +360,11 @@ El análisis histórico solo es predictivo si:
 
 #### 1. Sesgo de Confirmación
 
-Los humanos tendemos a recordar los aciertos y olvidar los fallos, generando una percepción distorsionada de la efectividad de estrategias.
+El [**sesgo de confirmación**](https://es.wikipedia.org/wiki/Sesgo_de_confirmaci%C3%B3n): Los humanos tendemos a recordar los aciertos y olvidar los fallos, generando una percepción distorsionada de la efectividad de estrategias.
 
 #### 2. Data Snooping Bias
 
-Al analizar datos históricos para crear estrategias, existe riesgo de **overfitting**: las estrategias funcionan en datos históricos pero fallan en datos futuros.
+Al analizar datos históricos para crear estrategias, existe riesgo de **[sobreajuste](https://es.wikipedia.org/wiki/Sobreajuste)** (overfitting): las estrategias funcionan en datos históricos pero fallan en datos futuros.
 
 #### 3. Cambios en el Sistema
 
@@ -387,7 +388,7 @@ Si la lotería cambia su equipo o procedimientos, todo el análisis histórico p
 
 #### Valores Esperados
 
-El **valor esperado** de jugar a la lotería es típicamente negativo:
+El **[valor esperado](https://es.wikipedia.org/wiki/Valor_esperado)** de jugar a la lotería es típicamente negativo:
 
 ```
 E[Valor] = P(ganar) × Premio - Costo_boleto
@@ -442,14 +443,14 @@ E[Valor] ≈ (1/32,468,436) × $100,000,000 - $13 ≈ -$9.92
 
 ### Conceptos Clave para Estudio Adicional
 
-- **Teorema de Bayes**: Actualización de probabilidades con nueva información
-- **Distribución binomial**: Modelo para eventos de éxito/fracaso
-- **Test χ² (chi-cuadrado)**: Prueba de bondad de ajuste para distribuciones
-- **Simulación Monte Carlo**: Método computacional para estimación probabilística
-- **Teorema del límite central**: Distribución de medias muestrales
-- **Proceso estocástico**: Secuencias de eventos aleatorios
-- **Entropía**: Medida de incertidumbre en sistemas aleatorios
-- **Regresión a la media**: Fenómeno estadístico natural
+- **[Teorema de Bayes](https://es.wikipedia.org/wiki/Teorema_de_Bayes)**: Actualización de probabilidades con nueva información
+- **[Distribución binomial](https://es.wikipedia.org/wiki/Distribuci%C3%B3n_binomial)**: Modelo para eventos de éxito/fracaso
+- **[Test χ² (chi-cuadrado)](https://es.wikipedia.org/wiki/Prueba_%CF%87%C2%B2)**: Prueba de bondad de ajuste para distribuciones
+- **[Simulación Monte Carlo](https://es.wikipedia.org/wiki/M%C3%A9todo_de_Montecarlo)**: Método computacional para estimación probabilística
+- **[Teorema del límite central](https://es.wikipedia.org/wiki/Teorema_del_l%C3%ADmite_central)**: Distribución de medias muestrales
+- **[Proceso estocástico](https://es.wikipedia.org/wiki/Proceso_estoc%C3%A1stico)**: Secuencias de eventos aleatorios
+- **[Entropía](https://es.wikipedia.org/wiki/Entrop%C3%ADa_(informaci%C3%B3n))**: Medida de incertidumbre en sistemas aleatorios
+- **[Regresión a la media](https://es.wikipedia.org/wiki/Regresi%C3%B3n_a_la_media)**: Fenómeno estadístico natural
 
 ---
 
@@ -457,16 +458,16 @@ E[Valor] ≈ (1/32,468,436) × $100,000,000 - $13 ≈ -$9.92
 
 | Término | Definición |
 |:--------|:-----------|
-| **Espacio muestral (Ω)** | Conjunto de todos los resultados posibles de un experimento |
-| **Evento** | Subconjunto del espacio muestral |
+| **[Espacio muestral](https://es.wikipedia.org/wiki/Espacio_muestral) (Ω)** | Conjunto de todos los resultados posibles de un experimento |
+| **[Evento](https://es.wikipedia.org/wiki/Suceso_(probabilidad))** | Subconjunto del espacio muestral |
 | **Probabilidad empírica** | Frecuencia relativa observada en experimentos |
 | **Probabilidad teórica** | Probabilidad calculada bajo supuestos matemáticos |
-| **Independencia** | Dos eventos son independientes si P(A∩B) = P(A)·P(B) |
-| **Valor esperado** | Media ponderada de todos los resultados posibles |
-| **Desviación estándar** | Medida de dispersión respecto a la media |
-| **Sesgo** | Desviación sistemática de un valor esperado |
-| **Aleatorio** | Proceso sin patrón predecible |
-| **Overfitting** | Modelo que se ajusta demasiado a datos históricos |
+| **[Independencia](https://es.wikipedia.org/wiki/Sucesos_independientes)** | Dos eventos son independientes si P(A∩B) = P(A)·P(B) |
+| **[Valor esperado](https://es.wikipedia.org/wiki/Valor_esperado)** | Media ponderada de todos los resultados posibles |
+| **[Desviación estándar](https://es.wikipedia.org/wiki/Desviaci%C3%B3n_t%C3%ADpica)** | Medida de dispersión respecto a la media |
+| **[Sesgo](https://es.wikipedia.org/wiki/Sesgo_estad%C3%ADstico)** | Desviación sistemática de un valor esperado |
+| **[Aleatorio](https://es.wikipedia.org/wiki/Aleatoriedad)** | Proceso sin patrón predecible |
+| **[Sobreajuste](https://es.wikipedia.org/wiki/Sobreajuste)** (Overfitting) | Modelo que se ajusta demasiado a datos históricos |
 
 ---
 
