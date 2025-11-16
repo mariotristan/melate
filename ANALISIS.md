@@ -1,8 +1,8 @@
 # 📊 Análisis de Lotería Melate
 
-**Fecha del análisis**: 16/11/2025 22:09:36
+**Fecha del análisis**: 16/11/2025 22:15:12
 
-📚 **[Leer Metodología y Fundamentos Estadísticos](METODOLOGIA.md)** - Comprende los fundamentos teóricos, estrategias y limitaciones del análisis.
+📚 **[Leer Metodología y Fundamentos Estadísticos](https://mariotristan.github.io/melate/METODOLOGIA)** - Comprende los fundamentos teóricos, estrategias y limitaciones del análisis.
 
 ---
 
@@ -10,9 +10,9 @@
 
 | Archivo | Última Actualización | Sorteos |
 |:-------:|:--------------------:|:-------:|
-| 🎱 Melate.csv | 16/11/2025 22:09:25 | 4,135 |
-| 🔄 Revancha.csv | 16/11/2025 22:09:25 | 3,127 |
-| ⭐ Revanchita.csv | 16/11/2025 22:09:25 | 1,765 |
+| 🎱 Melate.csv | 16/11/2025 22:14:57 | 4,135 |
+| 🔄 Revancha.csv | 16/11/2025 22:14:57 | 3,127 |
+| ⭐ Revanchita.csv | 16/11/2025 22:14:57 | 1,765 |
 
 ---
 
@@ -233,4 +233,4 @@ Cada combinación usa aleatoriamente una de las 4 estrategias anteriores. ¡Deja
 
 ---
 
-*Generado automáticamente el 16/11/2025 a las 22:09:36*
+*Generado automáticamente el 16/11/2025 a las 22:15:12*
