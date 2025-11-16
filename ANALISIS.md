@@ -1,6 +1,8 @@
 # 📊 Análisis de Lotería Melate
 
-**Fecha del análisis**: 16/11/2025 15:43:42
+**Fecha del análisis**: 16/11/2025 16:04:58
+
+📚 **[Leer Metodología y Fundamentos Estadísticos](METODOLOGIA.md)** - Comprende los fundamentos teóricos, estrategias y limitaciones del análisis.
 
 ---
 
@@ -231,4 +233,4 @@ Cada combinación usa aleatoriamente una de las 4 estrategias anteriores. ¡Deja
 
 ---
 
-*Generado automáticamente el 16/11/2025 a las 15:43:42*
+*Generado automáticamente el 16/11/2025 a las 16:04:58*
