@@ -1,6 +1,6 @@
 # 📊 Análisis de Lotería Melate
 
-**Fecha del análisis**: 17/11/2025 06:19:45
+**Fecha del análisis**: 17/11/2025 00:36:47
 
 📚 **[Leer Metodología y Fundamentos Estadísticos](https://mariotristan.github.io/melate/METODOLOGIA)** - Comprende los fundamentos teóricos, estrategias y limitaciones del análisis.
 
@@ -10,9 +10,9 @@
 
 | Archivo | Última Actualización | Sorteos |
 |:-------:|:--------------------:|:-------:|
-| 🎱 Melate.csv | 17/11/2025 06:19:29 | 4,135 |
-| 🔄 Revancha.csv | 17/11/2025 06:19:29 | 3,127 |
-| ⭐ Revanchita.csv | 17/11/2025 06:19:29 | 1,765 |
+| 🎱 Melate.csv | 15/11/2025 11:43:52 | 4,135 |
+| 🔄 Revancha.csv | 15/11/2025 11:44:10 | 3,127 |
+| ⭐ Revanchita.csv | 15/11/2025 11:44:13 | 1,765 |
 
 ---
 
@@ -101,7 +101,7 @@ Esta sección compara los números del último sorteo de cada lotería contra la
 - ❄️ Fríos: 0
 - 🧊 Muy fríos: 2
 
-![Distribución de temperatura - Melate](plots/indicador_calor_melate.svg)
+![Distribución de temperatura - Melate](plots/indicador_calor_melate.png)
 
 ### 🎰 Revancha - Sorteo del 14/11/2025
 
@@ -121,7 +121,7 @@ Esta sección compara los números del último sorteo de cada lotería contra la
 - ❄️ Fríos: 0
 - 🧊 Muy fríos: 3
 
-![Distribución de temperatura - Revancha](plots/indicador_calor_revancha.svg)
+![Distribución de temperatura - Revancha](plots/indicador_calor_revancha.png)
 
 ### 🎰 Revanchita - Sorteo del 14/11/2025
 
@@ -141,7 +141,7 @@ Esta sección compara los números del último sorteo de cada lotería contra la
 - ❄️ Fríos: 0
 - 🧊 Muy fríos: 2
 
-![Distribución de temperatura - Revanchita](plots/indicador_calor_revanchita.svg)
+![Distribución de temperatura - Revanchita](plots/indicador_calor_revanchita.png)
 
 ---
 
@@ -299,4 +299,4 @@ Cada combinación usa aleatoriamente una de las 4 estrategias anteriores. ¡Deja
 
 ---
 
-*Generado automáticamente el 17/11/2025 a las 06:19:45*
+*Generado automáticamente el 17/11/2025 a las 00:36:47*
