@@ -372,9 +372,12 @@ jobs:
           print("✅ HTML pages generated successfully!")
           PYTHON_SCRIPT
           
-          # Also copy the markdown files
-          cp ANALISIS.md docs/
-          cp METODOLOGIA.md docs/
+                    # Also copy the markdown files and the plots directory so images are available on Pages
+                    cp ANALISIS.md docs/
+                    cp METODOLOGIA.md docs/
+                    if [ -d "plots" ]; then
+                        cp -r plots docs/ || true
+                    fi
       
       - name: 📤 Upload artifact
         uses: actions/upload-pages-artifact@v3
