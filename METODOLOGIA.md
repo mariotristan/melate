@@ -173,10 +173,10 @@ Examen de la distribución espacial de números:
 
 #### Fundamento Teórico
 
-Combina dos hipótesis:
+Combina dos enfoques complementarios:
 
-1. **Persistencia estadística**: Números frecuentes tienen sesgo positivo
-2. **Cobertura aleatoria**: Diversificación del riesgo
+1. **Explotación de sesgos potenciales**: Selecciona números frecuentes que podrían indicar sesgos mecánicos
+2. **Cobertura aleatoria**: Incluye números aleatorios para evitar [sobreajuste](https://es.wikipedia.org/wiki/Sobreajuste) a patrones espurios
 
 #### Algoritmo
 
@@ -189,13 +189,17 @@ PARA cada combinación:
 
 #### Justificación
 
-Si existe sesgo real en el sistema (bolas desgastadas, mecanismo imperfecto), los números frecuentes tienen mayor probabilidad empírica. Los 2 números aleatorios proporcionan cobertura contra falsos positivos estadísticos.
+Esta estrategia representa un **compromiso pragmático** entre dos escenarios:
+- **Si existe sesgo real**: Los 4 números frecuentes capturan parte de esa ventaja
+- **Si el sistema es aleatorio**: Los 2 números aleatorios proporcionan diversificación
+
+Es una aproximación de [**teoría de carteras**](https://es.wikipedia.org/wiki/Teor%C3%ADa_de_carteras) aplicada a la incertidumbre epistémica: no sabemos con certeza si hay sesgo, por lo que diversificamos nuestra apuesta.
 
 ### 2. Estrategia Conservadora (🔥)
 
 #### Fundamento Teórico
 
-Basada en la **hipótesis de persistencia**: Si un número ha aparecido más frecuentemente en el pasado, puede continuar haciéndolo en el futuro.
+Basada en la **hipótesis de [sesgo sistemático](https://es.wikipedia.org/wiki/Sesgo_estad%C3%ADstico)**: Si las frecuencias observadas muestran desviaciones consistentes, esto podría indicar sesgos mecánicos o físicos en el sistema de sorteo, no mera variación aleatoria.
 
 #### Algoritmo
 
@@ -207,7 +211,12 @@ PARA cada combinación:
 
 #### Justificación Estadística
 
-Aunque la teoría de probabilidad indica independencia entre sorteos, la presencia de sesgos mecánicos o físicos podría generar persistencia real. Esta estrategia maximiza la exposición a dichos sesgos.
+Aunque la teoría de probabilidad indica [independencia entre sorteos](https://es.wikipedia.org/wiki/Sucesos_independientes), en la práctica los sistemas físicos pueden presentar:
+- **Sesgos de fabricación**: Bolas con densidades o tamaños ligeramente diferentes
+- **Desgaste diferencial**: Deterioro no uniforme del equipo a lo largo del tiempo
+- **Factores ambientales**: Temperatura, humedad que afectan ciertos materiales
+
+Esta estrategia **no asume** que el pasado predice el futuro en un sentido causal, sino que **detecta y explota** posibles sesgos persistentes del mecanismo físico. Si el sistema fuera perfectamente aleatorio, esta estrategia no tendría ventaja sobre selección aleatoria.
 
 ### 3. Estrategia Contrarian (🧊)
 
