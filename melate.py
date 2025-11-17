@@ -347,29 +347,29 @@ def plot_heat_distribution(analisis, out_dir="plots"):
         return None
 
     # Contadores por categoría (asegurar orden consistente)
-    categories = ["[HOT] Muy caliente", "[WARM] Caliente", "[NORMAL] Normal", "[COLD] Frío", "[FREEZE] Muy frío"]
+    categories = ["Muy caliente", "Caliente", "Normal", "Frío", "Muy frío"]
     counts = {cat: 0 for cat in categories}
     for r in analisis['numeros']:
         # usar texto exacto
         estado = r['estado']
-        if estado in counts:
-            counts[estado] += 1
-        else:
-            # fallback: map by keywords
-            if "Muy caliente" in estado:
-                counts["[HOT] Muy caliente"] += 1
-            elif "Caliente" in estado:
-                counts["[WARM] Caliente"] += 1
-            elif "Normal" in estado:
-                counts["[NORMAL] Normal"] += 1
-            elif "Frío" in estado or "Frio" in estado:
-                # distinguir frío/ muy frío
-                if "Muy frío" in estado or "Muy frio" in estado:
-                    counts["[FREEZE] Muy frío"] += 1
-                else:
-                    counts["[COLD] Frío"] += 1
+        # Extraer solo la parte del estado sin el emoji
+        estado_clean = estado.replace("🔥 ", "").replace("🌡️ ", "").replace("➡️ ", "").replace("❄️ ", "").replace("🧊 ", "")
+        
+        # map by keywords
+        if "Muy caliente" in estado_clean:
+            counts["Muy caliente"] += 1
+        elif "Caliente" in estado_clean:
+            counts["Caliente"] += 1
+        elif "Normal" in estado_clean:
+            counts["Normal"] += 1
+        elif "Frío" in estado_clean or "Frio" in estado_clean:
+            # distinguir frío/ muy frío
+            if "Muy frío" in estado_clean or "Muy frio" in estado_clean:
+                counts["Muy frío"] += 1
+            else:
+                counts["Frío"] += 1
 
-    # Preparar datos para la gráfica
+    # Preparar datos para la gráfica (INCLUIR TODAS LAS CATEGORÍAS)
     labels = categories
     values = [counts[c] for c in labels]
 
@@ -377,36 +377,35 @@ def plot_heat_distribution(analisis, out_dir="plots"):
     os.makedirs(out_dir, exist_ok=True)
 
     slug = analisis['nombre'].lower().replace(' ', '_')
-    filename = os.path.join(out_dir, f"indicador_calor_{slug}.svg")
+    filename = os.path.join(out_dir, f"indicador_calor_{slug}.png")
 
     try:
-        plt.figure(figsize=(10, 5))
+        plt.figure(figsize=(10, 5), dpi=100)
         # Colores suaves/pastel para las categorías (menos brillantes)
         bar_colors = ['#e8a0a0', '#f5d5b8', '#e8e8e8', '#c5d9f1', '#b0b5d9']
-        # Evitar etiquetas vacías (cuando count = 0 se oculta)
-        nonzero_labels = [lbl for lbl, v in zip(labels, values) if v > 0]
-        nonzero_values = [v for v in values if v > 0]
-        nonzero_colors = [c for c, v in zip(bar_colors, values) if v > 0]
 
-        if sum(nonzero_values) == 0:
+        if sum(values) == 0:
             # No hay datos, crear una gráfica vacía
             plt.bar(range(len(labels)), [0]*len(labels), color=['#f0f0f0']*len(labels))
+            plt.xticks(range(len(labels)), labels, rotation=45, ha='right', fontsize=9)
         else:
-            bars = plt.bar(range(len(nonzero_labels)), nonzero_values, color=nonzero_colors)
-            plt.xticks(range(len(nonzero_labels)), nonzero_labels, rotation=45, ha='right', fontsize=9)
+            # Mostrar TODAS las categorías, incluso las con valor 0
+            bars = plt.bar(range(len(labels)), values, color=bar_colors)
+            plt.xticks(range(len(labels)), labels, rotation=45, ha='right', fontsize=9)
             plt.ylabel('Cantidad', fontsize=10)
             plt.title(f"Distribución de temperatura - {analisis['nombre']}", fontsize=11, fontweight='bold')
             plt.grid(axis='y', alpha=0.3, linestyle='--')
             
-            # Añadir valores en las barras
+            # Añadir valores en las barras (solo si > 0)
             for bar in bars:
                 height = bar.get_height()
-                plt.text(bar.get_x() + bar.get_width()/2., height,
-                        f'{int(height)}',
-                        ha='center', va='bottom', fontsize=9)
+                if height > 0:
+                    plt.text(bar.get_x() + bar.get_width()/2., height,
+                            f'{int(height)}',
+                            ha='center', va='bottom', fontsize=9)
 
         plt.tight_layout()
-        plt.savefig(filename, format='svg', bbox_inches='tight', dpi=100)
+        plt.savefig(filename, format='png', bbox_inches='tight', dpi=100)
         plt.close()
         return filename
     except Exception:
