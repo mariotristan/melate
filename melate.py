@@ -334,6 +334,100 @@ print("=" * 85)
 # 6. Guardar resultados en archivo markdown
 print("\n💾 Guardando resultados en ANALISIS.md...")
 
+# Crear gráficas de distribución de temperatura para cada sorteo (si matplotlib disponible)
+def plot_heat_distribution(analisis, out_dir="plots"):
+    # Import matplotlib lazily to avoid hard dependency at module import time
+    try:
+        import matplotlib
+        matplotlib.use('Agg')
+        import matplotlib.pyplot as plt
+    except Exception:
+        return None
+    if analisis is None:
+        return None
+
+    # Contadores por categoría (asegurar orden consistente)
+    categories = ["[HOT] Muy caliente", "[WARM] Caliente", "[NORMAL] Normal", "[COLD] Frío", "[FREEZE] Muy frío"]
+    counts = {cat: 0 for cat in categories}
+    for r in analisis['numeros']:
+        # usar texto exacto
+        estado = r['estado']
+        if estado in counts:
+            counts[estado] += 1
+        else:
+            # fallback: map by keywords
+            if "Muy caliente" in estado:
+                counts["[HOT] Muy caliente"] += 1
+            elif "Caliente" in estado:
+                counts["[WARM] Caliente"] += 1
+            elif "Normal" in estado:
+                counts["[NORMAL] Normal"] += 1
+            elif "Frío" in estado or "Frio" in estado:
+                # distinguir frío/ muy frío
+                if "Muy frío" in estado or "Muy frio" in estado:
+                    counts["[FREEZE] Muy frío"] += 1
+                else:
+                    counts["[COLD] Frío"] += 1
+
+    # Preparar datos para la gráfica
+    labels = categories
+    values = [counts[c] for c in labels]
+
+    # Crear carpeta si no existe
+    os.makedirs(out_dir, exist_ok=True)
+
+    slug = analisis['nombre'].lower().replace(' ', '_')
+    filename = os.path.join(out_dir, f"indicador_calor_{slug}.svg")
+
+    try:
+        plt.figure(figsize=(6,6))
+        # Colores suaves/pastel para las categorías (menos brillantes)
+        pie_colors = ['#e8a0a0', '#f5d5b8', '#e8e8e8', '#c5d9f1', '#b0b5d9']
+        # Evitar etiquetas vacías en el pie (cuando count = 0 se oculta)
+        nonzero_labels = [lbl for lbl, v in zip(labels, values) if v > 0]
+        nonzero_values = [v for v in values if v > 0]
+        nonzero_colors = [c for c, v in zip(pie_colors, values) if v > 0]
+
+        if sum(nonzero_values) == 0:
+            # No hay datos, crear una gráfica vacía con leyenda
+            wedges, texts = plt.pie([1], colors=['#f0f0f0'])
+            plt.legend(labels, loc='center left', bbox_to_anchor=(1, 0.5))
+        else:
+            wedges, texts, autotexts = plt.pie(
+                nonzero_values,
+                labels=nonzero_labels,
+                colors=nonzero_colors,
+                autopct='%1.0f%%',
+                startangle=90,
+                counterclock=False,
+                textprops={'fontsize': 9}
+            )
+            plt.title(f"Distribución de temperatura - {analisis['nombre']}", fontsize=10)
+            plt.axis('equal')
+
+        plt.tight_layout()
+        plt.savefig(filename, format='svg', bbox_inches='tight')
+        plt.close()
+        return filename
+    except Exception:
+        try:
+            plt.close()
+        except Exception:
+            pass
+        return None
+
+# Generar gráficas para cada análisis de último sorteo
+plot_files = {}
+for a in [(analisis_melate, 'melate'), (analisis_revancha, 'revancha'), (analisis_revanchita, 'revanchita')]:
+    if a[0]:
+        p = plot_heat_distribution(a[0])
+        if p:
+            plot_files[a[1]] = p
+
+# La funcionalidad de "campana" (histograma + ajuste normal) se ha removido
+# para simplificar las visualizaciones. Solo se generan ahora los gráficos
+# de pastel (indicador de calor) y se insertan en el documento.
+
 with open("ANALISIS.md", "w", encoding="utf-8") as f:
     f.write("# 📊 Análisis de Lotería Melate\n\n")
     f.write(f"**Fecha del análisis**: {today.strftime('%d/%m/%Y %H:%M:%S')}\n\n")
@@ -423,12 +517,20 @@ with open("ANALISIS.md", "w", encoding="utf-8") as f:
                 for res in analisis['numeros']:
                     f.write(f"| **{res['numero']}** | {res['frecuencia']} | {res['desviacion']:+.1f}% | {res['estado']} |\n")
 
-                f.write("\n**📊 Distribución de temperatura:**\n")
+                f.write(f"\n**📊 Distribución de temperatura:**\n")
                 f.write(f"- 🔥 Muy calientes: {analisis['muy_calientes']}\n")
                 f.write(f"- 🌡️ Calientes: {analisis['calientes']}\n")
                 f.write(f"- ➡️ Normales: {analisis['normales']}\n")
                 f.write(f"- ❄️ Fríos: {analisis['frios']}\n")
                 f.write(f"- 🧊 Muy fríos: {analisis['muy_frios']}\n\n")
+
+                # Incrustar la gráfica si fue generada
+                slug = analisis['nombre'].lower().replace(' ', '_')
+                img_path = plot_files.get(slug)
+                if img_path:
+                    f.write(f"![Distribución de temperatura - {analisis['nombre']}]({img_path})\n\n")
+
+                # La gráfica tipo 'campana' fue eliminada; solo mostramos el pastel de distribución.
         
         f.write("---\n\n")
     

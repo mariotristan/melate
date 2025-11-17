@@ -29,8 +29,11 @@ jobs:
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
         with:
-          ref: main
-      
+            # Use the branch from the triggering workflow run when available (workflow_run),
+            # otherwise fall back to the workflow ref. This allows running the Pages publish
+            # manually on `feat/graficas` so the generated docs include that branch's plots.
+            ref: ${{ github.event.workflow_run.head_branch || github.ref }}
+     
       - name: 🐍 Set up Python
         uses: actions/setup-python@v5
         with:
@@ -87,23 +90,23 @@ jobs:
       - name: 🌐 Convert Markdown to HTML
         run: |
           mkdir -p docs
-          
+
           # Convert markdown to HTML using Python
           python3 << 'PYTHON_SCRIPT'
           import markdown2
           from datetime import datetime
-          
+
           # Read the markdown files
           with open('ANALISIS.md', 'r', encoding='utf-8') as f:
               analisis_content = f.read()
-          
+
           with open('METODOLOGIA.md', 'r', encoding='utf-8') as f:
               metodologia_content = f.read()
-          
+
           # Convert markdown to HTML
           analisis_html = markdown2.markdown(analisis_content, extras=['tables', 'fenced-code-blocks'])
           metodologia_html = markdown2.markdown(metodologia_content, extras=['tables', 'fenced-code-blocks'])
-          
+
           # Create the full HTML page template
           html_template = '''<!DOCTYPE html>
           <html lang="es">
@@ -121,13 +124,13 @@ jobs:
                       --text-secondary: #64748b;
                       --border: #e2e8f0;
                   }}
-                  
+
                   * {{
                       margin: 0;
                       padding: 0;
                       box-sizing: border-box;
                   }}
-                  
+
                   body {{
                       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
                       line-height: 1.6;
@@ -135,12 +138,12 @@ jobs:
                       background: var(--background);
                       padding: 20px;
                   }}
-                  
+
                   .container {{
                       max-width: 1200px;
                       margin: 0 auto;
                   }}
-                  
+
                   header {{
                       background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
                       color: white;
@@ -150,17 +153,17 @@ jobs:
                       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
                       text-align: center;
                   }}
-                  
+
                   header h1 {{
                       font-size: 2.5em;
                       margin-bottom: 10px;
                   }}
-                  
+
                   .subtitle {{
                       font-size: 1.1em;
                       opacity: 0.9;
                   }}
-                  
+
                   .content {{
                       background: var(--card-bg);
                       border-radius: 12px;
@@ -168,7 +171,7 @@ jobs:
                       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
                       border: 1px solid var(--border);
                   }}
-                  
+
                   h1 {{
                       color: var(--primary-color);
                       margin: 30px 0 20px 0;
@@ -176,7 +179,7 @@ jobs:
                       border-bottom: 3px solid var(--primary-color);
                       padding-bottom: 10px;
                   }}
-                  
+
                   h2 {{
                       color: var(--primary-color);
                       margin: 25px 0 15px 0;
@@ -184,32 +187,32 @@ jobs:
                       border-bottom: 2px solid var(--secondary-color);
                       padding-bottom: 8px;
                   }}
-                  
+
                   h3 {{
                       color: var(--text-primary);
                       margin: 20px 0 10px 0;
                       font-size: 1.3em;
                   }}
-                  
+
                   h4 {{
                       color: var(--text-secondary);
                       margin: 15px 0 10px 0;
                       font-size: 1.1em;
                   }}
-                  
+
                   table {{
                       width: 100%;
                       border-collapse: collapse;
                       margin: 20px 0;
                       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
                   }}
-                  
+
                   th, td {{
                       padding: 12px 15px;
                       text-align: center;
                       border: 1px solid var(--border);
                   }}
-                  
+
                   th {{
                       background: var(--primary-color);
                       color: white;
@@ -218,30 +221,30 @@ jobs:
                       font-size: 0.9em;
                       letter-spacing: 0.5px;
                   }}
-                  
+
                   tr:nth-child(even) {{
                       background: #f8fafc;
                   }}
-                  
+
                   tr:hover {{
                       background: #e0f2fe;
                       transition: background 0.3s ease;
                   }}
-                  
+
                   ul, ol {{
                       margin: 15px 0;
                       padding-left: 30px;
                   }}
-                  
+
                   li {{
                       margin: 8px 0;
                   }}
-                  
+
                   strong {{
                       color: var(--primary-color);
                       font-weight: 600;
                   }}
-                  
+
                   code, pre {{
                       background: #f1f5f9;
                       padding: 2px 6px;
@@ -249,19 +252,19 @@ jobs:
                       font-family: 'Monaco', 'Courier New', monospace;
                       font-size: 0.9em;
                   }}
-                  
+
                   pre {{
                       padding: 15px;
                       overflow-x: auto;
                       margin: 15px 0;
                       border-left: 4px solid var(--primary-color);
                   }}
-                  
+
                   pre code {{
                       background: none;
                       padding: 0;
                   }}
-                  
+
                   blockquote {{
                       background: #fef3c7;
                       border-left: 4px solid #f59e0b;
@@ -270,13 +273,13 @@ jobs:
                       border-radius: 4px;
                       font-style: italic;
                   }}
-                  
+
                   hr {{
                       border: none;
                       border-top: 2px solid var(--border);
                       margin: 30px 0;
                   }}
-                  
+
                   .footer {{
                       text-align: center;
                       margin-top: 40px;
@@ -287,34 +290,34 @@ jobs:
                       font-size: 0.95em;
                       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
                   }}
-                  
+
                   .footer a {{
                       color: var(--primary-color);
                       text-decoration: none;
                       font-weight: 600;
                   }}
-                  
+
                   .footer a:hover {{
                       text-decoration: underline;
                   }}
-                  
+
                   @media (max-width: 768px) {{
                       body {{
                           padding: 10px;
                       }}
-                      
+
                       header h1 {{
                           font-size: 1.8em;
                       }}
-                      
+
                       .content {{
                           padding: 20px;
                       }}
-                      
+
                       table {{
                           font-size: 0.85em;
                       }}
-                      
+
                       th, td {{
                           padding: 8px 6px;
                       }}
@@ -327,11 +330,11 @@ jobs:
                       <h1>{header_title}</h1>
                       <p class="subtitle">{subtitle}</p>
                   </header>
-                  
+
                   <div class="content">
                       {content}
                   </div>
-                  
+
                   <div class="footer">
                       <p>🤖 Generado automáticamente por GitHub Actions</p>
                       <p>📊 Actualizado diariamente a las 8:00 AM UTC</p>
@@ -345,7 +348,7 @@ jobs:
           </body>
           </html>
           '''
-          
+
           # Generate index.html (analysis)
           analisis_page = html_template.format(
               title='🎲 Análisis de Lotería Melate',
@@ -353,10 +356,10 @@ jobs:
               subtitle='Análisis estadístico avanzado de sorteos mexicanos',
               content=analisis_html
           )
-          
+
           with open('docs/index.html', 'w', encoding='utf-8') as f:
               f.write(analisis_page)
-          
+
           # Generate metodologia.html
           metodologia_page = html_template.format(
               title='📚 Metodología y Fundamentos Estadísticos',
@@ -364,16 +367,19 @@ jobs:
               subtitle='Bases teóricas del análisis de lotería',
               content=metodologia_html
           )
-          
+
           with open('docs/METODOLOGIA.html', 'w', encoding='utf-8') as f:
               f.write(metodologia_page)
-          
+
           print("✅ HTML pages generated successfully!")
           PYTHON_SCRIPT
-          
-          # Also copy the markdown files
+
+          # Also copy the markdown files and the plots directory so images are available on Pages
           cp ANALISIS.md docs/
           cp METODOLOGIA.md docs/
+          if [ -d "plots" ]; then
+            cp -r plots docs/ || true
+          fi
       
       - name: 📤 Upload artifact
         uses: actions/upload-pages-artifact@v3
