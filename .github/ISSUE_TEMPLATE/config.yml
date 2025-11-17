@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Discusiones de la Comunidad
+    url: https://github.com/mariotristan/melate/discussions
+    about: Para discusiones generales, ideas, y compartir resultados
+  - name: 📖 Documentación
+    url: https://mariotristan.github.io/melate/
+    about: Consulta el análisis en vivo y documentación completa
+  - name: 📚 Metodología Estadística
+    url: https://mariotristan.github.io/melate/METODOLOGIA.html
+    about: Fundamentos teóricos y metodología del análisis
