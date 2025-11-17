@@ -347,7 +347,7 @@ def plot_heat_distribution(analisis, out_dir="plots"):
         return None
 
     # Contadores por categoría (asegurar orden consistente)
-    categories = ["🔥 Muy caliente", "🌡️ Caliente", "➡️ Normal", "❄️ Frío", "🧊 Muy frío"]
+    categories = ["[HOT] Muy caliente", "[WARM] Caliente", "[NORMAL] Normal", "[COLD] Frío", "[FREEZE] Muy frío"]
     counts = {cat: 0 for cat in categories}
     for r in analisis['numeros']:
         # usar texto exacto
@@ -357,17 +357,17 @@ def plot_heat_distribution(analisis, out_dir="plots"):
         else:
             # fallback: map by keywords
             if "Muy caliente" in estado:
-                counts["🔥 Muy caliente"] += 1
+                counts["[HOT] Muy caliente"] += 1
             elif "Caliente" in estado:
-                counts["🌡️ Caliente"] += 1
+                counts["[WARM] Caliente"] += 1
             elif "Normal" in estado:
-                counts["➡️ Normal"] += 1
+                counts["[NORMAL] Normal"] += 1
             elif "Frío" in estado or "Frio" in estado:
                 # distinguir frío/ muy frío
                 if "Muy frío" in estado or "Muy frio" in estado:
-                    counts["🧊 Muy frío"] += 1
+                    counts["[FREEZE] Muy frío"] += 1
                 else:
-                    counts["❄️ Frío"] += 1
+                    counts["[COLD] Frío"] += 1
 
     # Preparar datos para la gráfica
     labels = categories
