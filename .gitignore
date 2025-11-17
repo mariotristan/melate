@@ -145,3 +145,7 @@ cython_debug/
 # OS
 .DS_Store
 Thumbs.db
+
+# CSV data files (downloaded from external sources)
+*.csv
+!.gitkeep
