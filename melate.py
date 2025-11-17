@@ -88,9 +88,9 @@ def analizar_ultimo_sorteo(numeros, nombre_sorteo, fecha_sorteo):
     
     # Calcular estadísticas del sorteo
     muy_calientes = sum(1 for r in resultados if "Muy caliente" in r['estado'])
-    calientes = sum(1 for r in resultados if r['estado'] == "🌡️ Caliente")
+    calientes = sum(1 for r in resultados if "Caliente" in r['estado'] and "Muy caliente" not in r['estado'])
     normales = sum(1 for r in resultados if "Normal" in r['estado'])
-    frios = sum(1 for r in resultados if r['estado'] == "❄️ Frío")
+    frios = sum(1 for r in resultados if "Frío" in r['estado'] and "Muy frío" not in r['estado'])
     muy_frios = sum(1 for r in resultados if "Muy frío" in r['estado'])
     
     # Normalizar/formatear la fecha para una presentación consistente
