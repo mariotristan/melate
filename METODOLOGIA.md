@@ -1,4 +1,4 @@
-# 📚 Metodología y Fundamentos Estadísticos del Análisis de Lotería
+plate# 📚 Metodología y Fundamentos Estadísticos del Análisis de Lotería
 
 ## 📖 Índice
 
@@ -553,7 +553,24 @@ Este análisis es un proyecto de código abierto. Se aceptan contribuciones, sug
 
 ## 📄 Licencia y Uso Académico
 
-Este documento y el código asociado se distribuyen con fines educativos. Se permite su uso en contextos académicos citando apropiadamente la fuente.
+Este proyecto se distribuye bajo la **Licencia MIT**. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+
+**Resumen de permisos:**
+- ✅ Uso comercial
+- ✅ Modificación
+- ✅ Distribución
+- ✅ Uso privado
+
+**Condiciones:**
+- Incluir aviso de copyright y licencia en copias
+- Sin garantía: el software se proporciona "tal cual"
+
+**Uso académico:** Se permite y fomenta el uso en contextos educativos. Al citar este trabajo, incluye:
+
+```
+Tristan, M. (2025). Análisis estadístico de lotería Melate [Software]. 
+GitHub. https://github.com/mariotristan/melate
+```
 
 **Última actualización**: Noviembre 2025
 

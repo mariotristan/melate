@@ -179,7 +179,14 @@ Combinación 3: [ 7 - 12 - 16 - 24 - 37 - 45]
 
 ## 📝 Licencia
 
-📜 **Uso libre** para análisis personal y educativo.
+Este proyecto está licenciado bajo la **Licencia MIT** - consulta el archivo [LICENSE](LICENSE) para más detalles.
+
+**Resumen:**
+- ✅ Uso comercial permitido
+- ✅ Modificación permitida
+- ✅ Distribución permitida
+- ✅ Uso privado permitido
+- ⚠️ Sin garantía
 
 ---
 
@@ -188,5 +195,7 @@ Combinación 3: [ 7 - 12 - 16 - 24 - 37 - 45]
 ### 🌟 ¡Buena suerte! 🍀
 
 **Made with ❤️ and 📊 Data Analysis**
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 </div>
