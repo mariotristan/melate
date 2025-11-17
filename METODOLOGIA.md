@@ -1,4 +1,4 @@
-plate# 📚 Metodología y Fundamentos Estadísticos del Análisis de Lotería
+# 📚 Metodología y Fundamentos Estadísticos del Análisis de Lotería
 
 ## 📖 Índice
 
