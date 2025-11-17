@@ -27,6 +27,16 @@ df = pd.concat([melate_df, revancha_df, revanchita_df], ignore_index=True)
 # Columnas de números
 cols = ["R1","R2","R3","R4","R5","R6"]
 
+# Obtener últimos resultados de cada sorteo con sus fechas
+ultimo_melate = melate_df.iloc[0][cols].values.astype(int).tolist() if len(melate_df) > 0 else []
+fecha_melate = melate_df.iloc[0]['FECHA'] if len(melate_df) > 0 else None
+
+ultimo_revancha = revancha_df.iloc[0][cols].values.astype(int).tolist() if len(revancha_df) > 0 else []
+fecha_revancha = revancha_df.iloc[0]['FECHA'] if len(revancha_df) > 0 else None
+
+ultimo_revanchita = revanchita_df.iloc[0][cols].values.astype(int).tolist() if len(revanchita_df) > 0 else []
+fecha_revanchita = revanchita_df.iloc[0]['FECHA'] if len(revanchita_df) > 0 else None
+
 print(f"\n📊 Total de sorteos analizados: {len(df):,}")
 print(f"   • Melate: {len(melate_df):,}")
 print(f"   • Revancha: {len(revancha_df):,}")
@@ -43,6 +53,74 @@ prob = {num: freq[num]/(total_draws*6) for num in freq}  # probabilidad empíric
 # Mostrar ranking de los más frecuentes
 ranking = sorted(prob.items(), key=lambda x: x[1], reverse=True)
 expected_freq = total_draws * 6 / 56  # Frecuencia esperada si todos fueran equiprobables
+
+# Función para clasificar número por temperatura
+def clasificar_numero(num, freq, expected_freq):
+    """Clasifica un número según su desviación de la frecuencia esperada"""
+    deviation = ((freq[num] - expected_freq) / expected_freq) * 100
+    
+    if deviation > 10:
+        return "🔥 Muy caliente", deviation
+    elif deviation > 5:
+        return "🌡️ Caliente", deviation
+    elif deviation > -5:
+        return "➡️ Normal", deviation
+    elif deviation > -10:
+        return "❄️ Frío", deviation
+    else:
+        return "🧊 Muy frío", deviation
+
+# Clasificar últimos resultados
+def analizar_ultimo_sorteo(numeros, nombre_sorteo, fecha_sorteo):
+    """Analiza los números del último sorteo y los clasifica por temperatura"""
+    if not numeros:
+        return None
+    
+    resultados = []
+    for num in numeros:
+        estado, desv = clasificar_numero(num, freq, expected_freq)
+        resultados.append({
+            'numero': int(num),
+            'frecuencia': freq[num],
+            'desviacion': desv,
+            'estado': estado
+        })
+    
+    # Calcular estadísticas del sorteo
+    muy_calientes = sum(1 for r in resultados if "Muy caliente" in r['estado'])
+    calientes = sum(1 for r in resultados if r['estado'] == "🌡️ Caliente")
+    normales = sum(1 for r in resultados if "Normal" in r['estado'])
+    frios = sum(1 for r in resultados if r['estado'] == "❄️ Frío")
+    muy_frios = sum(1 for r in resultados if "Muy frío" in r['estado'])
+    
+    # Normalizar/formatear la fecha para una presentación consistente
+    fecha_formateada = None
+    if fecha_sorteo is not None:
+        try:
+            # Intentar parsear con pandas para muchos formatos comunes
+            fecha_dt = pd.to_datetime(fecha_sorteo, dayfirst=True, errors='coerce')
+            if pd.notna(fecha_dt):
+                fecha_formateada = fecha_dt.strftime('%d/%m/%Y')
+            else:
+                # Si no se pudo parsear, usar la representación tal cual
+                fecha_formateada = str(fecha_sorteo)
+        except Exception:
+            fecha_formateada = str(fecha_sorteo)
+
+    return {
+        'nombre': nombre_sorteo,
+        'fecha': fecha_formateada,
+        'numeros': resultados,
+        'muy_calientes': muy_calientes,
+        'calientes': calientes,
+        'normales': normales,
+        'frios': frios,
+        'muy_frios': muy_frios
+    }
+
+analisis_melate = analizar_ultimo_sorteo(ultimo_melate, "Melate", fecha_melate) if ultimo_melate else None
+analisis_revancha = analizar_ultimo_sorteo(ultimo_revancha, "Revancha", fecha_revancha) if ultimo_revancha else None
+analisis_revanchita = analizar_ultimo_sorteo(ultimo_revanchita, "Revanchita", fecha_revanchita) if ultimo_revanchita else None
 
 print("=" * 85)
 print("🎱 TOP 20 NÚMEROS MÁS FRECUENTES")
@@ -90,6 +168,25 @@ for i, (num, p) in enumerate(reversed(ranking[-20:]), 1):
         estado = "🧊 Muy frío"
     
     print(f"{i:3} │ {int(num):3} │ {freq[num]:5} │ {pct_sorteos:8.1f}% │ {deviation:+6.1f}% │ {estado}")
+
+# Mostrar indicador de calor de últimos sorteos
+if analisis_melate or analisis_revancha or analisis_revanchita:
+    print("\n" + "=" * 85)
+    print("🌡️ INDICADOR DE CALOR - ÚLTIMOS RESULTADOS")
+    print("=" * 85)
+    
+    for analisis in [analisis_melate, analisis_revancha, analisis_revanchita]:
+        if analisis:
+            print(f"\n{'─' * 85}")
+            print(f"🎰 {analisis['nombre'].upper()} - 📅 Sorteo del {analisis['fecha']}")
+            print(f"{'─' * 85}")
+            print(f"{'Núm':>4} │ {'Frec':>5} │ {'Desv':>7} │ {'Estado':<20}")
+            print("─" * 85)
+            for res in analisis['numeros']:
+                print(f"{res['numero']:4} │ {res['frecuencia']:5} │ {res['desviacion']:+6.1f}% │ {res['estado']}")
+            
+            print(f"\n📊 Resumen: {analisis['muy_calientes']}🔥 | {analisis['calientes']}🌡️ | "
+                  f"{analisis['normales']}➡️ | {analisis['frios']}❄️ | {analisis['muy_frios']}🧊")
 
 # 2. Pares más comunes
 pairs = Counter()
@@ -310,6 +407,30 @@ with open("ANALISIS.md", "w", encoding="utf-8") as f:
         
         f.write(f"| {i} | **{int(num)}** | {freq[num]} | {pct_sorteos:.1f}% | {deviation:+.1f}% | {estado} |\n")
     f.write("\n---\n\n")
+    
+    # Indicador de calor de últimos sorteos
+    if analisis_melate or analisis_revancha or analisis_revanchita:
+        f.write("## 🌡️ Indicador de Calor - Últimos Resultados\n\n")
+        f.write("Esta sección compara los números del último sorteo de cada lotería contra las categorías de temperatura (caliente/frío) basadas en su frecuencia histórica.\n\n")
+        
+        for analisis in [analisis_melate, analisis_revancha, analisis_revanchita]:
+            if analisis:
+                # Incluir la fecha del sorteo en el encabezado cuando esté disponible
+                fecha_text = f" - Sorteo del {analisis['fecha']}" if analisis.get('fecha') else ""
+                f.write(f"### 🎰 {analisis['nombre']}{fecha_text}\n\n")
+                f.write("| Número | Frecuencia | Desviación | Estado |\n")
+                f.write("|:------:|:----------:|:----------:|:------:|\n")
+                for res in analisis['numeros']:
+                    f.write(f"| **{res['numero']}** | {res['frecuencia']} | {res['desviacion']:+.1f}% | {res['estado']} |\n")
+
+                f.write("\n**📊 Distribución de temperatura:**\n")
+                f.write(f"- 🔥 Muy calientes: {analisis['muy_calientes']}\n")
+                f.write(f"- 🌡️ Calientes: {analisis['calientes']}\n")
+                f.write(f"- ➡️ Normales: {analisis['normales']}\n")
+                f.write(f"- ❄️ Fríos: {analisis['frios']}\n")
+                f.write(f"- 🧊 Muy fríos: {analisis['muy_frios']}\n\n")
+        
+        f.write("---\n\n")
     
     # Pares
     f.write("## 👥 Top 10 Pares Más Comunes\n\n")
