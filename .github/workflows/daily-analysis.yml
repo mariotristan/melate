@@ -40,6 +40,10 @@ jobs:
           python3 << 'PYTHON_SCRIPT'
           import requests
           import time
+          import urllib3
+          
+          # Suppress SSL warnings
+          urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
           
           print("📥 Downloading latest lottery data...")
           
@@ -57,7 +61,8 @@ jobs:
           for filename, url in urls.items():
               try:
                   print(f"  Downloading {filename}...")
-                  response = requests.get(url, headers=headers, timeout=30)
+                  # Disable SSL verification for this government site
+                  response = requests.get(url, headers=headers, timeout=30, verify=False)
                   response.raise_for_status()
                   
                   # Save the CSV file
