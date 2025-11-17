@@ -346,32 +346,15 @@ def plot_heat_distribution(analisis, out_dir="plots"):
     if analisis is None:
         return None
 
-    # Contadores por categoría (asegurar orden consistente)
-    categories = ["Muy caliente", "Caliente", "Normal", "Frío", "Muy frío"]
-    counts = {cat: 0 for cat in categories}
-    for r in analisis['numeros']:
-        # usar texto exacto
-        estado = r['estado']
-        # Extraer solo la parte del estado sin el emoji
-        estado_clean = estado.replace("🔥 ", "").replace("🌡️ ", "").replace("➡️ ", "").replace("❄️ ", "").replace("🧊 ", "")
-        
-        # map by keywords
-        if "Muy caliente" in estado_clean:
-            counts["Muy caliente"] += 1
-        elif "Caliente" in estado_clean:
-            counts["Caliente"] += 1
-        elif "Normal" in estado_clean:
-            counts["Normal"] += 1
-        elif "Frío" in estado_clean or "Frio" in estado_clean:
-            # distinguir frío/ muy frío
-            if "Muy frío" in estado_clean or "Muy frio" in estado_clean:
-                counts["Muy frío"] += 1
-            else:
-                counts["Frío"] += 1
-
-    # Preparar datos para la gráfica (INCLUIR TODAS LAS CATEGORÍAS)
-    labels = categories
-    values = [counts[c] for c in labels]
+    # Usar los conteos ya calculados en analisis
+    labels = ["Muy caliente", "Caliente", "Normal", "Frío", "Muy frío"]
+    values = [
+        analisis['muy_calientes'],
+        analisis['calientes'],
+        analisis['normales'],
+        analisis['frios'],
+        analisis['muy_frios']
+    ]
 
     # Crear carpeta si no existe
     os.makedirs(out_dir, exist_ok=True)
