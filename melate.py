@@ -381,8 +381,8 @@ def plot_heat_distribution(analisis, out_dir="plots"):
 
     try:
         plt.figure(figsize=(6,6))
-        # Colores coherentes con las categorías
-        pie_colors = ['#d73027', '#fc8d59', '#f0f0f0', '#91bfdb', '#313695']
+        # Colores suaves/pastel para las categorías (menos brillantes)
+        pie_colors = ['#e8a0a0', '#f5d5b8', '#e8e8e8', '#c5d9f1', '#b0b5d9']
         # Evitar etiquetas vacías en el pie (cuando count = 0 se oculta)
         nonzero_labels = [lbl for lbl, v in zip(labels, values) if v > 0]
         nonzero_values = [v for v in values if v > 0]
