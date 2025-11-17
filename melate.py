@@ -380,33 +380,33 @@ def plot_heat_distribution(analisis, out_dir="plots"):
     filename = os.path.join(out_dir, f"indicador_calor_{slug}.svg")
 
     try:
-        plt.figure(figsize=(6,6))
+        plt.figure(figsize=(10, 5))
         # Colores suaves/pastel para las categorías (menos brillantes)
-        pie_colors = ['#e8a0a0', '#f5d5b8', '#e8e8e8', '#c5d9f1', '#b0b5d9']
-        # Evitar etiquetas vacías en el pie (cuando count = 0 se oculta)
+        bar_colors = ['#e8a0a0', '#f5d5b8', '#e8e8e8', '#c5d9f1', '#b0b5d9']
+        # Evitar etiquetas vacías (cuando count = 0 se oculta)
         nonzero_labels = [lbl for lbl, v in zip(labels, values) if v > 0]
         nonzero_values = [v for v in values if v > 0]
-        nonzero_colors = [c for c, v in zip(pie_colors, values) if v > 0]
+        nonzero_colors = [c for c, v in zip(bar_colors, values) if v > 0]
 
         if sum(nonzero_values) == 0:
-            # No hay datos, crear una gráfica vacía con leyenda
-            wedges, texts = plt.pie([1], colors=['#f0f0f0'])
-            plt.legend(labels, loc='center left', bbox_to_anchor=(1, 0.5))
+            # No hay datos, crear una gráfica vacía
+            plt.bar(range(len(labels)), [0]*len(labels), color=['#f0f0f0']*len(labels))
         else:
-            wedges, texts, autotexts = plt.pie(
-                nonzero_values,
-                labels=nonzero_labels,
-                colors=nonzero_colors,
-                autopct='%1.0f%%',
-                startangle=90,
-                counterclock=False,
-                textprops={'fontsize': 9}
-            )
-            plt.title(f"Distribución de temperatura - {analisis['nombre']}", fontsize=10)
-            plt.axis('equal')
+            bars = plt.bar(range(len(nonzero_labels)), nonzero_values, color=nonzero_colors)
+            plt.xticks(range(len(nonzero_labels)), nonzero_labels, rotation=45, ha='right', fontsize=9)
+            plt.ylabel('Cantidad', fontsize=10)
+            plt.title(f"Distribución de temperatura - {analisis['nombre']}", fontsize=11, fontweight='bold')
+            plt.grid(axis='y', alpha=0.3, linestyle='--')
+            
+            # Añadir valores en las barras
+            for bar in bars:
+                height = bar.get_height()
+                plt.text(bar.get_x() + bar.get_width()/2., height,
+                        f'{int(height)}',
+                        ha='center', va='bottom', fontsize=9)
 
         plt.tight_layout()
-        plt.savefig(filename, format='svg', bbox_inches='tight')
+        plt.savefig(filename, format='svg', bbox_inches='tight', dpi=100)
         plt.close()
         return filename
     except Exception:
