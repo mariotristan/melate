@@ -132,8 +132,7 @@ jobs:
                   }}
 
                   body {{
-                      /* Include emoji-capable fonts so emojis render on GitHub Pages */
-                      font-family: -apple-system, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+                      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
                       line-height: 1.6;
                       color: var(--text-primary);
                       background: var(--background);
