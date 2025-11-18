@@ -1,6 +1,6 @@
 # 📊 Análisis de Lotería Melate
 
-**Fecha del análisis**: 17/11/2025 20:37:26
+**Fecha del análisis**: 18/11/2025 03:28:44
 
 📚 **[Leer Metodología y Fundamentos Estadísticos](https://mariotristan.github.io/melate/METODOLOGIA)** - Comprende los fundamentos teóricos, estrategias y limitaciones del análisis.
 
@@ -10,9 +10,9 @@
 
 | Archivo | Última Actualización | Sorteos |
 |:-------:|:--------------------:|:-------:|
-| 🎱 Melate.csv | 17/11/2025 20:37:21 | 4,136 |
-| 🔄 Revancha.csv | 17/11/2025 20:37:23 | 3,128 |
-| ⭐ Revanchita.csv | 17/11/2025 20:37:24 | 1,766 |
+| 🎱 Melate.csv | 18/11/2025 03:28:39 | 4,136 |
+| 🔄 Revancha.csv | 18/11/2025 03:28:41 | 3,128 |
+| ⭐ Revanchita.csv | 18/11/2025 03:28:42 | 1,766 |
 
 ---
 
@@ -225,7 +225,7 @@ Esta sección compara los números del último sorteo de cada lotería contra la
 
 ---
 
-## 🎲 Recomendaciones del Día (17/11/2025)
+## 🎲 Recomendaciones del Día (18/11/2025)
 
 ### 📊 Cinco Estrategias Diferentes
 
@@ -237,11 +237,11 @@ Combina números de alta frecuencia con selección aleatoria para diversificar e
 
 | # | Combinación |
 |:-:|:-----------|
-| 1 | **01 - 05 - 19 - 33 - 39 - 47** |
-| 2 | **11 - 15 - 19 - 20 - 26 - 35** |
-| 3 | **03 - 05 - 07 - 18 - 29 - 32** |
-| 4 | **08 - 29 - 31 - 35 - 36 - 43** |
-| 5 | **03 - 10 - 19 - 29 - 32 - 35** |
+| 1 | **12 - 13 - 19 - 21 - 31 - 53** |
+| 2 | **12 - 15 - 17 - 18 - 25 - 30** |
+| 3 | **13 - 16 - 18 - 31 - 39 - 56** |
+| 4 | **05 - 12 - 15 - 19 - 28 - 32** |
+| 5 | **02 - 03 - 19 - 25 - 29 - 36** |
 
 #### 🔥 Estrategia 2: CONSERVADORA (solo números calientes)
 
@@ -249,11 +249,11 @@ Apuesta exclusivamente por los números más frecuentes históricamente.
 
 | # | Combinación |
 |:-:|:-----------|
-| 1 | **03 - 05 - 07 - 15 - 29 - 33** |
-| 2 | **02 - 05 - 18 - 28 - 29 - 30** |
-| 3 | **02 - 13 - 18 - 24 - 28 - 32** |
-| 4 | **01 - 13 - 14 - 24 - 29 - 32** |
-| 5 | **02 - 03 - 15 - 17 - 30 - 37** |
+| 1 | **01 - 05 - 17 - 28 - 36 - 37** |
+| 2 | **01 - 03 - 07 - 18 - 24 - 36** |
+| 3 | **19 - 29 - 30 - 32 - 33 - 36** |
+| 4 | **02 - 05 - 29 - 30 - 33 - 35** |
+| 5 | **01 - 14 - 29 - 33 - 35 - 37** |
 
 #### 🧊 Estrategia 3: CONTRARIAN (números fríos)
 
@@ -261,11 +261,11 @@ Apuesta a la reversión: números que han salido menos podrían "compensar" esta
 
 | # | Combinación |
 |:-:|:-----------|
-| 1 | **44 - 49 - 50 - 51 - 52 - 53** |
-| 2 | **41 - 46 - 48 - 51 - 53 - 56** |
-| 3 | **45 - 48 - 49 - 52 - 53 - 55** |
-| 4 | **45 - 46 - 47 - 49 - 52 - 54** |
-| 5 | **41 - 42 - 46 - 47 - 49 - 51** |
+| 1 | **41 - 42 - 45 - 51 - 52 - 55** |
+| 2 | **44 - 46 - 49 - 50 - 52 - 55** |
+| 3 | **45 - 46 - 49 - 53 - 55 - 56** |
+| 4 | **41 - 42 - 44 - 51 - 54 - 56** |
+| 5 | **42 - 45 - 46 - 47 - 50 - 54** |
 
 #### ⚖️ Estrategia 4: BALANCEADA (3 calientes + 3 fríos)
 
@@ -273,11 +273,11 @@ Equilibrio perfecto entre números frecuentes y poco frecuentes.
 
 | # | Combinación |
 |:-:|:-----------|
-| 1 | **07 - 24 - 29 - 45 - 46 - 54** |
-| 2 | **05 - 07 - 24 - 50 - 51 - 56** |
-| 3 | **03 - 15 - 36 - 45 - 52 - 54** |
-| 4 | **01 - 03 - 32 - 47 - 52 - 56** |
-| 5 | **01 - 18 - 29 - 45 - 47 - 50** |
+| 1 | **13 - 15 - 28 - 47 - 51 - 56** |
+| 2 | **28 - 30 - 36 - 47 - 49 - 51** |
+| 3 | **14 - 15 - 30 - 45 - 53 - 56** |
+| 4 | **02 - 13 - 32 - 46 - 54 - 56** |
+| 5 | **05 - 14 - 36 - 45 - 50 - 53** |
 
 #### ✨ Estrategia 5: SERENDIPITY (mezcla de todas)
 
@@ -285,11 +285,11 @@ Cada combinación usa aleatoriamente una de las 4 estrategias anteriores. ¡Deja
 
 | # | Estrategia | Combinación |
 |:-:|:----------:|:-----------|
-| 1 | 📋 Híbrida | **04 - 10 - 12 - 17 - 19 - 51** |
-| 2 | ⚖️ Balanceada | **18 - 24 - 28 - 48 - 49 - 52** |
-| 3 | 🔥 Conservadora | **13 - 17 - 18 - 19 - 28 - 33** |
-| 4 | 🧊 Contrarian | **46 - 47 - 50 - 53 - 55 - 56** |
-| 5 | ⚖️ Balanceada | **03 - 15 - 29 - 46 - 52 - 54** |
+| 1 | ⚖️ Balanceada | **02 - 03 - 18 - 48 - 52 - 56** |
+| 2 | 📋 Híbrida | **03 - 19 - 29 - 31 - 32 - 49** |
+| 3 | 🔥 Conservadora | **01 - 15 - 17 - 19 - 29 - 35** |
+| 4 | ⚖️ Balanceada | **02 - 03 - 30 - 45 - 46 - 48** |
+| 5 | 📋 Híbrida | **04 - 06 - 07 - 14 - 27 - 36** |
 
 ---
 
@@ -299,4 +299,4 @@ Cada combinación usa aleatoriamente una de las 4 estrategias anteriores. ¡Deja
 
 ---
 
-*Generado automáticamente el 17/11/2025 a las 20:37:26*
+*Generado automáticamente el 18/11/2025 a las 03:28:44*
