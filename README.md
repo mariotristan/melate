@@ -76,6 +76,16 @@ melate/
 └── 🚫 .gitignore         # Archivos ignorados por Git
 ```
 
+### 📥 Obtención de Datos CSV
+
+Los archivos CSV se descargan automáticamente del sitio oficial de la **Lotería Nacional de México**:
+
+- 🎱 **Melate**: https://www.loterianacional.gob.mx/Home/Historicos
+- 🔄 **Revancha**: https://www.loterianacional.gob.mx/Home/Historicos
+- ⭐ **Revanchita**: https://www.loterianacional.gob.mx/Home/Historicos
+
+**Nota**: Los archivos CSV se descargan automáticamente cada día a través del workflow de GitHub Actions (`daily-analysis.yml`). Localmente, si ejecutas `python3 melate.py` sin los archivos CSV, el script intentará descargarlos automáticamente.
+
 ### 📋 Formato de Datos CSV
 
 #### Melate y Revancha
