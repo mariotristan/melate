@@ -371,17 +371,21 @@ Con un [nivel de confianza](https://es.wikipedia.org/wiki/Nivel_de_confianza) de
 #### Falacia del Jugador (Gambler's Fallacy)
 
 La [**Falacia del jugador**](https://es.wikipedia.org/wiki/Falacia_del_jugador) (Gambler's Fallacy) es un **error conceptual**: Creer que eventos pasados influyen en eventos futuros independientes.
+
+```Csharp
 P(número 24 en sorteo n+1) = 1/56
 ```
+
 independientemente de su frecuencia histórica.
 
 #### Independencia de Eventos
 
 En teoría de probabilidad, cada sorteo constituye un **evento independiente**. Dos eventos A y B son independientes si y solo si:
 
-```
+```math
 P(A ∩ B) = P(A) · P(B)
 ```
+
 
 **Referencias académicas:**
 
