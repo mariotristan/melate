@@ -459,30 +459,47 @@ with open("ANALISIS.md", "w", encoding="utf-8") as f:
             estado = "🧊 Muy frío"
         
         f.write(f"| {i} | **{int(num)}** | {freq[num]} | {pct_sorteos:.1f}% | {deviation:+.1f}% | {estado} |\n")
-    f.write("\n---\n\n")
-    
-    # Números fríos
-    f.write("## 🧊 Top 20 Números Más Fríos (Menos Frecuentes)\n\n")
-    f.write("| Pos | Número | Frecuencia | % Sorteos | Desviación | Estado |\n")
-    f.write("|:---:|:------:|:----------:|:---------:|:----------:|:------:|\n")
-    for i, (num, p) in enumerate(reversed(ranking[-20:]), 1):
-        pct_sorteos = (freq[num] / total_draws) * 100
-        deviation = ((freq[num] - expected_freq) / expected_freq) * 100
-        
-        # Indicador de estado
-        if deviation > 10:
-            estado = "🔥 Muy caliente"
-        elif deviation > 5:
-            estado = "🌡️ Caliente"
-        elif deviation > -5:
-            estado = "➡️ Normal"
-        elif deviation > -10:
-            estado = "❄️ Frío"
+    # --- Recomendación de estrategia según tendencia de calor ---
+    f.write("---\n\n")
+    f.write("## 🤔 Recomendación de Estrategia según Tendencia de Calor\n\n")
+    # Analizar tendencia del último sorteo principal (Melate)
+    if analisis_melate:
+        total = sum([
+            analisis_melate['muy_calientes'],
+            analisis_melate['calientes'],
+            analisis_melate['normales'],
+            analisis_melate['frios'],
+            analisis_melate['muy_frios']
+        ])
+        calientes = analisis_melate['muy_calientes'] + analisis_melate['calientes']
+        frios = analisis_melate['muy_frios'] + analisis_melate['frios']
+        normales = analisis_melate['normales']
+        # Decisión
+        if calientes >= 4:
+            f.write("**Tendencia observada:** El último sorteo tuvo mayoría de números calientes.\n\n")
+            f.write("**Recomendación:** Evita la estrategia conservadora (solo calientes), ya que es probable que los números calientes hayan sido sobreutilizados. Opta por la estrategia **balanceada** (3 calientes + 3 fríos) o la **contrarian** (fríos), buscando reversión estadística.\n\n")
+            f.write("**Razonamiento:** Cuando los números calientes dominan, la probabilidad de que sigan saliendo disminuye por regresión a la media. Apostar por equilibrio o por fríos puede aprovechar ciclos de reversión.")
+        elif frios >= 4:
+            f.write("**Tendencia observada:** El último sorteo tuvo mayoría de números fríos.\n\n")
+            f.write("**Recomendación:** La estrategia **contrarian** (fríos) o **balanceada** tiene más sentido, ya que los números fríos pueden estar en fase de reversión.\n\n")
+            f.write("**Razonamiento:** Los números fríos tienden a compensar su baja frecuencia en ciclos largos. Apostar por ellos puede anticipar una reversión estadística.")
+        elif normales >= 4:
+            f.write("**Tendencia observada:** El último sorteo fue equilibrado, con mayoría de números normales.\n\n")
+            f.write("**Recomendación:** La estrategia **balanceada** o **híbrida** es la más sensata, ya que no hay una tendencia clara.\n\n")
+            f.write("**Razonamiento:** Cuando no hay predominio de calientes ni fríos, conviene diversificar y equilibrar el riesgo.")
         else:
-            estado = "🧊 Muy frío"
-        
-        f.write(f"| {i} | **{int(num)}** | {freq[num]} | {pct_sorteos:.1f}% | {deviation:+.1f}% | {estado} |\n")
-    f.write("\n---\n\n")
+            f.write("**Tendencia observada:** El último sorteo fue mixto.\n\n")
+            f.write("**Recomendación:** La estrategia **balanceada** es la más robusta, pero puedes probar también la **serendipity** para diversificar.\n\n")
+            f.write("**Razonamiento:** En escenarios mixtos, el equilibrio y la aleatoriedad controlada suelen ser óptimos.")
+    else:
+        f.write("No se pudo analizar la tendencia de calor del último sorteo.\n\n")
+    f.write("---\n\n")
+    f.write("## ⚠️ Disclaimer\n\n")
+    f.write("> Este análisis es con fines educativos y estadísticos únicamente. ")
+    f.write("Los sorteos de lotería son eventos aleatorios y los resultados pasados ")
+    f.write("NO garantizan resultados futuros. Juega responsablemente.\n\n")
+    f.write("---\n\n")
+    f.write(f"*Generado automáticamente el {today.strftime('%d/%m/%Y a las %H:%M:%S')}*\n")
     
     # Indicador de calor de últimos sorteos
     if analisis_melate or analisis_revancha or analisis_revanchita:

@@ -371,11 +371,6 @@ Con un [nivel de confianza](https://es.wikipedia.org/wiki/Nivel_de_confianza) de
 #### Falacia del Jugador (Gambler's Fallacy)
 
 La [**Falacia del jugador**](https://es.wikipedia.org/wiki/Falacia_del_jugador) (Gambler's Fallacy) es un **error conceptual**: Creer que eventos pasados influyen en eventos futuros independientes.
-
-**Ejemplo**: "El número 24 ha salido mucho, debe dejar de salir pronto" (INCORRECTO)
-
-**Realidad**: Si el sistema es verdaderamente aleatorio:
-```
 P(número 24 en sorteo n+1) = 1/56
 ```
 independientemente de su frecuencia histórica.
