@@ -1,6 +1,6 @@
 # 📊 Análisis de Lotería Melate
 
-**Fecha del análisis**: 21/11/2025 08:22:33
+**Fecha del análisis**: 21/11/2025 16:52:12
 
 📚 **[Leer Metodología y Fundamentos Estadísticos](https://mariotristan.github.io/melate/METODOLOGIA)** - Comprende los fundamentos teóricos, estrategias y limitaciones del análisis.
 
@@ -10,9 +10,9 @@
 
 | Archivo | Última Actualización | Sorteos |
 |:-------:|:--------------------:|:-------:|
-| 🎱 Melate.csv | 21/11/2025 08:22:28 | 4,137 |
-| 🔄 Revancha.csv | 21/11/2025 08:22:30 | 3,129 |
-| ⭐ Revanchita.csv | 21/11/2025 08:22:32 | 1,767 |
+| 🎱 Melate.csv | 21/11/2025 16:52:07 | 4,137 |
+| 🔄 Revancha.csv | 21/11/2025 16:52:09 | 3,129 |
+| ⭐ Revanchita.csv | 21/11/2025 16:52:10 | 1,767 |
 
 ---
 
@@ -49,36 +49,23 @@
 | 18 | **33** | 1058 | 11.7% | +9.3% | 🌡️ Caliente |
 | 19 | **19** | 1056 | 11.7% | +9.1% | 🌡️ Caliente |
 | 20 | **37** | 1055 | 11.7% | +9.0% | 🌡️ Caliente |
+---
+
+## 🤔 Recomendación de Estrategia según Tendencia de Calor
+
+**Tendencia observada:** El último sorteo fue mixto.
+
+**Recomendación:** La estrategia **balanceada** es la más robusta, pero puedes probar también la **serendipity** para diversificar.
+
+**Razonamiento:** En escenarios mixtos, el equilibrio y la aleatoriedad controlada suelen ser óptimos.---
+
+## ⚠️ Disclaimer
+
+> Este análisis es con fines educativos y estadísticos únicamente. Los sorteos de lotería son eventos aleatorios y los resultados pasados NO garantizan resultados futuros. Juega responsablemente.
 
 ---
 
-## 🧊 Top 20 Números Más Fríos (Menos Frecuentes)
-
-| Pos | Número | Frecuencia | % Sorteos | Desviación | Estado |
-|:---:|:------:|:----------:|:---------:|:----------:|:------:|
-| 1 | **53** | 624 | 6.9% | -35.5% | 🧊 Muy frío |
-| 2 | **52** | 628 | 7.0% | -35.1% | 🧊 Muy frío |
-| 3 | **51** | 631 | 7.0% | -34.8% | 🧊 Muy frío |
-| 4 | **56** | 643 | 7.1% | -33.6% | 🧊 Muy frío |
-| 5 | **55** | 645 | 7.1% | -33.4% | 🧊 Muy frío |
-| 6 | **54** | 663 | 7.3% | -31.5% | 🧊 Muy frío |
-| 7 | **48** | 677 | 7.5% | -30.0% | 🧊 Muy frío |
-| 8 | **49** | 712 | 7.9% | -26.4% | 🧊 Muy frío |
-| 9 | **47** | 735 | 8.1% | -24.1% | 🧊 Muy frío |
-| 10 | **50** | 739 | 8.2% | -23.6% | 🧊 Muy frío |
-| 11 | **46** | 744 | 8.2% | -23.1% | 🧊 Muy frío |
-| 12 | **45** | 764 | 8.5% | -21.1% | 🧊 Muy frío |
-| 13 | **41** | 927 | 10.3% | -4.2% | ➡️ Normal |
-| 14 | **44** | 973 | 10.8% | +0.5% | ➡️ Normal |
-| 15 | **42** | 979 | 10.8% | +1.2% | ➡️ Normal |
-| 16 | **43** | 993 | 11.0% | +2.6% | ➡️ Normal |
-| 17 | **40** | 997 | 11.0% | +3.0% | ➡️ Normal |
-| 18 | **23** | 999 | 11.1% | +3.2% | ➡️ Normal |
-| 19 | **22** | 1015 | 11.2% | +4.9% | ➡️ Normal |
-| 20 | **9** | 1016 | 11.2% | +5.0% | ➡️ Normal |
-
----
-
+*Generado automáticamente el 21/11/2025 a las 16:52:12*
 ## 🌡️ Indicador de Calor - Últimos Resultados
 
 Esta sección compara los números del último sorteo de cada lotería contra las categorías de temperatura (caliente/frío) basadas en su frecuencia histórica.
@@ -299,4 +286,4 @@ Cada combinación usa aleatoriamente una de las 4 estrategias anteriores. ¡Deja
 
 ---
 
-*Generado automáticamente el 21/11/2025 a las 08:22:33*
+*Generado automáticamente el 21/11/2025 a las 16:52:12*
