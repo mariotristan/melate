@@ -1,5 +1,7 @@
 # 📊 Análisis Estadístico Melate Retro
 
+[⬅️ Regresar a la página principal](index.html)
+
 **Fecha de análisis:** 2025-11-23 06:09:31
 
 - Sorteos analizados: 1583
