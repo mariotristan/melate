@@ -97,14 +97,29 @@ with open(REPORT_FILE, "w", encoding="utf-8") as f:
     f.write(f"![Calor]({HEATMAP_PNG})\n\n")
     f.write(f"| Número | Frecuencia | Desviación (%) | Calor |\n")
     f.write(f"|--------|------------|---------------|-------|\n")
-    for num in numeros_posibles:
-        f.write(f"| {num} | {counts[num]} | {desviacion[num]:.2f} | {calor[num]} |\n")
+    # Ordenar por calor (de más caliente a más frío)
+    calor_order = ["🔥 Muy caliente", "🌡️ Caliente", "➡️ Normal", "❄️ Frío", "🧊 Muy frío"]
+    # Crear DataFrame para ordenar
+    tabla = pd.DataFrame({
+        "Número": numeros_posibles,
+        "Frecuencia": [counts[num] for num in numeros_posibles],
+        "Desviación": [desviacion[num] for num in numeros_posibles],
+        "Calor": [calor[num] for num in numeros_posibles]
+    })
+    tabla["Calor"] = tabla["Calor"].astype(str)
+    tabla["Calor_cat"] = pd.Categorical(tabla["Calor"], categories=calor_order, ordered=True)
+    tabla = tabla.sort_values(["Calor_cat", "Desviación"], ascending=[True, False])
+    for _, row in tabla.iterrows():
+        f.write(f"| {int(row['Número'])} | {int(row['Frecuencia'])} | {row['Desviación']:.2f} | {row['Calor']} |\n")
     f.write("\n---\n")
 
     # Indicador de Calor - Últimos Resultados
-    f.write("## 🌡️ Indicador de Calor - Últimos Resultados\n\n")
+    f.write("\n## 🌡️ Indicador de Calor - Últimos Resultados\n\n")
     f.write("Esta sección compara los números del último sorteo contra las categorías de temperatura (caliente/frío) basadas en su frecuencia histórica.\n\n")
     # Último sorteo
+    tendencia_text = ""
+    recomendacion_text = ""
+    razonamiento_text = ""
     if len(df) > 0:
         ultimo = df.iloc[0][num_cols].values.astype(int).tolist()
         # Buscar columna de fecha
@@ -121,15 +136,40 @@ with open(REPORT_FILE, "w", encoding="utf-8") as f:
         normales = sum(1 for num in ultimo if calor[num] == "➡️ Normal")
         frios = sum(1 for num in ultimo if calor[num] == "❄️ Frío")
         muy_frios = sum(1 for num in ultimo if calor[num] == "🧊 Muy frío")
-        f.write("\n**📊 Distribución de temperatura:**\n")
+        f.write("\n**📊 Distribución de temperatura:**\n\n")
         f.write(f"- 🔥 Muy calientes: {muy_calientes}\n")
         f.write(f"- 🌡️ Calientes: {calientes}\n")
         f.write(f"- ➡️ Normales: {normales}\n")
         f.write(f"- ❄️ Fríos: {frios}\n")
         f.write(f"- 🧊 Muy fríos: {muy_frios}\n\n")
+
+        # Recomendación de estrategia según tendencia de calor
+        f.write("\n## 🤔 Recomendación de Estrategia según Tendencia de Calor\n\n")
+        total = muy_calientes + calientes + normales + frios + muy_frios
+        if (muy_calientes + calientes) >= 4:
+            tendencia_text = "El último sorteo tuvo mayoría de números calientes."
+            recomendacion_text = "Evita la estrategia conservadora (solo calientes), ya que es probable que los números calientes hayan sido sobreutilizados. Opta por la estrategia **balanceada** (3 calientes + 3 fríos) o la **contrarian** (fríos), buscando reversión estadística."
+            razonamiento_text = "Cuando los números calientes dominan, la probabilidad de que sigan saliendo disminuye por regresión a la media. Apostar por equilibrio o por fríos puede aprovechar ciclos de reversión."
+        elif (muy_frios + frios) >= 4:
+            tendencia_text = "El último sorteo tuvo mayoría de números fríos."
+            recomendacion_text = "La estrategia **contrarian** (fríos) o **balanceada** tiene más sentido, ya que los números fríos pueden estar en fase de reversión."
+            razonamiento_text = "Los números fríos tienden a compensar su baja frecuencia en ciclos largos. Apostar por ellos puede anticipar una reversión estadística."
+        elif normales >= 4:
+            tendencia_text = "El último sorteo fue equilibrado, con mayoría de números normales."
+            recomendacion_text = "La estrategia **balanceada** o **híbrida** es la más sensata, ya que no hay una tendencia clara."
+            razonamiento_text = "Cuando no hay predominio de calientes ni fríos, conviene diversificar y equilibrar el riesgo."
+        else:
+            tendencia_text = "El último sorteo fue mixto."
+            recomendacion_text = "La estrategia **balanceada** es la más robusta, pero puedes probar también la **serendipity** para diversificar."
+            razonamiento_text = "En escenarios mixtos, el equilibrio y la aleatoriedad controlada suelen ser óptimos."
+        f.write(f"**Tendencia observada:** {tendencia_text}\n\n")
+        f.write(f"**Recomendación:** {recomendacion_text}\n\n")
+        f.write(f"**Razonamiento:** {razonamiento_text}\n\n")
     else:
         f.write("No se pudo analizar el último sorteo.\n\n")
-    f.write("---\n")
+    f.write("---\n\n")
+    # Asegura línea en blanco antes del Disclaimer
+    f.write("\n")
 
     f.write("## 🎲 Recomendaciones del Día\n\n")
     f.write("### 📊 Cinco Estrategias Diferentes\n\n")
