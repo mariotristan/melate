@@ -75,6 +75,8 @@ Este script realiza un análisis completo de los datos históricos de **tres lot
 
 ## 🚀 Instalación y Uso
 
+[▶ Instalación y dependencias](./INSTALACION.md)
+
 ### 📦 Requisitos Previos
 
 ```bash
