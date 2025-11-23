@@ -76,10 +76,19 @@ plt.savefig(HEATMAP_PNG)
 plt.close()
 
 # Generar reporte markdown
-fecha = datetime.now().strftime('%Y-%m-%d')
+
+# Estrategias y recomendaciones avanzadas (similar a melate.py)
+today = datetime.now()
+seed = int(today.strftime("%Y%m%d"))
+np.random.seed(seed)
+
+top_numbers = [int(num) for num in counts.sort_values(ascending=False).index[:30]]
+cold_numbers = [int(num) for num in counts.sort_values().index[:20]]
+all_numbers_list = list(numeros_posibles)
+
 with open(REPORT_FILE, "w", encoding="utf-8") as f:
     f.write(f"# 📊 Análisis Estadístico Melate Retro\n\n")
-    f.write(f"**Fecha de análisis:** {fecha}\n\n")
+    f.write(f"**Fecha de análisis:** {today.strftime('%Y-%m-%d %H:%M:%S')}\n\n")
     f.write(f"- Sorteos analizados: {n_sorteos}\n")
     f.write(f"- Números posibles: {N}\n\n")
     f.write(f"## Frecuencia absoluta por número\n\n")
@@ -89,13 +98,99 @@ with open(REPORT_FILE, "w", encoding="utf-8") as f:
     f.write(f"| Número | Frecuencia | Desviación (%) | Calor |\n")
     f.write(f"|--------|------------|---------------|-------|\n")
     for num in numeros_posibles:
-        f.write(f"| {num} | {counts[num]} | {desviacion[num]:.2f} | {calor[num]} |")
-        f.write("\n")
+        f.write(f"| {num} | {counts[num]} | {desviacion[num]:.2f} | {calor[num]} |\n")
     f.write("\n---\n")
-    f.write("## Recomendaciones de estrategia\n\n")
-    f.write("- Considera los números 'calientes' y 'muy calientes' si buscas explotar posibles sesgos mecánicos.\n")
-    f.write("- Alterna con números 'fríos' para diversificar y cubrir regresión a la media.\n")
-    f.write("- Recuerda que la lotería es un juego de azar y no existe garantía de éxito.\n")
-    f.write("\n> Consulta METODOLOGIA.md para fundamentos teóricos y referencias.\n")
+
+    f.write("## 🎲 Recomendaciones del Día\n\n")
+    f.write("### 📊 Cinco Estrategias Diferentes\n\n")
+    f.write("Todas las recomendaciones usan la fecha actual como semilla para generar combinaciones consistentes y reproducibles.\n\n")
+
+    # Estrategia 1: Híbrida
+    f.write("#### 📋 Estrategia 1: HÍBRIDA (4 calientes + 2 aleatorios)\n\n")
+    f.write("Combina números de alta frecuencia con selección aleatoria para diversificar el riesgo.\n\n")
+    f.write("| # | Combinación |\n")
+    f.write("|:-:|:-----------|\n")
+    np.random.seed(seed)
+    for i in range(1, 6):
+        selected = list(np.random.choice(top_numbers, 4, replace=False))
+        remaining = [n for n in all_numbers_list if n not in selected]
+        selected.extend(list(np.random.choice(remaining, 2, replace=False)))
+        selected.sort()
+        nums_str = " - ".join([f"{n:02d}" for n in selected])
+        f.write(f"| {i} | **{nums_str}** |\n")
+    f.write("\n")
+
+    # Estrategia 2: Conservadora
+    f.write("#### 🔥 Estrategia 2: CONSERVADORA (solo números calientes)\n\n")
+    f.write("Apuesta exclusivamente por los números más frecuentes históricamente.\n\n")
+    f.write("| # | Combinación |\n")
+    f.write("|:-:|:-----------|\n")
+    np.random.seed(seed + 1000)
+    for i in range(1, 6):
+        selected = list(np.random.choice(top_numbers[:20], 6, replace=False))
+        selected.sort()
+        nums_str = " - ".join([f"{n:02d}" for n in selected])
+        f.write(f"| {i} | **{nums_str}** |\n")
+    f.write("\n")
+
+    # Estrategia 3: Contrarian
+    f.write("#### 🧊 Estrategia 3: CONTRARIAN (números fríos)\n\n")
+    f.write("Apuesta a la reversión: números que han salido menos podrían 'compensar' estadísticamente.\n\n")
+    f.write("| # | Combinación |\n")
+    f.write("|:-:|:-----------|\n")
+    np.random.seed(seed + 2000)
+    for i in range(1, 6):
+        selected = list(np.random.choice(cold_numbers[:15], 6, replace=False))
+        selected.sort()
+        nums_str = " - ".join([f"{n:02d}" for n in selected])
+        f.write(f"| {i} | **{nums_str}** |\n")
+    f.write("\n")
+
+    # Estrategia 4: Balanceada
+    f.write("#### ⚖️ Estrategia 4: BALANCEADA (3 calientes + 3 fríos)\n\n")
+    f.write("Equilibrio perfecto entre números frecuentes y poco frecuentes.\n\n")
+    f.write("| # | Combinación |\n")
+    f.write("|:-:|:-----------|\n")
+    np.random.seed(seed + 3000)
+    for i in range(1, 6):
+        hot = list(np.random.choice(top_numbers[:15], 3, replace=False))
+        cold = list(np.random.choice(cold_numbers[:12], 3, replace=False))
+        selected = sorted(hot + cold)
+        nums_str = " - ".join([f"{n:02d}" for n in selected])
+        f.write(f"| {i} | **{nums_str}** |\n")
+    f.write("\n")
+
+    # Estrategia 5: Serendipity
+    f.write("#### ✨ Estrategia 5: SERENDIPITY (mezcla de todas)\n\n")
+    f.write("Cada combinación usa aleatoriamente una de las 4 estrategias anteriores. ¡Deja que el destino elija!\n\n")
+    f.write("| # | Estrategia | Combinación |\n")
+    f.write("|:-:|:----------:|:-----------|\n")
+    np.random.seed(seed + 4000)
+    for i in range(1, 6):
+        strategy_choice = np.random.randint(1, 5)
+        if strategy_choice == 1:  # Híbrida
+            selected = list(np.random.choice(top_numbers, 4, replace=False))
+            remaining = [n for n in all_numbers_list if n not in selected]
+            selected.extend(list(np.random.choice(remaining, 2, replace=False)))
+        elif strategy_choice == 2:  # Conservadora
+            selected = list(np.random.choice(top_numbers[:20], 6, replace=False))
+        elif strategy_choice == 3:  # Contrarian
+            selected = list(np.random.choice(cold_numbers[:15], 6, replace=False))
+        else:  # Balanceada
+            hot = list(np.random.choice(top_numbers[:15], 3, replace=False))
+            cold = list(np.random.choice(cold_numbers[:12], 3, replace=False))
+            selected = hot + cold
+        selected.sort()
+        strategy_name = ["📋 Híbrida", "🔥 Conservadora", "🧊 Contrarian", "⚖️ Balanceada"][strategy_choice - 1]
+        nums_str = " - ".join([f"{n:02d}" for n in selected])
+        f.write(f"| {i} | {strategy_name} | **{nums_str}** |\n")
+    f.write("\n---\n")
+
+    f.write("## ⚠️ Disclaimer\n\n")
+    f.write("> Este análisis es con fines educativos y estadísticos únicamente. ")
+    f.write("Los sorteos de lotería son eventos aleatorios y los resultados pasados ")
+    f.write("NO garantizan resultados futuros. Juega responsablemente.\n\n")
+    f.write("---\n\n")
+    f.write(f"*Generado automáticamente el {today.strftime('%d/%m/%Y a las %H:%M:%S')}*\n")
 
 print(f"Análisis completado. Revisa {REPORT_FILE} y los gráficos PNG generados.")
