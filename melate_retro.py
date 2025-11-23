@@ -107,7 +107,10 @@ with open(REPORT_FILE, "w", encoding="utf-8") as f:
     # Último sorteo
     if len(df) > 0:
         ultimo = df.iloc[0][num_cols].values.astype(int).tolist()
-        f.write(f"### 🎰 Melate Retro - Sorteo más reciente\n\n")
+        # Buscar columna de fecha
+        fecha_col = next((col for col in df.columns if 'FECHA' in col.upper()), None)
+        fecha_ultimo = str(df.iloc[0][fecha_col]) if fecha_col else "(fecha no disponible)"
+        f.write(f"### 🎰 Melate Retro - Sorteo más reciente ({fecha_ultimo})\n\n")
         f.write("| Número | Frecuencia | Desviación (%) | Calor |\n")
         f.write("|:------:|:----------:|:--------------:|:------:|\n")
         for num in ultimo:
@@ -118,7 +121,7 @@ with open(REPORT_FILE, "w", encoding="utf-8") as f:
         normales = sum(1 for num in ultimo if calor[num] == "➡️ Normal")
         frios = sum(1 for num in ultimo if calor[num] == "❄️ Frío")
         muy_frios = sum(1 for num in ultimo if calor[num] == "🧊 Muy frío")
-        f.write(f"\n**📊 Distribución de temperatura:**\n")
+        f.write("\n**📊 Distribución de temperatura:**\n")
         f.write(f"- 🔥 Muy calientes: {muy_calientes}\n")
         f.write(f"- 🌡️ Calientes: {calientes}\n")
         f.write(f"- ➡️ Normales: {normales}\n")
