@@ -440,12 +440,12 @@ with open("ANALISIS.md", "w", encoding="utf-8") as f:
     avg_freq = sum(freq.values()) / len(freq)
     expected_freq = total_draws * 6 / 56  # Frecuencia esperada si todos fueran equiprobables
     
-    f.write("| Pos | Número | Frecuencia | % Sorteos | Desviación | Estado |\n")
-    f.write("|:---:|:------:|:----------:|:---------:|:----------:|:------:|\n")
+    f.write("<table>\n")
+    f.write("<thead><tr><th>Pos</th><th>Número</th><th>Frecuencia</th><th>% Sorteos</th><th>Desviación</th><th>Estado</th></tr></thead>\n")
+    f.write("<tbody>\n")
     for i, (num, p) in enumerate(ranking[:20], 1):
         pct_sorteos = (freq[num] / total_draws) * 100
         deviation = ((freq[num] - expected_freq) / expected_freq) * 100
-        # Indicador de estado
         if deviation > 10:
             estado = "🔥 Muy caliente"
         elif deviation > 5:
@@ -456,18 +456,10 @@ with open("ANALISIS.md", "w", encoding="utf-8") as f:
             estado = "❄️ Frío"
         else:
             estado = "🧊 Muy frío"
-        # Validar que todos los valores estén presentes y sean string
-        fila = [str(i), f"**{int(num)}**", str(freq[num]), f"{pct_sorteos:.1f}%", f"{deviation:+.1f}%", estado]
-        # Unir con separador de columna y asegurar longitud
-        if len(fila) == 6:
-            f.write("| " + " | ".join(fila) + " |\n")
-        else:
-            # Si por alguna razón la fila está incompleta, rellenar con vacío
-            while len(fila) < 6:
-                fila.append("")
-            f.write("| " + " | ".join(fila) + " |\n")
+        f.write(f"<tr><td>{i}</td><td><b>{int(num)}</b></td><td>{freq[num]}</td><td>{pct_sorteos:.1f}%</td><td>{deviation:+.1f}%</td><td>{estado}</td></tr>\n")
+    f.write("</tbody></table>\n")
     # --- Recomendación de estrategia según tendencia de calor ---
-    f.write("---\n\n")
+    f.write("\n\n")
     f.write("## 🤔 Recomendación de Estrategia según Tendencia de Calor\n\n")
     # Analizar tendencia del último sorteo principal (Melate)
     if analisis_melate:
