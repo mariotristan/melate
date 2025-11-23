@@ -55,10 +55,45 @@ def generar_reporte(df, counts, freq, desviacion, calor):
     todos = list(range(10))
 
     estrategias = []
-    estrategias.append(("Híbrida (3 calientes + 2 aleatorios)", lambda: sorted(random.sample(calientes, min(3, len(calientes))) + random.sample([n for n in todos if n not in calientes], 2))))
-    estrategias.append(("Conservadora (solo calientes)", lambda: sorted(random.sample(calientes, min(5, len(calientes))))))
-    estrategias.append(("Contrarian (solo fríos)", lambda: sorted(random.sample(frios, min(5, len(frios))))))
-    estrategias.append(("Balanceada (2 calientes + 2 fríos + 1 normal)", lambda: sorted((random.sample(calientes, min(2, len(calientes))) + random.sample(frios, min(2, len(frios))) + random.sample(normales, 1 if len(normales) > 0 else 0))[:5])))
+    # Híbrida: 3 calientes + 2 aleatorios (no calientes)
+    def hibrida():
+        c = random.sample(calientes, min(3, len(calientes)))
+        restantes = [n for n in todos if n not in c]
+        a = random.sample(restantes, 5 - len(c))
+        return sorted(c + a)
+    estrategias.append(("Híbrida (3 calientes + 2 aleatorios)", hibrida))
+
+    # Conservadora: solo calientes, completar con normales si faltan
+    def conservadora():
+        c = random.sample(calientes, min(5, len(calientes)))
+        if len(c) < 5:
+            extra = random.sample(normales, 5 - len(c))
+            c += extra
+        return sorted(c)
+    estrategias.append(("Conservadora (solo calientes)", conservadora))
+
+    # Contrarian: solo fríos, completar con normales si faltan
+    def contrarian():
+        f = random.sample(frios, min(5, len(frios)))
+        if len(f) < 5:
+            extra = random.sample(normales, 5 - len(f))
+            f += extra
+        return sorted(f)
+    estrategias.append(("Contrarian (solo fríos)", contrarian))
+
+    # Balanceada: 2 calientes + 2 fríos + 1 normal, completar con aleatorios si faltan
+    def balanceada():
+        c = random.sample(calientes, min(2, len(calientes)))
+        f_ = random.sample(frios, min(2, len(frios)))
+        n = random.sample(normales, 1 if len(normales) > 0 else 0)
+        comb = c + f_ + n
+        if len(comb) < 5:
+            extra = random.sample([x for x in todos if x not in comb], 5 - len(comb))
+            comb += extra
+        return sorted(comb)
+    estrategias.append(("Balanceada (2 calientes + 2 fríos + 1 normal)", balanceada))
+
+    # Serendipity: elige una de las anteriores aleatoriamente
     def serendipity():
         strategy = random.choice([0, 1, 2, 3])
         return estrategias[strategy][1]()
