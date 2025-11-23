@@ -3,7 +3,7 @@ name: 📄 Publish to GitHub Pages
 on:
   # Run after the daily analysis completes
   workflow_run:
-    workflows: ["🎲 Daily Lottery Analysis"]
+    workflows: ["🎲 Daily Lottery Analysis", "🎲 Melate Retro Analysis"]
     types:
       - completed
   
