@@ -1,3 +1,5 @@
+[⬅️ Regresar a la página principal](index.html)
+
 # 📊 Análisis de Lotería Melate
 
 **Fecha del análisis**: 23/11/2025 08:19:39

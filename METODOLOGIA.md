@@ -1,5 +1,9 @@
 # 📚 Metodología y Fundamentos Estadísticos del Análisis de Lotería
 
+---
+
+[⬅️ Regresar a la página principal](index.html)
+
 ## 📖 Índice
 
 1. [Introducción](#introducción)

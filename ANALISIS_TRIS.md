@@ -1,5 +1,7 @@
 # 📊 Análisis Estadístico de Tris
 
+[⬅️ Regresar a la página principal](index.html)
+
  **Fecha de análisis:**  2025-11-23 01:27
 
 - Sorteos analizados: 32239
