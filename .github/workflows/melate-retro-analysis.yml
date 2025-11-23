@@ -39,7 +39,7 @@ jobs:
             ANALISIS_RETRO.md
             retro_heatmap.png
             retro_frecuencias.png
-            MelateRetro.csv
+            
 
       - name: Commit results
         run: |
