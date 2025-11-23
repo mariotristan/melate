@@ -445,7 +445,6 @@ with open("ANALISIS.md", "w", encoding="utf-8") as f:
     for i, (num, p) in enumerate(ranking[:20], 1):
         pct_sorteos = (freq[num] / total_draws) * 100
         deviation = ((freq[num] - expected_freq) / expected_freq) * 100
-        
         # Indicador de estado
         if deviation > 10:
             estado = "🔥 Muy caliente"
@@ -457,8 +456,16 @@ with open("ANALISIS.md", "w", encoding="utf-8") as f:
             estado = "❄️ Frío"
         else:
             estado = "🧊 Muy frío"
-        
-        f.write(f"| {i} | **{int(num)}** | {freq[num]} | {pct_sorteos:.1f}% | {deviation:+.1f}% | {estado} |\n")
+        # Validar que todos los valores estén presentes y sean string
+        fila = [str(i), f"**{int(num)}**", str(freq[num]), f"{pct_sorteos:.1f}%", f"{deviation:+.1f}%", estado]
+        # Unir con separador de columna y asegurar longitud
+        if len(fila) == 6:
+            f.write("| " + " | ".join(fila) + " |\n")
+        else:
+            # Si por alguna razón la fila está incompleta, rellenar con vacío
+            while len(fila) < 6:
+                fila.append("")
+            f.write("| " + " | ".join(fila) + " |\n")
     # --- Recomendación de estrategia según tendencia de calor ---
     f.write("---\n\n")
     f.write("## 🤔 Recomendación de Estrategia según Tendencia de Calor\n\n")
