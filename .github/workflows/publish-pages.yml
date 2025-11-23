@@ -67,9 +67,13 @@ jobs:
           with open('METODOLOGIA.md', 'r', encoding='utf-8') as f:
               metodologia_content = f.read()
 
-          # Convert markdown to HTML
-          analisis_html = markdown2.markdown(analisis_content, extras=['tables', 'fenced-code-blocks'])
-          metodologia_html = markdown2.markdown(metodologia_content, extras=['tables', 'fenced-code-blocks'])
+          # Melate Retro
+          try:
+              with open('ANALISIS_RETRO.md', 'r', encoding='utf-8') as f:
+                  retro_content = f.read()
+              retro_html = markdown2.markdown(retro_content, extras=['tables', 'fenced-code-blocks'])
+          except FileNotFoundError:
+              retro_html = '<h2>No se encontró ANALISIS_RETRO.md</h2>'
 
           # Create the full HTML page template
           html_template = '''<!DOCTYPE html>
@@ -314,11 +318,18 @@ jobs:
           '''
 
           # Generate index.html (analysis)
+          # Navegación entre análisis
+          nav_html = '''<nav style="margin-bottom:30px;text-align:center;">
+            <a href="index.html" style="margin:0 18px;font-weight:600;color:#2563eb;">Melate Clásico</a>
+            <a href="RETRO.html" style="margin:0 18px;font-weight:600;color:#10b981;">Melate Retro</a>
+            <a href="METODOLOGIA.html" style="margin:0 18px;font-weight:600;color:#64748b;">Metodología</a>
+          </nav>'''
+
           analisis_page = html_template.format(
               title='🎲 Análisis de Lotería Melate',
               header_title='🎲 Análisis de Lotería Melate',
               subtitle='Análisis estadístico avanzado de sorteos mexicanos',
-              content=analisis_html
+              content=nav_html + analisis_html
           )
 
           with open('docs/index.html', 'w', encoding='utf-8') as f:
@@ -329,21 +340,42 @@ jobs:
               title='📚 Metodología y Fundamentos Estadísticos',
               header_title='📚 Metodología y Fundamentos Estadísticos',
               subtitle='Bases teóricas del análisis de lotería',
-              content=metodologia_html
+              content=nav_html + metodologia_html
           )
 
           with open('docs/METODOLOGIA.html', 'w', encoding='utf-8') as f:
               f.write(metodologia_page)
 
+          # Generate retro.html
+          retro_page = html_template.format(
+              title='🎲 Melate Retro - Análisis',
+              header_title='🎲 Melate Retro',
+              subtitle='Análisis estadístico Melate Retro',
+              content=nav_html + retro_html
+          )
+
+          with open('docs/RETRO.html', 'w', encoding='utf-8') as f:
+              f.write(retro_page)
+
           print("✅ HTML pages generated successfully!")
           PYTHON_SCRIPT
 
-          # Also copy the markdown files and the plots directory so images are available on Pages
-          cp ANALISIS.md docs/
-          cp METODOLOGIA.md docs/
-          if [ -d "plots" ]; then
-            cp -r plots docs/ || true
-          fi
+                    # Also copy the markdown files and the plots directory so images are available on Pages
+                    cp ANALISIS.md docs/
+                    cp METODOLOGIA.md docs/
+                    if [ -f "ANALISIS_RETRO.md" ]; then
+                        cp ANALISIS_RETRO.md docs/
+                    fi
+                    # Copiar gráficos retro si existen
+                    if [ -f "retro_heatmap.png" ]; then
+                        cp retro_heatmap.png docs/
+                    fi
+                    if [ -f "retro_frecuencias.png" ]; then
+                        cp retro_frecuencias.png docs/
+                    fi
+                    if [ -d "plots" ]; then
+                        cp -r plots docs/ || true
+                    fi
       
       - name: 📤 Upload artifact
         uses: actions/upload-pages-artifact@v3
