@@ -1,0 +1,49 @@
+name: melate-retro-analysis
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * *'
+
+jobs:
+  retro-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas matplotlib numpy
+
+      - name: Download Melate Retro CSV
+        run: |
+          curl -L "https://www.loterianacional.gob.mx/Home/Historicos?ARHP=TQBlAGwAYQB0AGUALQBSAGUAdAByAG8A" -o MelateRetro.csv
+
+      - name: Run Melate Retro analysis
+        run: |
+          python melate_retro.py
+
+      - name: Upload analysis artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: melate-retro-artifacts
+          path: |
+            ANALISIS_RETRO.md
+            retro_heatmap.png
+            retro_frecuencias.png
+            MelateRetro.csv
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add ANALISIS_RETRO.md retro_heatmap.png retro_frecuencias.png MelateRetro.csv
+          git commit -m "Melate Retro: análisis actualizado [skip ci]" || echo "No changes to commit"
+          git push
