@@ -25,7 +25,7 @@ jobs:
 
       - name: Download Melate Retro CSV
         run: |
-          curl -L "https://www.loterianacional.gob.mx/Home/Historicos?ARHP=TQBlAGwAYQB0AGUALQBSAGUAdAByAG8A" -o MelateRetro.csv
+          curl -k -L "https://www.loterianacional.gob.mx/Home/Historicos?ARHP=TQBlAGwAYQB0AGUALQBSAGUAdAByAG8A" -o MelateRetro.csv
 
       - name: Run Melate Retro analysis
         run: |
