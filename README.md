@@ -273,7 +273,7 @@ Este proyecto está licenciado bajo la **Licencia MIT** - consulta el archivo [L
 
 ### 🌟 ¡Buena suerte! 🍀
 
-**Made with ❤️ and 📊 Data Analysis**
+**Made with ❤️,  📊 Data Analysis and AI 🤖 **
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
