@@ -1,6 +1,6 @@
 # 📊 Análisis de Lotería Melate
 
-**Fecha del análisis**: 23/11/2025 05:02:53
+**Fecha del análisis**: 23/11/2025 05:09:43
 
 📚 **[Leer Metodología y Fundamentos Estadísticos](https://mariotristan.github.io/melate/METODOLOGIA)** - Comprende los fundamentos teóricos, estrategias y limitaciones del análisis.
 
@@ -10,9 +10,9 @@
 
 | Archivo | Última Actualización | Sorteos |
 |:-------:|:--------------------:|:-------:|
-| 🎱 Melate.csv | 23/11/2025 05:02:49 | 4,138 |
-| 🔄 Revancha.csv | 23/11/2025 05:02:50 | 3,130 |
-| ⭐ Revanchita.csv | 23/11/2025 05:02:51 | 1,768 |
+| 🎱 Melate.csv | 23/11/2025 05:09:38 | 4,138 |
+| 🔄 Revancha.csv | 23/11/2025 05:09:40 | 3,130 |
+| ⭐ Revanchita.csv | 23/11/2025 05:09:41 | 1,768 |
 
 ---
 
@@ -65,7 +65,7 @@
 
 ---
 
-*Generado automáticamente el 23/11/2025 a las 05:02:53*
+*Generado automáticamente el 23/11/2025 a las 05:09:43*
 ## 🌡️ Indicador de Calor - Últimos Resultados
 
 Esta sección compara los números del último sorteo de cada lotería contra las categorías de temperatura (caliente/frío) basadas en su frecuencia histórica.
@@ -286,4 +286,4 @@ Cada combinación usa aleatoriamente una de las 4 estrategias anteriores. ¡Deja
 
 ---
 
-*Generado automáticamente el 23/11/2025 a las 05:02:53*
+*Generado automáticamente el 23/11/2025 a las 05:09:43*
