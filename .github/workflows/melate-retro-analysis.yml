@@ -1,9 +1,10 @@
 name: 🎲 Melate Retro Analysis
 
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: '0 6 * * *'
+  workflow_run:
+    workflows: ["🎲 Daily Lottery Analysis"]
+    types:
+      - completed
 
 jobs:
   retro-analysis:
