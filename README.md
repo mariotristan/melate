@@ -122,7 +122,19 @@ melate/
 ### 📥 Obtención de Datos CSV
 
 
-Los archivos CSV se descargan automáticamente cada día a través del workflow de GitHub Actions (`daily-analysis.yml`). Localmente, si ejecutas los scripts sin los archivos CSV, se intentará descargarlos automáticamente.
+Los archivos CSV se descargan automáticamente cada día a través del workflow de GitHub Actions (`daily-analysis.yml`).
+
+---
+
+### Descarga de datos para ejecuciones locales
+
+Para descargar los archivos de datos de loterías mexicanas localmente, ejecuta el script:
+
+```sh
+bash descargar_datos.sh
+```
+
+Este script utiliza las mismas URLs que los pipelines automáticos y guarda los archivos en la raíz del proyecto.
 
 #### Melate, Revancha y Revanchita
 - [🎱 **Melate**](https://www.loterianacional.gob.mx/Home/Historicos?ARHP=TQBlAGwAYQB0AGUA)
@@ -280,3 +292,5 @@ Este proyecto está licenciado bajo la **Licencia MIT** - consulta el archivo [L
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 </div>
+
+
