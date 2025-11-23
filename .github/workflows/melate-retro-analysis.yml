@@ -1,4 +1,4 @@
-name: melate-retro-analysis
+name: 🎲 Melate Retro Analysis
 
 on:
   workflow_dispatch:
