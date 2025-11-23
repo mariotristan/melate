@@ -101,6 +101,33 @@ with open(REPORT_FILE, "w", encoding="utf-8") as f:
         f.write(f"| {num} | {counts[num]} | {desviacion[num]:.2f} | {calor[num]} |\n")
     f.write("\n---\n")
 
+    # Indicador de Calor - Últimos Resultados
+    f.write("## 🌡️ Indicador de Calor - Últimos Resultados\n\n")
+    f.write("Esta sección compara los números del último sorteo contra las categorías de temperatura (caliente/frío) basadas en su frecuencia histórica.\n\n")
+    # Último sorteo
+    if len(df) > 0:
+        ultimo = df.iloc[0][num_cols].values.astype(int).tolist()
+        f.write(f"### 🎰 Melate Retro - Sorteo más reciente\n\n")
+        f.write("| Número | Frecuencia | Desviación (%) | Calor |\n")
+        f.write("|:------:|:----------:|:--------------:|:------:|\n")
+        for num in ultimo:
+            f.write(f"| **{num}** | {counts[num]} | {desviacion[num]:.2f} | {calor[num]} |\n")
+        # Resumen de distribución
+        muy_calientes = sum(1 for num in ultimo if calor[num] == "🔥 Muy caliente")
+        calientes = sum(1 for num in ultimo if calor[num] == "🌡️ Caliente")
+        normales = sum(1 for num in ultimo if calor[num] == "➡️ Normal")
+        frios = sum(1 for num in ultimo if calor[num] == "❄️ Frío")
+        muy_frios = sum(1 for num in ultimo if calor[num] == "🧊 Muy frío")
+        f.write(f"\n**📊 Distribución de temperatura:**\n")
+        f.write(f"- 🔥 Muy calientes: {muy_calientes}\n")
+        f.write(f"- 🌡️ Calientes: {calientes}\n")
+        f.write(f"- ➡️ Normales: {normales}\n")
+        f.write(f"- ❄️ Fríos: {frios}\n")
+        f.write(f"- 🧊 Muy fríos: {muy_frios}\n\n")
+    else:
+        f.write("No se pudo analizar el último sorteo.\n\n")
+    f.write("---\n")
+
     f.write("## 🎲 Recomendaciones del Día\n\n")
     f.write("### 📊 Cinco Estrategias Diferentes\n\n")
     f.write("Todas las recomendaciones usan la fecha actual como semilla para generar combinaciones consistentes y reproducibles.\n\n")
