@@ -32,6 +32,32 @@ Este script realiza un análisis completo de los datos históricos de **tres lot
 ---
 
 ## ✨ Características Principales
+### 📊 Análisis Melate
+
+- Analiza todos los sorteos históricos de Melate (más de 4,000).
+- Calcula la frecuencia absoluta de cada número (1-56).
+- Genera gráficos de frecuencias y visualizaciones de combinaciones frecuentes (pares, tríadas, cuartetos, quintetos).
+- Identifica repeticiones exactas de sorteos y patrones estadísticos.
+- Clasifica cada número por “calor” (muy caliente, caliente, normal, frío, muy frío) según su desviación porcentual.
+- Recomienda estrategias basadas en la tendencia de calor y patrones históricos.
+- Ofrece cinco tipos de combinaciones diarias: híbrida, conservadora, contrarian, balanceada y serendipity, todas reproducibles y basadas en la fecha.
+### 📊 Análisis Melate Retro
+
+- Analiza todos los sorteos históricos de Melate Retro (más de 1,500).
+- Calcula la frecuencia absoluta de cada número (1-39).
+- Genera gráficos de frecuencias y mapas de calor para visualizar tendencias.
+- Clasifica cada número por “calor” (muy caliente, caliente, normal, frío, muy frío) según su desviación porcentual.
+- Recomienda estrategias basadas en la tendencia de calor del último sorteo.
+- Ofrece cinco tipos de combinaciones diarias: híbrida, conservadora, contrarian, balanceada y serendipity, todas reproducibles y basadas en la fecha.
+
+### 📊 Análisis Tris
+
+- Analiza todos los sorteos históricos de Tris (más de 160,000).
+- Calcula la frecuencia y desviación porcentual de cada dígito (0-9).
+- Genera gráficos y tablas de calor para los últimos resultados.
+- Clasifica cada dígito por “calor” y muestra la distribución en el último sorteo.
+- Recomienda estrategias según la tendencia de calor: híbrida, conservadora, contrarian, balanceada y serendipity.
+- Todas las combinaciones son válidas y reproducibles, con lógica de respaldo si faltan dígitos calientes o fríos.
 
 ### 📊 Análisis Estadísticos
 
@@ -66,27 +92,53 @@ python3 melate.py
 
 ## 📁 Estructura de Archivos
 
+
 ```
 melate/
-├── 📄 melate.py          # Script principal
-├── 📊 Melate.csv         # Datos históricos Melate
-├── 📊 Revancha.csv       # Datos históricos Revancha
-├── 📊 Revanchita.csv     # Datos históricos Revanchita
-├── 📖 README.md          # Este archivo
-└── 🚫 .gitignore         # Archivos ignorados por Git
+├── 📄 melate.py            # Script principal Melate
+├── 📄 tris.py              # Script principal Tris
+├── 📄 melate_retro.py      # Script principal Melate Retro
+├── 📊 Melate.csv           # Datos históricos Melate
+├── 📊 Revancha.csv         # Datos históricos Revancha
+├── 📊 Revanchita.csv       # Datos históricos Revanchita
+├── 📊 Tris.csv             # Datos históricos Tris
+├── 📊 MelateRetro.csv      # Datos históricos Melate Retro
+├── 📖 README.md            # Este archivo
+├── 📄 ANALISIS.md          # Reporte de análisis Melate
+├── 📄 ANALISIS_RETRO.md    # Reporte de análisis Melate Retro
+├── 📄 ANALISIS_TRIS.md     # Reporte de análisis Tris
+├── 📄 METODOLOGIA.md       # Documentación de metodología
+├── 📄 requirements.txt     # Dependencias Python
+├── 📄 tris_frecuencias.png # Gráfica de frecuencias Tris
+├── 📄 retro_frecuencias.png# Gráfica de frecuencias Melate Retro
+├── 📄 retro_heatmap.png    # Mapa de calor Melate Retro
+├── 📄 plots/               # Gráficas adicionales
+├── 🚫 .gitignore           # Archivos ignorados por Git
+└── .github/workflows/      # Workflows de CI/CD (daily-analysis.yml, publish-pages.yml, tris-analysis.yml)
 ```
 
 ### 📥 Obtención de Datos CSV
 
-Los archivos CSV se descargan automáticamente del sitio oficial de la **Lotería Nacional de México**:
 
+Los archivos CSV se descargan automáticamente cada día a través del workflow de GitHub Actions (`daily-analysis.yml`). Localmente, si ejecutas los scripts sin los archivos CSV, se intentará descargarlos automáticamente.
+
+#### Melate, Revancha y Revanchita
 - [🎱 **Melate**](https://www.loterianacional.gob.mx/Home/Historicos?ARHP=TQBlAGwAYQB0AGUA)
 - [🔄 **Revancha**](https://www.loterianacional.gob.mx/Home/Historicos?ARHP=UgBlAHYAYQBuAGMAaABhAA==)
 - [⭐ **Revanchita**](https://www.loterianacional.gob.mx/Home/Historicos?ARHP=UgBlAHYAYQBuAGMAaABpAHQAYQA=)
 
-**Nota**: Los archivos CSV se descargan automáticamente cada día a través del workflow de GitHub Actions (`daily-analysis.yml`). Localmente, si ejecutas `python3 melate.py` sin los archivos CSV, el script intentará descargarlos automáticamente.
+#### Melate Retro
+- [🔙 **Melate Retro**](https://www.loterianacional.gob.mx/Home/Historicos?ARHP=TQBlAGwAYQB0AGUAcgBlAHQAcgBvAA==)
+- El archivo se descarga y procesa automáticamente por `melate_retro.py` y el workflow correspondiente.
+
+#### Tris
+- [🎲 **Tris**](https://www.loterianacional.gob.mx/Home/Historicos?ARHP=VAByAGkAcwA=)
+- El archivo se descarga y procesa automáticamente por `tris.py` y el workflow correspondiente.
+
+**Nota**: Todos los archivos se actualizan automáticamente y se procesan para análisis y generación de reportes.
 
 ### 📋 Formato de Datos CSV
+
 
 #### Melate y Revancha
 ```csv
@@ -98,6 +150,18 @@ NPRODUCTO,CONCURSO,R1,R2,R3,R4,R5,R6,BOLSA,FECHA
 ```csv
 NPRODUCTO,CONCURSO,F1,F2,F3,F4,F5,F6,BOLSA,FECHA
 34,4135,3,6,13,37,50,54,108100000,14/11/2025
+```
+
+#### Melate Retro
+```csv
+NPRODUCTO,CONCURSO,N1,N2,N3,N4,N5,N6,BOLSA,FECHA
+41,1583,4,7,13,17,21,26,5000000,18/11/2025
+```
+
+#### Tris
+```csv
+CONCURSO,N1,N2,N3,N4,N5,FECHA
+160000,2,6,2,9,8,21/11/2025
 ```
 
 ---
@@ -138,22 +202,27 @@ Combinación 3: [ 7 - 12 - 16 - 24 - 37 - 45]
 
 ## 🎯 Estrategia de Recomendaciones
 
-<div align="center">
+Las recomendaciones diarias para Melate, Melate Retro y Tris se generan usando cinco estrategias avanzadas:
 
-| Componente | Cantidad | Origen |
-|------------|----------|--------|
-| 🔥 **Números Calientes** | 4 números | Top 30 más frecuentes |
-| 🎲 **Números Aleatorios** | 2 números | Conjunto completo (1-55) |
-| 📅 **Semilla Aleatoria** | Fecha actual | Garantiza unicidad diaria |
+| Estrategia      | Lógica principal |
+|-----------------|-----------------|
+| Híbrida         | Mezcla de números calientes y aleatorios |
+| Conservadora    | Solo números calientes |
+| Contrarian      | Solo números fríos |
+| Balanceada      | Calientes, fríos y normales |
+| Serendipity     | Combinación aleatoria de las anteriores |
 
-</div>
+**Características clave:**
+- Todas las combinaciones son válidas y completas, con lógica de respaldo si no hay suficientes calientes o fríos.
+- La semilla aleatoria basada en la fecha garantiza unicidad diaria y reproducibilidad.
+- El análisis de calor (muy caliente, caliente, normal, frío, muy frío) guía la selección de estrategias recomendadas según la tendencia del último sorteo.
 
 ### 🧮 Metodología
 
-1. **Análisis histórico**: Se analizan más de 9,000 sorteos
-2. **Identificación de patrones**: Se detectan números y combinaciones frecuentes
-3. **Balanceo inteligente**: Mezcla de estadística y aleatoriedad
-4. **Unicidad diaria**: Las recomendaciones cambian cada día
+1. **Análisis histórico**: Miles de sorteos analizados
+2. **Identificación de patrones y calor**: Frecuencias y desviaciones
+3. **Recomendaciones inteligentes**: Estrategias y balanceo
+4. **Automatización diaria**: Resultados y reportes actualizados automáticamente
 
 ---
 
@@ -170,10 +239,10 @@ Combinación 3: [ 7 - 12 - 16 - 24 - 37 - 45]
 
 ## 📊 Estadísticas del Proyecto
 
-- 🔢 **Total de sorteos analizados**: ~9,000+
-- 📅 **Período de datos**: Histórico hasta noviembre 2025
-- 🎯 **Precisión estadística**: Basada en frecuencias empíricas
-- 🔄 **Actualización**: Manual con nuevos datos CSV
+ - 🔢 **Total de sorteos analizados**: ~9,000+ (Melate, Revancha, Revanchita) + miles de Tris
+ - 📅 **Período de datos**: Histórico hasta noviembre 2025
+ - 🎯 **Precisión estadística**: Basada en frecuencias empíricas y calor
+ - 🔄 **Actualización**: Automática diaria vía GitHub Actions
 
 ---
 
