@@ -45,6 +45,6 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add ANALISIS_RETRO.md retro_heatmap.png retro_frecuencias.png MelateRetro.csv
+          git add ANALISIS_RETRO.md retro_heatmap.png retro_frecuencias.png
           git commit -m "Melate Retro: análisis actualizado [skip ci]" || echo "No changes to commit"
           git push
