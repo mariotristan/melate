@@ -330,10 +330,10 @@ jobs:
           '''
 
 
-          # Generate index.html (analysis)
+          # Generate melate.html (analysis)
           # Navegación entre análisis
           nav_html = '''<nav style="margin-bottom:30px;text-align:center;">
-              <a href="index.html" style="margin:0 18px;font-weight:600;color:#2563eb;">Melate Clásico</a>
+              <a href="melate.html" style="margin:0 18px;font-weight:600;color:#2563eb;">Melate Clásico</a>
               <a href="RETRO.html" style="margin:0 18px;font-weight:600;color:#10b981;">Melate Retro</a>
               <a href="TRIS.html" style="margin:0 18px;font-weight:600;color:#f59e0b;">Tris</a>
               <a href="METODOLOGIA.html" style="margin:0 18px;font-weight:600;color:#64748b;">Metodología</a>
@@ -357,7 +357,7 @@ jobs:
               content=nav_html + analisis_html
           )
 
-          with open('docs/index.html', 'w', encoding='utf-8') as f:
+          with open('docs/melate.html', 'w', encoding='utf-8') as f:
               f.write(analisis_page)
 
           # Generate metodologia.html
