@@ -101,7 +101,9 @@ def generar_reporte(df, counts, freq, desviacion, calor):
 
     with open(REPORT_FILE, "w", encoding="utf-8") as f:
         f.write("# 📊 Análisis Estadístico de Tris\n\n")
-        f.write(f"_Actualizado: {today.strftime('%Y-%m-%d %H:%M')}\n\n")
+        f.write(f" **Fecha de análisis:**  {today.strftime('%Y-%m-%d %H:%M')}\n\n")
+        f.write(f"- Sorteos analizados: {len(df)}\n")
+        f.write(f"- Números posibles: 10 (0-9)\n\n")
         f.write("---\n\n")
         f.write("**¿Qué es Tris?**\n\n")
         f.write("Tris es el sorteo numérico más accesible de México, donde puedes decidir cuánto quieres ganar según la modalidad que elijas y cuánto desees apostar. Puedes jugar desde $1 peso, seleccionando 1, 2, 3, 4 o 5 dígitos, cada uno de un conjunto diferente de esferas del 0 al 9.\n\n")
