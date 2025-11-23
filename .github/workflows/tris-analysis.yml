@@ -18,9 +18,9 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pandas matplotlib numpy
-      - name: Copiar Tris.csv
+      - name: Descargar Tris.csv
         run: |
-          cp Tris.csv tris/Tris.csv || cp Tris.csv Tris.csv
+          curl -L 'https://www.loterianacional.gob.mx/Home/Historicos?ARHP=VAByAGkAcwA=' -o Tris.csv
       - name: Ejecutar análisis Tris
         run: |
           python tris.py
