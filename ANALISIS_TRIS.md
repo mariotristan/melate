@@ -1,6 +1,6 @@
 # 📊 Análisis Estadístico de Tris
 
-_Actualizado: 2025-11-23 00:23
+_Actualizado: 2025-11-23 01:04
 
 ---
 
@@ -61,10 +61,47 @@ Las urnas de Tris eligen 5 números al azar para formar una cifra de 5 dígitos.
 
 ## 🎲 Recomendaciones del Día
 
-- Estrategia balanceada: [0]
-- Estrategia calientes: []
-- Estrategia fríos: []
-- Estrategia aleatoria: [5, 7, 0, 6, 4]
+_Generadas el 23/11/2025 01:04 con semilla aleatoria 20251123_
+
+**Estrategia 1: Híbrida (3 calientes + 2 aleatorios)**
+
+- Combinación 1: [2, 3, 4, 8, 9]
+- Combinación 2: [0, 2, 4, 5, 7]
+- Combinación 3: [1, 3, 6, 8, 9]
+- Combinación 4: [2, 3, 5, 7, 8]
+- Combinación 5: [0, 1, 3, 6, 7]
+
+**Estrategia 2: Conservadora (solo calientes)**
+
+- Combinación 1: [2, 3, 4, 5, 7]
+- Combinación 2: [1, 3, 4, 6, 7]
+- Combinación 3: [2, 5, 6, 7, 9]
+- Combinación 4: [1, 5, 6, 7, 8]
+- Combinación 5: [0, 1, 4, 6, 9]
+
+**Estrategia 3: Contrarian (solo fríos)**
+
+- Combinación 1: [1, 3, 7, 8, 9]
+- Combinación 2: [0, 2, 3, 4, 6]
+- Combinación 3: [2, 3, 4, 5, 6]
+- Combinación 4: [0, 2, 3, 8, 9]
+- Combinación 5: [5, 6, 7, 8, 9]
+
+**Estrategia 4: Balanceada (2 calientes + 2 fríos + 1 normal)**
+
+- Combinación 1: [0, 1, 3, 4, 6]
+- Combinación 2: [0, 1, 3, 7, 9]
+- Combinación 3: [2, 3, 5, 7, 9]
+- Combinación 4: [0, 2, 3, 4, 7]
+- Combinación 5: [0, 3, 7, 8, 9]
+
+**Estrategia 5: Serendipity (mezcla aleatoria)**
+
+- Combinación 1: [0, 1, 3, 4, 8]
+- Combinación 2: [2, 3, 7, 8, 9]
+- Combinación 3: [0, 1, 2, 4, 5]
+- Combinación 4: [0, 4, 6, 7, 8]
+- Combinación 5: [0, 2, 3, 4, 9]
 
 ## ⚠️ Disclaimer
 
