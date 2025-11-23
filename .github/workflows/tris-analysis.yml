@@ -20,7 +20,7 @@ jobs:
           pip install pandas matplotlib numpy
       - name: Descargar Tris.csv
         run: |
-          curl -L 'https://www.loterianacional.gob.mx/Home/Historicos?ARHP=VAByAGkAcwA=' -o Tris.csv
+          curl -k -L 'https://www.loterianacional.gob.mx/Home/Historicos?ARHP=VAByAGkAcwA=' -o Tris.csv
       - name: Ejecutar análisis Tris
         run: |
           python tris.py
