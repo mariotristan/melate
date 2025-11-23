@@ -1,0 +1,33 @@
+name: tris-analysis
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 7 * * *'
+
+jobs:
+  tris-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          pip install pandas matplotlib numpy
+      - name: Copiar Tris.csv
+        run: |
+          cp Tris.csv tris/Tris.csv || cp Tris.csv Tris.csv
+      - name: Ejecutar análisis Tris
+        run: |
+          python tris.py
+      - name: Commit resultados
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add ANALISIS_TRIS.md tris_frecuencias.png
+          git commit -m "chore: Actualiza análisis Tris automático" || echo "Sin cambios para commit"
+          git push
