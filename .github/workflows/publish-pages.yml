@@ -75,6 +75,10 @@ jobs:
           except FileNotFoundError:
               retro_html = '<h2>No se encontró ANALISIS_RETRO.md</h2>'
 
+          # Convert main analysis and methodology to HTML
+          analisis_html = markdown2.markdown(analisis_content, extras=['tables', 'fenced-code-blocks'])
+          metodologia_html = markdown2.markdown(metodologia_content, extras=['tables', 'fenced-code-blocks'])
+
           # Create the full HTML page template
           html_template = '''<!DOCTYPE html>
           <html lang="es">
