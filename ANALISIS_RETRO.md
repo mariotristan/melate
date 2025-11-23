@@ -1,6 +1,6 @@
 # 📊 Análisis Estadístico Melate Retro
 
-**Fecha de análisis:** 2025-11-23 05:31:51
+**Fecha de análisis:** 2025-11-23 05:37:16
 
 - Sorteos analizados: 1583
 - Números posibles: 39
@@ -54,6 +54,30 @@
 | 37 | 301 | 5.94 | 🌡️ Caliente |
 | 38 | 311 | 9.46 | 🌡️ Caliente |
 | 39 | 262 | -7.79 | ❄️ Frío |
+
+---
+## 🌡️ Indicador de Calor - Últimos Resultados
+
+Esta sección compara los números del último sorteo contra las categorías de temperatura (caliente/frío) basadas en su frecuencia histórica.
+
+### 🎰 Melate Retro - Sorteo más reciente
+
+| Número | Frecuencia | Desviación (%) | Calor |
+|:------:|:----------:|:--------------:|:------:|
+| **3** | 288 | 1.36 | ➡️ Normal |
+| **5** | 257 | -9.55 | ❄️ Frío |
+| **7** | 294 | 3.47 | ➡️ Normal |
+| **17** | 287 | 1.01 | ➡️ Normal |
+| **21** | 275 | -3.21 | ➡️ Normal |
+| **22** | 281 | -1.10 | ➡️ Normal |
+| **9** | 253 | -10.96 | 🧊 Muy frío |
+
+**📊 Distribución de temperatura:**
+- 🔥 Muy calientes: 0
+- 🌡️ Calientes: 0
+- ➡️ Normales: 5
+- ❄️ Fríos: 1
+- 🧊 Muy fríos: 1
 
 ---
 ## 🎲 Recomendaciones del Día
@@ -129,4 +153,4 @@ Cada combinación usa aleatoriamente una de las 4 estrategias anteriores. ¡Deja
 
 ---
 
-*Generado automáticamente el 23/11/2025 a las 05:31:51*
+*Generado automáticamente el 23/11/2025 a las 05:37:16*
