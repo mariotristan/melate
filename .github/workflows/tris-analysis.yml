@@ -4,7 +4,8 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '0 7 * * *'
-
+permissions:
+  contents: write
 jobs:
   tris-analysis:
     runs-on: ubuntu-latest
