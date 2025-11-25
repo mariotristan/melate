@@ -1,6 +1,6 @@
 # 📊 Análisis Estadístico Melate Retro
 
-**Fecha de análisis:** 2025-11-24 08:24:18
+**Fecha de análisis:** 2025-11-25 08:25:11
 
 - Sorteos analizados: 1584
 - Números posibles: 39
@@ -105,11 +105,11 @@ Combina números de alta frecuencia con selección aleatoria para diversificar e
 
 | # | Combinación |
 |:-:|:-----------|
-| 1 | **06 - 08 - 21 - 27 - 31 - 39** |
-| 2 | **13 - 15 - 17 - 22 - 35 - 38** |
-| 3 | **07 - 08 - 17 - 28 - 31 - 37** |
-| 4 | **02 - 13 - 16 - 22 - 23 - 27** |
-| 5 | **01 - 03 - 10 - 11 - 19 - 27** |
+| 1 | **02 - 03 - 15 - 19 - 25 - 34** |
+| 2 | **02 - 06 - 11 - 14 - 22 - 25** |
+| 3 | **02 - 09 - 24 - 26 - 32 - 35** |
+| 4 | **01 - 04 - 12 - 21 - 34 - 36** |
+| 5 | **02 - 08 - 20 - 22 - 25 - 38** |
 
 #### 🔥 Estrategia 2: CONSERVADORA (solo números calientes)
 
@@ -117,11 +117,11 @@ Apuesta exclusivamente por los números más frecuentes históricamente.
 
 | # | Combinación |
 |:-:|:-----------|
-| 1 | **07 - 08 - 10 - 15 - 17 - 26** |
-| 2 | **03 - 10 - 15 - 25 - 37 - 38** |
-| 3 | **02 - 15 - 19 - 24 - 25 - 37** |
-| 4 | **06 - 07 - 08 - 12 - 24 - 38** |
-| 5 | **02 - 10 - 17 - 25 - 29 - 31** |
+| 1 | **02 - 06 - 12 - 29 - 33 - 37** |
+| 2 | **04 - 06 - 10 - 17 - 29 - 38** |
+| 3 | **02 - 03 - 04 - 24 - 29 - 38** |
+| 4 | **03 - 07 - 12 - 13 - 15 - 31** |
+| 5 | **08 - 13 - 19 - 24 - 33 - 37** |
 
 #### 🧊 Estrategia 3: CONTRARIAN (números fríos)
 
@@ -129,11 +129,11 @@ Apuesta a la reversión: números que han salido menos podrían 'compensar' esta
 
 | # | Combinación |
 |:-:|:-----------|
-| 1 | **01 - 09 - 16 - 20 - 30 - 35** |
-| 2 | **16 - 18 - 20 - 23 - 28 - 30** |
-| 3 | **01 - 05 - 14 - 16 - 18 - 35** |
-| 4 | **01 - 16 - 18 - 23 - 34 - 35** |
-| 5 | **11 - 14 - 16 - 18 - 28 - 35** |
+| 1 | **01 - 09 - 11 - 16 - 21 - 34** |
+| 2 | **05 - 09 - 16 - 20 - 23 - 35** |
+| 3 | **01 - 11 - 20 - 21 - 23 - 34** |
+| 4 | **11 - 16 - 20 - 28 - 30 - 35** |
+| 5 | **09 - 20 - 23 - 34 - 35 - 39** |
 
 #### ⚖️ Estrategia 4: BALANCEADA (3 calientes + 3 fríos)
 
@@ -141,11 +141,11 @@ Equilibrio perfecto entre números frecuentes y poco frecuentes.
 
 | # | Combinación |
 |:-:|:-----------|
-| 1 | **02 - 07 - 09 - 14 - 23 - 25** |
-| 2 | **01 - 08 - 15 - 16 - 18 - 31** |
-| 3 | **02 - 14 - 23 - 24 - 29 - 39** |
-| 4 | **03 - 14 - 24 - 28 - 34 - 38** |
-| 5 | **05 - 06 - 08 - 16 - 25 - 35** |
+| 1 | **06 - 08 - 15 - 34 - 35 - 39** |
+| 2 | **04 - 06 - 14 - 16 - 34 - 38** |
+| 3 | **02 - 05 - 08 - 09 - 15 - 18** |
+| 4 | **02 - 15 - 16 - 23 - 38 - 39** |
+| 5 | **01 - 02 - 06 - 14 - 16 - 31** |
 
 #### ✨ Estrategia 5: SERENDIPITY (mezcla de todas)
 
@@ -153,11 +153,11 @@ Cada combinación usa aleatoriamente una de las 4 estrategias anteriores. ¡Deja
 
 | # | Estrategia | Combinación |
 |:-:|:----------:|:-----------|
-| 1 | 🧊 Contrarian | **01 - 14 - 20 - 28 - 30 - 34** |
-| 2 | 📋 Híbrida | **10 - 17 - 21 - 24 - 26 - 36** |
-| 3 | 📋 Híbrida | **06 - 08 - 13 - 14 - 17 - 27** |
-| 4 | 🧊 Contrarian | **14 - 21 - 23 - 28 - 30 - 35** |
-| 5 | ⚖️ Balanceada | **05 - 06 - 13 - 21 - 26 - 28** |
+| 1 | ⚖️ Balanceada | **02 - 03 - 14 - 18 - 25 - 28** |
+| 2 | ⚖️ Balanceada | **03 - 06 - 08 - 16 - 34 - 35** |
+| 3 | ⚖️ Balanceada | **02 - 03 - 14 - 21 - 25 - 28** |
+| 4 | 📋 Híbrida | **03 - 06 - 08 - 20 - 22 - 23** |
+| 5 | 🔥 Conservadora | **03 - 04 - 07 - 12 - 17 - 25** |
 
 ---
 ## ⚠️ Disclaimer
@@ -166,4 +166,4 @@ Cada combinación usa aleatoriamente una de las 4 estrategias anteriores. ¡Deja
 
 ---
 
-*Generado automáticamente el 24/11/2025 a las 08:24:18*
+*Generado automáticamente el 25/11/2025 a las 08:25:11*
