@@ -226,30 +226,30 @@ def main():
             remaining = [n for n in all_numbers_list if n not in selected]
             selected.extend(random.sample(remaining, 2))
             selected.sort()
-            nums_str = " - ".join([f"{n:2}" for n in selected])
-            f.write(f"  Combinación {i}: [{nums_str}]\n")
+            nums_str = ", ".join(str(n) for n in selected)
+            f.write(f"  Combinación {i}: {nums_str}\n")
         f.write("\n**Estrategia 2: Solo calientes**\n")
         random.seed(seed + 1000)
         for i in range(1, 6):
             selected = random.sample(top_numbers, 5)
             selected.sort()
-            nums_str = " - ".join([f"{n:2}" for n in selected])
-            f.write(f"  Combinación {i}: [{nums_str}]\n")
+            nums_str = ", ".join(str(n) for n in selected)
+            f.write(f"  Combinación {i}: {nums_str}\n")
         f.write("\n**Estrategia 3: Solo fríos**\n")
         random.seed(seed + 2000)
         for i in range(1, 6):
             selected = random.sample(cold_numbers, 5)
             selected.sort()
-            nums_str = " - ".join([f"{n:2}" for n in selected])
-            f.write(f"  Combinación {i}: [{nums_str}]\n")
+            nums_str = ", ".join(str(n) for n in selected)
+            f.write(f"  Combinación {i}: {nums_str}\n")
         f.write("\n**Estrategia 4: 2 calientes + 3 fríos**\n")
         random.seed(seed + 3000)
         for i in range(1, 6):
             hot = random.sample(top_numbers, 2)
             cold = random.sample(cold_numbers, 3)
             selected = sorted(hot + cold)
-            nums_str = " - ".join([f"{n:2}" for n in selected])
-            f.write(f"  Combinación {i}: [{nums_str}]\n")
+            nums_str = ", ".join(str(n) for n in selected)
+            f.write(f"  Combinación {i}: {nums_str}\n")
         f.write("\n**Estrategia 5: Serendipity**\n")
         random.seed(seed + 4000)
         for i in range(1, 6):
@@ -267,8 +267,8 @@ def main():
                 cold = random.sample(cold_numbers, 3)
                 selected = hot + cold
             selected.sort()
-            nums_str = " - ".join([f"{n:2}" for n in selected])
-            f.write(f"  Combinación {i}: [{nums_str}]\n")
+            nums_str = ", ".join(str(n) for n in selected)
+            f.write(f"  Combinación {i}: {nums_str}\n")
 
 if __name__ == "__main__":
     main()

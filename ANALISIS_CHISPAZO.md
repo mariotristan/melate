@@ -56,39 +56,39 @@
  4. (11, 21, 22, 28) │  10 veces
  5. (4, 11, 15, 17) │  10 veces
 
-## Recomendaciones del día (26/11/2025)
+## Recomendaciones del día (27/11/2025)
 
 **Estrategia 1: 3 calientes + 2 aleatorios**
-  Combinación 1: [ 1 -  2 -  3 -  8 - 23]
-  Combinación 2: [ 1 -  4 - 11 - 15 - 18]
-  Combinación 3: [ 2 -  7 - 14 - 23 - 24]
-  Combinación 4: [ 1 -  8 - 12 - 14 - 28]
-  Combinación 5: [ 4 -  8 - 13 - 18 - 25]
+  Combinación 1: 8, 9, 13, 23, 24
+  Combinación 2: 1, 6, 12, 14, 25
+  Combinación 3: 1, 6, 11, 14, 17
+  Combinación 4: 8, 13, 15, 18, 21
+  Combinación 5: 1, 9, 12, 15, 24
 
 **Estrategia 2: Solo calientes**
-  Combinación 1: [ 1 -  2 - 12 - 14 - 15]
-  Combinación 2: [ 1 - 15 - 17 - 18 - 23]
-  Combinación 3: [ 2 - 12 - 15 - 21 - 25]
-  Combinación 4: [14 - 17 - 21 - 23 - 25]
-  Combinación 5: [ 9 - 10 - 15 - 21 - 24]
+  Combinación 1: 1, 2, 8, 14, 23
+  Combinación 2: 2, 9, 12, 14, 21
+  Combinación 3: 4, 8, 10, 17, 21
+  Combinación 4: 1, 9, 12, 14, 21
+  Combinación 5: 8, 9, 12, 14, 17
 
 **Estrategia 3: Solo fríos**
-  Combinación 1: [ 6 -  7 - 22 - 26 - 28]
-  Combinación 2: [ 3 - 16 - 20 - 22 - 27]
-  Combinación 3: [ 6 -  7 - 16 - 20 - 22]
-  Combinación 4: [ 6 -  7 - 13 - 20 - 28]
-  Combinación 5: [ 7 - 16 - 20 - 22 - 28]
+  Combinación 1: 6, 13, 16, 20, 22
+  Combinación 2: 6, 7, 16, 20, 22
+  Combinación 3: 16, 20, 22, 27, 28
+  Combinación 4: 3, 6, 7, 16, 27
+  Combinación 5: 3, 6, 22, 26, 28
 
 **Estrategia 4: 2 calientes + 3 fríos**
-  Combinación 1: [ 4 -  7 - 12 - 27 - 28]
-  Combinación 2: [10 - 16 - 18 - 22 - 28]
-  Combinación 3: [ 6 -  8 - 15 - 16 - 26]
-  Combinación 4: [ 6 - 12 - 13 - 16 - 17]
-  Combinación 5: [ 7 - 10 - 16 - 24 - 28]
+  Combinación 1: 14, 16, 25, 27, 28
+  Combinación 2: 7, 13, 14, 22, 23
+  Combinación 3: 6, 10, 14, 22, 28
+  Combinación 4: 16, 17, 20, 21, 27
+  Combinación 5: 1, 15, 22, 27, 28
 
 **Estrategia 5: Serendipity**
-  Combinación 1: [ 7 - 15 - 21 - 24 - 27]
-  Combinación 2: [ 2 -  6 -  8 - 15 - 17]
-  Combinación 3: [ 3 -  7 - 16 - 22 - 28]
-  Combinación 4: [ 3 -  6 -  7 - 22 - 28]
-  Combinación 5: [ 6 -  7 - 16 - 22 - 27]
+  Combinación 1: 3, 13, 16, 26, 27
+  Combinación 2: 1, 9, 18, 21, 24
+  Combinación 3: 6, 9, 16, 18, 28
+  Combinación 4: 3, 7, 13, 27, 28
+  Combinación 5: 2, 8, 9, 24, 25
