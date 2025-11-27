@@ -21,7 +21,7 @@ jobs:
           pip install -r requirements.txt
       - name: Descargar datos Chispazo
         run: |
-          curl -L -o Chispazo.csv "https://www.loterianacional.gob.mx/Home/Historicos?ARHP=QwBoAGkAcwBwAGEAegBvAA=="
+          curl -k -L -o Chispazo.csv "https://www.loterianacional.gob.mx/Home/Historicos?ARHP=QwBoAGkAcwBwAGEAegBvAA=="
       - name: Run Chispazo analysis
         run: python chispazo.py
       - name: Upload analysis artifact
