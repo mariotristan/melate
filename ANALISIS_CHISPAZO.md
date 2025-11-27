@@ -58,37 +58,30 @@
 
 ## Recomendaciones del día (27/11/2025)
 
-**Estrategia 1: 3 calientes + 2 aleatorios**
-  Combinación 1: 8, 9, 13, 23, 24
-  Combinación 2: 1, 6, 12, 14, 25
-  Combinación 3: 1, 6, 11, 14, 17
-  Combinación 4: 8, 13, 15, 18, 21
-  Combinación 5: 1, 9, 12, 15, 24
-
-**Estrategia 2: Solo calientes**
-  Combinación 1: 1, 2, 8, 14, 23
-  Combinación 2: 2, 9, 12, 14, 21
-  Combinación 3: 4, 8, 10, 17, 21
-  Combinación 4: 1, 9, 12, 14, 21
-  Combinación 5: 8, 9, 12, 14, 17
-
-**Estrategia 3: Solo fríos**
-  Combinación 1: 6, 13, 16, 20, 22
-  Combinación 2: 6, 7, 16, 20, 22
-  Combinación 3: 16, 20, 22, 27, 28
-  Combinación 4: 3, 6, 7, 16, 27
-  Combinación 5: 3, 6, 22, 26, 28
-
-**Estrategia 4: 2 calientes + 3 fríos**
-  Combinación 1: 14, 16, 25, 27, 28
-  Combinación 2: 7, 13, 14, 22, 23
-  Combinación 3: 6, 10, 14, 22, 28
-  Combinación 4: 16, 17, 20, 21, 27
-  Combinación 5: 1, 15, 22, 27, 28
-
-**Estrategia 5: Serendipity**
-  Combinación 1: 3, 13, 16, 26, 27
-  Combinación 2: 1, 9, 18, 21, 24
-  Combinación 3: 6, 9, 16, 18, 28
-  Combinación 4: 3, 7, 13, 27, 28
-  Combinación 5: 2, 8, 9, 24, 25
+| Estrategia | Combinación | Números |
+|------------|-------------|---------|
+| 3 calientes + 2 aleatorios | 1 | 8, 9, 13, 23, 24 |
+| 3 calientes + 2 aleatorios | 2 | 1, 6, 12, 14, 25 |
+| 3 calientes + 2 aleatorios | 3 | 1, 6, 11, 14, 17 |
+| 3 calientes + 2 aleatorios | 4 | 8, 13, 15, 18, 21 |
+| 3 calientes + 2 aleatorios | 5 | 1, 9, 12, 15, 24 |
+| Solo calientes | 1 | 1, 2, 8, 14, 23 |
+| Solo calientes | 2 | 2, 9, 12, 14, 21 |
+| Solo calientes | 3 | 4, 8, 10, 17, 21 |
+| Solo calientes | 4 | 1, 9, 12, 14, 21 |
+| Solo calientes | 5 | 8, 9, 12, 14, 17 |
+| Solo fríos | 1 | 6, 13, 16, 20, 22 |
+| Solo fríos | 2 | 6, 7, 16, 20, 22 |
+| Solo fríos | 3 | 16, 20, 22, 27, 28 |
+| Solo fríos | 4 | 3, 6, 7, 16, 27 |
+| Solo fríos | 5 | 3, 6, 22, 26, 28 |
+| 2 calientes + 3 fríos | 1 | 14, 16, 25, 27, 28 |
+| 2 calientes + 3 fríos | 2 | 7, 13, 14, 22, 23 |
+| 2 calientes + 3 fríos | 3 | 6, 10, 14, 22, 28 |
+| 2 calientes + 3 fríos | 4 | 16, 17, 20, 21, 27 |
+| 2 calientes + 3 fríos | 5 | 1, 15, 22, 27, 28 |
+| Serendipity (Solo fríos) | 1 | 3, 13, 16, 26, 27 |
+| Serendipity (Solo calientes) | 2 | 1, 9, 18, 21, 24 |
+| Serendipity (2 calientes + 3 fríos) | 3 | 6, 9, 16, 18, 28 |
+| Serendipity (Solo fríos) | 4 | 3, 7, 13, 27, 28 |
+| Serendipity (Solo calientes) | 5 | 2, 8, 9, 24, 25 |

@@ -220,37 +220,39 @@ def main():
                 f.write(f"{i:2}. ({nums}) │ {c:3} veces\n")
         # Recomendaciones
         f.write(f"\n## Recomendaciones del día ({today.strftime('%d/%m/%Y')})\n\n")
-        f.write("**Estrategia 1: 3 calientes + 2 aleatorios**\n")
+        f.write("| Estrategia | Combinación | Números |\n")
+        f.write("|------------|-------------|---------|\n")
+        # Estrategia 1
         for i in range(1, 6):
             selected = random.sample(top_numbers, 3)
             remaining = [n for n in all_numbers_list if n not in selected]
             selected.extend(random.sample(remaining, 2))
             selected.sort()
             nums_str = ", ".join(str(n) for n in selected)
-            f.write(f"  Combinación {i}: {nums_str}\n")
-        f.write("\n**Estrategia 2: Solo calientes**\n")
+            f.write(f"| 3 calientes + 2 aleatorios | {i} | {nums_str} |\n")
+        # Estrategia 2
         random.seed(seed + 1000)
         for i in range(1, 6):
             selected = random.sample(top_numbers, 5)
             selected.sort()
             nums_str = ", ".join(str(n) for n in selected)
-            f.write(f"  Combinación {i}: {nums_str}\n")
-        f.write("\n**Estrategia 3: Solo fríos**\n")
+            f.write(f"| Solo calientes | {i} | {nums_str} |\n")
+        # Estrategia 3
         random.seed(seed + 2000)
         for i in range(1, 6):
             selected = random.sample(cold_numbers, 5)
             selected.sort()
             nums_str = ", ".join(str(n) for n in selected)
-            f.write(f"  Combinación {i}: {nums_str}\n")
-        f.write("\n**Estrategia 4: 2 calientes + 3 fríos**\n")
+            f.write(f"| Solo fríos | {i} | {nums_str} |\n")
+        # Estrategia 4
         random.seed(seed + 3000)
         for i in range(1, 6):
             hot = random.sample(top_numbers, 2)
             cold = random.sample(cold_numbers, 3)
             selected = sorted(hot + cold)
             nums_str = ", ".join(str(n) for n in selected)
-            f.write(f"  Combinación {i}: {nums_str}\n")
-        f.write("\n**Estrategia 5: Serendipity**\n")
+            f.write(f"| 2 calientes + 3 fríos | {i} | {nums_str} |\n")
+        # Estrategia 5
         random.seed(seed + 4000)
         for i in range(1, 6):
             strategy_choice = random.randint(1, 4)
@@ -258,17 +260,21 @@ def main():
                 selected = random.sample(top_numbers, 3)
                 remaining = [n for n in all_numbers_list if n not in selected]
                 selected.extend(random.sample(remaining, 2))
+                label = "3 calientes + 2 aleatorios"
             elif strategy_choice == 2:
                 selected = random.sample(top_numbers, 5)
+                label = "Solo calientes"
             elif strategy_choice == 3:
                 selected = random.sample(cold_numbers, 5)
+                label = "Solo fríos"
             else:
                 hot = random.sample(top_numbers, 2)
                 cold = random.sample(cold_numbers, 3)
                 selected = hot + cold
+                label = "2 calientes + 3 fríos"
             selected.sort()
             nums_str = ", ".join(str(n) for n in selected)
-            f.write(f"  Combinación {i}: {nums_str}\n")
+            f.write(f"| Serendipity ({label}) | {i} | {nums_str} |\n")
 
 if __name__ == "__main__":
     main()
