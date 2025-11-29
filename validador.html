@@ -112,23 +112,32 @@
     // Obtiene los últimos resultados de los análisis publicados
     async function obtenerResultados() {
       const fuentes = {
-        melate: 'ANALISIS.md',
-        retro: 'ANALISIS_RETRO.md',
-        tris: 'ANALISIS_TRIS.md',
-        chispazo: 'ANALISIS_CHISPAZO.md'
+        melate: 'Melate.csv',
+        retro: 'MelateRetro.csv',
+        tris: 'Tris.csv',
+        chispazo: 'Chispazo.csv'
       };
       const resultados = {};
       const sorteos = {};
+      // Configuración de columnas por juego
+      const columnas = {
+        melate: {inicio: 2, fin: 7}, // R1-R6
+        retro: {inicio: 2, fin: 7}, // F1-F6
+        tris: {inicio: 2, fin: 6},  // R1-R5
+        chispazo: {inicio: 1, fin: 5} // R1-R5
+      };
       for (const [juego, url] of Object.entries(fuentes)) {
         try {
           const res = await fetch(url);
           const txt = await res.text();
-          // Extraer los últimos 5 sorteos (simulación: busca líneas con números)
-          let lines = txt.split('\n').filter(l => l.match(/\d.*\d/));
-          sorteos[juego] = [];
-          for (let i = 0; i < Math.min(5, lines.length); i++) {
-            let nums = lines[i].match(/\d+/g);
-            if (nums) sorteos[juego].push(nums.map(x => parseInt(x)));
+          const lines = txt.split('\n').filter(l => l.trim().length > 0);
+          // Saltar encabezado
+          for (let i = 1; i < Math.min(6, lines.length); i++) {
+            const parts = lines[i].split(',');
+            const {inicio, fin} = columnas[juego];
+            const nums = parts.slice(inicio, fin+1).map(x => parseInt(x)).filter(x => !isNaN(x));
+            if (!sorteos[juego]) sorteos[juego] = [];
+            sorteos[juego].push(nums);
           }
           resultados[juego] = sorteos[juego][0] || [];
         } catch (e) {
