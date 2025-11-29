@@ -1,205 +1,285 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Validador de Números - Lotería MX</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-      background: #f8fafc;
-      color: #1e293b;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      max-width: 600px;
-      margin: 40px auto;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(37,99,235,0.10);
-      padding: 32px;
-    }
-    h1 {
-      text-align: center;
-      color: #2563eb;
-      margin-bottom: 18px;
-    }
-    .game-section {
-      margin-bottom: 32px;
-    }
-    label {
-      font-weight: 600;
-      margin-right: 8px;
-    }
-    input[type="text"] {
-      width: 220px;
-      padding: 8px;
-      border-radius: 6px;
-      border: 1px solid #e2e8f0;
-      margin-bottom: 8px;
-      font-size: 1em;
-    }
-    button {
-      background: #2563eb;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      padding: 10px 24px;
-      font-size: 1em;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-    button:hover {
-      background: #1e40af;
-    }
-    .result {
-      background: #f1f5f9;
-      border-radius: 8px;
-      padding: 16px;
-      margin-top: 18px;
-      font-size: 1.1em;
-    }
-    .aciertos {
-      color: #10b981;
-      font-weight: bold;
-    }
-    .desviacion {
-      color: #f59e0b;
-      font-weight: bold;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 40px;
-      color: #64748b;
-      font-size: 0.95em;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Validador de Números</h1>
-    <form id="validador-form">
-      <div class="game-section">
-        <label for="melate">Melate (6 números):</label>
-        <input type="text" id="melate" name="melate" placeholder="Ej: 5, 12, 23, 28, 34, 45">
-        <label><input type="checkbox" id="melate-todos" name="melate-todos"> Validar todos</label>
-      </div>
-      <div class="game-section">
-        <label for="retro">Melate Retro (6 números):</label>
-        <input type="text" id="retro" name="retro" placeholder="Ej: 3, 8, 19, 22, 31, 39">
-        <label><input type="checkbox" id="retro-todos" name="retro-todos"> Validar todos</label>
-      </div>
-      <div class="game-section">
-        <label for="tris">Tris (5 números):</label>
-        <input type="text" id="tris" name="tris" placeholder="Ej: 1, 2, 3, 4, 5">
-        <label><input type="checkbox" id="tris-todos" name="tris-todos"> Validar todos</label>
-      </div>
-      <div class="game-section">
-        <label for="chispazo">Chispazo (5 números):</label>
-        <input type="text" id="chispazo" name="chispazo" placeholder="Ej: 7, 14, 18, 22, 27">
-        <label><input type="checkbox" id="chispazo-todos" name="chispazo-todos"> Validar todos</label>
-      </div>
-      <button type="submit">Validar</button>
-    </form>
-    <div id="resultados"></div>
-    <div class="footer">
-      <p>🤖 Valida tus números contra los últimos resultados de cada juego.</p>
-      <p>Los resultados se actualizan diariamente.</p>
-    </div>
-  </div>
-  <script>
-    // Obtiene los últimos resultados de los análisis publicados
-    async function obtenerResultados() {
-      const fuentes = {
-        melate: 'Melate.csv',
-        retro: 'MelateRetro.csv',
-        tris: 'Tris.csv',
-        chispazo: 'Chispazo.csv'
-      };
-      const resultados = {};
-      const sorteos = {};
-      // Configuración de columnas por juego
-      const columnas = {
-        melate: {inicio: 2, fin: 8}, // R1-R7 para incluir el adiciional
-        retro: {inicio: 2, fin: 7}, // F1-F6
-        tris: {inicio: 2, fin: 6},  // R1-R5
-        chispazo: {inicio: 1, fin: 5} // R1-R5
-      };
-      for (const [juego, url] of Object.entries(fuentes)) {
-        try {
-          const res = await fetch(url);
-          const txt = await res.text();
-          const lines = txt.split('\n').filter(l => l.trim().length > 0);
-          // Saltar encabezado
-          for (let i = 1; i < Math.min(6, lines.length); i++) {
-            const parts = lines[i].split(',');
-            const {inicio, fin} = columnas[juego];
-            const nums = parts.slice(inicio, fin+1).map(x => parseInt(x)).filter(x => !isNaN(x));
-            if (!sorteos[juego]) sorteos[juego] = [];
-            sorteos[juego].push(nums);
-          }
-          resultados[juego] = sorteos[juego][0] || [];
-        } catch (e) {
-          resultados[juego] = [];
-          sorteos[juego] = [];
-        }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validador de Números - Lotería MX</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, sans-serif;
+        background: #f8fafc;
+        color: #1e293b;
+        margin: 0;
+        padding: 0;
       }
-      return {resultados, sorteos};
-    }
+      .container {
+        max-width: 600px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 4px 24px rgba(37, 99, 235, 0.1);
+        padding: 32px;
+      }
+      h1 {
+        text-align: center;
+        color: #2563eb;
+        margin-bottom: 18px;
+      }
+      .game-section {
+        margin-bottom: 32px;
+      }
+      label {
+        font-weight: 600;
+        margin-right: 8px;
+      }
+      input[type="text"] {
+        width: 220px;
+        padding: 8px;
+        border-radius: 6px;
+        border: 1px solid #e2e8f0;
+        margin-bottom: 8px;
+        font-size: 1em;
+      }
+      button {
+        background: #2563eb;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 24px;
+        font-size: 1em;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      button:hover {
+        background: #1e40af;
+      }
+      .result {
+        background: #f1f5f9;
+        border-radius: 8px;
+        padding: 16px;
+        margin-top: 18px;
+        font-size: 1.1em;
+      }
+      .aciertos {
+        color: #10b981;
+        font-weight: bold;
+      }
+      .desviacion {
+        color: #f59e0b;
+        font-weight: bold;
+      }
+      .footer {
+        text-align: center;
+        margin-top: 40px;
+        color: #64748b;
+        font-size: 0.95em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Validador de Números</h1>
+      <form id="validador-form">
+        <div class="game-section">
+          <label for="melate">Melate (6 números):</label>
+          <input
+            type="text"
+            id="melate"
+            name="melate"
+            placeholder="Ej: 5, 12, 23, 28, 34, 45"
+          />
+          <label
+            ><input
+              type="checkbox"
+              id="melate-todos"
+              name="melate-todos"
+            />Validar</label
+          >
+        </div>
+        <div class="game-section">
+          <label for="retro">Melate Retro (6 números):</label>
+          <input
+            type="text"
+            id="retro"
+            name="retro"
+            placeholder="Ej: 3, 8, 19, 22, 31, 39"
+          />
+          <label
+            ><input
+              type="checkbox"
+              id="retro-todos"
+              name="retro-todos"
+            />Validar</label
+          >
+        </div>
+        <div class="game-section">
+          <label for="tris">Tris (5 números):</label>
+          <input
+            type="text"
+            id="tris"
+            name="tris"
+            placeholder="Ej: 1, 2, 3, 4, 5"
+          />
+          <label
+            ><input
+              type="checkbox"
+              id="tris-todos"
+              name="tris-todos"
+            />Validar</label
+          >
+        </div>
+        <div class="game-section">
+          <label for="chispazo">Chispazo (5 números):</label>
+          <input
+            type="text"
+            id="chispazo"
+            name="chispazo"
+            placeholder="Ej: 7, 14, 18, 22, 27"
+          />
+          <label
+            ><input type="checkbox" id="chispazo-todos" name="chispazo-todos" />
+            Validar</label
+          >
+        </div>
+        <button type="submit">Validar</button>
+      </form>
+      <div id="resultados"></div>
+      <div class="footer">
+        <p>
+          🤖 Valida tus números contra los últimos resultados de cada juego.
+        </p>
+        <p>Los resultados se actualizan diariamente.</p>
+      </div>
+    </div>
+    <script>
+      // Obtiene los últimos resultados de los análisis publicados
+      async function obtenerResultados() {
+        const fuentes = {
+          melate: "Melate.csv",
+          retro: "MelateRetro.csv",
+          tris: "Tris.csv",
+          chispazo: "Chispazo.csv",
+        };
+        const resultados = {};
+        const sorteos = {};
+        // Configuración de columnas por juego
+        const columnas = {
+          melate: { inicio: 2, fin: 8 }, // R1-R7 para incluir el adiciional
+          retro: { inicio: 2, fin: 7 }, // F1-F6
+          tris: { inicio: 2, fin: 6 }, // R1-R5
+          chispazo: { inicio: 1, fin: 5 }, // R1-R5
+        };
+        for (const [juego, url] of Object.entries(fuentes)) {
+          try {
+            const res = await fetch(url);
+            const txt = await res.text();
+            const lines = txt.split("\n").filter((l) => l.trim().length > 0);
+            // Saltar encabezado
+            for (let i = 1; i < Math.min(6, lines.length); i++) {
+              const parts = lines[i].split(",");
+              const { inicio, fin } = columnas[juego];
+              const nums = parts
+                .slice(inicio, fin + 1)
+                .map((x) => parseInt(x))
+                .filter((x) => !isNaN(x));
+              if (!sorteos[juego]) sorteos[juego] = [];
+              sorteos[juego].push(nums);
+            }
+            resultados[juego] = sorteos[juego][0] || [];
+          } catch (e) {
+            resultados[juego] = [];
+            sorteos[juego] = [];
+          }
+        }
+        return { resultados, sorteos };
+      }
 
-    function calcularAciertos(usuario, oficial) {
-      return usuario.filter(n => oficial.includes(n)).length;
-    }
-    function calcularDesviacion(usuario, oficial) {
-      let total = 0;
-      usuario.forEach(n => {
-        let minDiff = Math.min(...oficial.map(o => Math.abs(o - n)));
-        total += minDiff;
-      });
-      return (usuario.length > 0) ? (total / usuario.length).toFixed(2) : "-";
-    }
-    function mostrarResultado(juego, usuario, oficial) {
-      const aciertos = calcularAciertos(usuario, oficial);
-      const desviacion = calcularDesviacion(usuario, oficial);
-      // Resaltar coincidencias en verde
-      const oficialHtml = oficial.map(n => usuario.includes(n) ? `<span style='color:#10b981;font-weight:bold;background:#e6fbe6;border-radius:4px;padding:2px 6px;'>${n}</span>` : n).join(", ");
-      const usuarioHtml = usuario.map(n => oficial.includes(n) ? `<span style='color:#10b981;font-weight:bold;background:#e6fbe6;border-radius:4px;padding:2px 6px;'>${n}</span>` : n).join(", ");
-      return `<div class="result">
+      function calcularAciertos(usuario, oficial) {
+        return usuario.filter((n) => oficial.includes(n)).length;
+      }
+      function calcularDesviacion(usuario, oficial) {
+        let total = 0;
+        usuario.forEach((n) => {
+          let minDiff = Math.min(...oficial.map((o) => Math.abs(o - n)));
+          total += minDiff;
+        });
+        return usuario.length > 0 ? (total / usuario.length).toFixed(2) : "-";
+      }
+      function mostrarResultado(juego, usuario, oficial) {
+        const aciertos = calcularAciertos(usuario, oficial);
+        const desviacion = calcularDesviacion(usuario, oficial);
+        // Resaltar coincidencias en verde
+        const oficialHtml = oficial
+          .map((n) =>
+            usuario.includes(n)
+              ? `<span style='color:#10b981;font-weight:bold;background:#e6fbe6;border-radius:4px;padding:2px 6px;'>${n}</span>`
+              : n
+          )
+          .join(", ");
+        const usuarioHtml = usuario
+          .map((n) =>
+            oficial.includes(n)
+              ? `<span style='color:#10b981;font-weight:bold;background:#e6fbe6;border-radius:4px;padding:2px 6px;'>${n}</span>`
+              : n
+          )
+          .join(", ");
+        return `<div class="result">
         <strong>${juego}:</strong><br>
         <span class="aciertos">Aciertos: ${aciertos} / ${oficial.length}</span><br>
         <span class="desviacion">Desviación promedio: ${desviacion}</span><br>
         <span>Resultado oficial: ${oficialHtml}</span><br>
         <span>Tus números: ${usuarioHtml}</span>
       </div>`;
-    }
-    async function poblarSorteos() {
-      const {resultados, sorteos} = await obtenerResultados();
-      window._sorteos = sorteos;
-    }
+      }
+      async function poblarSorteos() {
+        const { resultados, sorteos } = await obtenerResultados();
+        window._sorteos = sorteos;
+      }
 
-    document.addEventListener('DOMContentLoaded', poblarSorteos);
+      document.addEventListener("DOMContentLoaded", poblarSorteos);
 
-    document.getElementById('validador-form').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      let html = "";
-      const sorteos = window._sorteos || {};
-      ['melate','retro','tris','chispazo'].forEach(juego => {
-        const val = document.getElementById(juego).value.trim();
-        const validarTodos = document.getElementById(juego+'-todos').checked;
-        if (val && sorteos[juego]) {
-          const usuario = val.split(/[,	\s]+/).map(x => parseInt(x,10)).filter(x => !isNaN(x));
-          if (validarTodos) {
-            (sorteos[juego]||[]).forEach((nums, i) => {
-              html += mostrarResultado(juego.charAt(0).toUpperCase()+juego.slice(1)+` (Sorteo ${i+1})`, usuario, nums);
-            });
-          } else if (sorteos[juego][0]) {
-            html += mostrarResultado(juego.charAt(0).toUpperCase()+juego.slice(1)+` (Sorteo 1)`, usuario, sorteos[juego][0]);
-          }
-        }
-      });
-      document.getElementById('resultados').innerHTML = html || '<div class="result">Ingresa tus números para validar.</div>';
-    });
-  </script>
-</body>
+      document
+        .getElementById("validador-form")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+          let html = "";
+          const sorteos = window._sorteos || {};
+          ["melate", "retro", "tris", "chispazo"].forEach((juego) => {
+            const val = document.getElementById(juego).value.trim();
+            const validarTodos = document.getElementById(
+              juego + "-todos"
+            ).checked;
+            if (val && sorteos[juego]) {
+              const usuario = val
+                .split(/[,	\s]+/)
+                .map((x) => parseInt(x, 10))
+                .filter((x) => !isNaN(x));
+              if (validarTodos) {
+                (sorteos[juego] || []).forEach((nums, i) => {
+                  html += mostrarResultado(
+                    juego.charAt(0).toUpperCase() +
+                      juego.slice(1) +
+                      ` (Sorteo ${i + 1})`,
+                    usuario,
+                    nums
+                  );
+                });
+              } else if (sorteos[juego][0]) {
+                html += mostrarResultado(
+                  juego.charAt(0).toUpperCase() +
+                    juego.slice(1) +
+                    ` (Sorteo 1)`,
+                  usuario,
+                  sorteos[juego][0]
+                );
+              }
+            }
+          });
+          document.getElementById("resultados").innerHTML =
+            html ||
+            '<div class="result">Ingresa tus números para validar.</div>';
+        });
+    </script>
+  </body>
 </html>
