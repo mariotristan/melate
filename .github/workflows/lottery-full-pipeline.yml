@@ -225,6 +225,8 @@ jobs:
 
           print("✅ HTML pages generated successfully!")
           PYTHON_SCRIPT
+          cp index.html docs/
+          cp validador.html docs/
           # ...existing code...
       - name: 📤 Upload artifact
         uses: actions/upload-pages-artifact@v3
