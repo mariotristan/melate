@@ -33,7 +33,10 @@ jobs:
           urls = {
               'Melate.csv': 'https://www.loterianacional.gob.mx/Home/Historicos?ARHP=TQBlAGwAYQB0AGUA',
               'Revancha.csv': 'https://www.loterianacional.gob.mx/Home/Historicos?ARHP=UgBlAHYAYQBuAGMAaABhAA==',
-              'Revanchita.csv': 'https://www.loterianacional.gob.mx/Home/Historicos?ARHP=UgBlAHYAYQBuAGMAaABpAHQAYQA='
+              'Revanchita.csv': 'https://www.loterianacional.gob.mx/Home/Historicos?ARHP=UgBlAHYAYQBuAGMAaABpAHQAYQA=',
+              'MelateRetro.csv': 'https://www.loterianacional.gob.mx/Home/Historicos?ARHP=TQBlAGwAYQB0AGUALQBSAGUAdAByAG8A',
+              'Tris.csv': 'https://www.loterianacional.gob.mx/Home/Historicos?ARHP=VAByAGkAcwA=',
+              'Chispazo.csv': 'https://www.loterianacional.gob.mx/Home/Historicos?ARHP=QwBoAGkAcwBwAGEAegBvAA=='
           }
           headers = {
               'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
