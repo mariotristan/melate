@@ -121,7 +121,7 @@
       const sorteos = {};
       // Configuración de columnas por juego
       const columnas = {
-        melate: {inicio: 2, fin: 7}, // R1-R6
+        melate: {inicio: 2, fin: 8}, // R1-R7 para incluir el adiciional
         retro: {inicio: 2, fin: 7}, // F1-F6
         tris: {inicio: 2, fin: 6},  // R1-R5
         chispazo: {inicio: 1, fin: 5} // R1-R5
@@ -162,12 +162,15 @@
     function mostrarResultado(juego, usuario, oficial) {
       const aciertos = calcularAciertos(usuario, oficial);
       const desviacion = calcularDesviacion(usuario, oficial);
+      // Resaltar coincidencias en verde
+      const oficialHtml = oficial.map(n => usuario.includes(n) ? `<span style='color:#10b981;font-weight:bold;background:#e6fbe6;border-radius:4px;padding:2px 6px;'>${n}</span>` : n).join(", ");
+      const usuarioHtml = usuario.map(n => oficial.includes(n) ? `<span style='color:#10b981;font-weight:bold;background:#e6fbe6;border-radius:4px;padding:2px 6px;'>${n}</span>` : n).join(", ");
       return `<div class="result">
         <strong>${juego}:</strong><br>
         <span class="aciertos">Aciertos: ${aciertos} / ${oficial.length}</span><br>
         <span class="desviacion">Desviación promedio: ${desviacion}</span><br>
-        <span>Resultado oficial: ${oficial.join(", ")}</span><br>
-        <span>Tus números: ${usuario.join(", ")}</span>
+        <span>Resultado oficial: ${oficialHtml}</span><br>
+        <span>Tus números: ${usuarioHtml}</span>
       </div>`;
     }
     async function poblarSorteos() {
