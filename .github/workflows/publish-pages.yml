@@ -410,6 +410,10 @@ jobs:
                     cp ANALISIS.md docs/
                     cp METODOLOGIA.md docs/
                     cp validador.html docs/
+                    cp Melate.csv docs/
+                    cp MelateRetro.csv docs/
+                    cp Tris.csv docs/
+                    cp Chispazo.csv docs/
                     if [ -f "index.html" ]; then
                         cp index.html docs/
                     fi
