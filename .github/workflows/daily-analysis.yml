@@ -1,4 +1,4 @@
-name: 🎲 Daily Lottery Analysis
+name: 🎲 Melate Clasico Lottery Analysis [Only for Testing]
 
 on:
   workflow_dispatch:

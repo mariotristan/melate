@@ -1,4 +1,4 @@
-name: chispazo-analysis
+name: 🎲 Chispazo analysis [only for testing]
 
 on:
   workflow_dispatch:

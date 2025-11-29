@@ -1,4 +1,4 @@
-name: tris-analysis
+name: 🎲 Tris Analysis [Only for Testing]
 
 on:
   workflow_dispatch:

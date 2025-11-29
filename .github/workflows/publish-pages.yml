@@ -1,5 +1,5 @@
 
-name: 📄 Publish to GitHub Pages
+name: 📄 Publish to GitHub Pages [Only for Testing]
 on:
     workflow_dispatch:
 
