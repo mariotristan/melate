@@ -1,11 +1,6 @@
 name: 🎲 Daily Lottery Analysis
 
 on:
-  # Run daily at 8 AM UTC
-  schedule:
-    - cron: '0 8 * * *'
-  
-  # Allow manual trigger
   workflow_dispatch:
 
 permissions:
@@ -15,9 +10,8 @@ jobs:
   analyze:
     name: 📊 Run Analysis
     runs-on: ubuntu-latest
-    # Ensure scheduled (cron) runs only proceed when the workflow is running on the `main` branch.
-    # Manual `workflow_dispatch` runs are still allowed on other branches.
-    if: ${{ github.event_name != 'schedule' || github.ref == 'refs/heads/main' }}
+    # Solo permitir ejecuciones manuales
+    if: ${{ github.event_name == 'workflow_dispatch' }}
     
     steps:
       - name: 📥 Checkout repository

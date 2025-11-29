@@ -1,0 +1,115 @@
+name: 🎲 Lottery Full Pipeline
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 8 * * *'
+
+jobs:
+  daily-analysis:
+    name: 📊 Daily Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: 📦 Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install requests beautifulsoup4
+      - name: 📥 Download latest CSV data
+        run: |
+          python3 << 'PYTHON_SCRIPT'
+          import requests
+          import time
+          import urllib3
+          urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+          print("📥 Downloading latest lottery data...")
+          urls = {
+              'Melate.csv': 'https://www.loterianacional.gob.mx/Home/Historicos?ARHP=TQBlAGwAYQB0AGUA',
+              'Revancha.csv': 'https://www.loterianacional.gob.mx/Home/Historicos?ARHP=UgBlAHYAYQBuAGMAaABhAA==',
+              'Revanchita.csv': 'https://www.loterianacional.gob.mx/Home/Historicos?ARHP=UgBlAHYAYQBuAGMAaABpAHQAYQA='
+          }
+          headers = {
+              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+          }
+          for fname, url in urls.items():
+              print(f"Downloading {fname}...")
+              r = requests.get(url, headers=headers, verify=False)
+              with open(fname, 'wb') as f:
+                  f.write(r.content)
+          print("✅ All CSVs downloaded.")
+          PYTHON_SCRIPT
+      - name: 📊 Run Melate analysis
+        run: python melate.py
+      - name: 📊 Run Melate Retro analysis
+        run: python melate_retro.py
+      - name: 📊 Run Tris analysis
+        run: python tris.py
+      - name: 📊 Run Chispazo analysis
+        run: python chispazo.py
+      - name: 📤 Prepare docs for Pages
+        run: |
+          mkdir -p docs
+          cp ANALISIS.md docs/
+          cp METODOLOGIA.md docs/
+          cp validador.html docs/
+          cp Melate.csv docs/
+          cp MelateRetro.csv docs/
+          cp Tris.csv docs/
+          cp Chispazo.csv docs/
+          if [ -f "index.html" ]; then
+            cp index.html docs/
+          fi
+          if [ -f "ANALISIS_RETRO.md" ]; then
+            cp ANALISIS_RETRO.md docs/
+          fi
+          if [ -f "ANALISIS_TRIS.md" ]; then
+            cp ANALISIS_TRIS.md docs/
+          fi
+          if [ -f "ANALISIS_CHISPAZO.md" ]; then
+            cp ANALISIS_CHISPAZO.md docs/
+          fi
+          if [ -f "retro_heatmap.png" ]; then
+            cp retro_heatmap.png docs/
+          fi
+          if [ -f "retro_frecuencias.png" ]; then
+            cp retro_frecuencias.png docs/
+          fi
+          if [ -f "tris_frecuencias.png" ]; then
+            cp tris_frecuencias.png docs/
+          fi
+          if [ -f "chispazo_heatmap.png" ]; then
+            cp chispazo_heatmap.png docs/
+          fi
+          if [ -f "chispazo_frecuencias.png" ]; then
+            cp chispazo_frecuencias.png docs/
+          fi
+          if [ -f "melate_heatmap.png" ]; then
+            cp melate_heatmap.png docs/
+          fi
+          if [ -f "melate_frecuencias.png" ]; then
+            cp melate_frecuencias.png docs/
+          fi
+          if [ -d "plots" ]; then
+            cp -r plots docs/ || true
+          fi
+      - name: 📤 Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'docs'
+  deploy:
+    name: 🚀 Deploy to GitHub Pages
+    environment:
+      name: github-pages
+    runs-on: ubuntu-latest
+    needs: daily-analysis
+    steps:
+      - name: 🌐 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

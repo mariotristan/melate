@@ -2,8 +2,6 @@ name: tris-analysis
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 7 * * *'
 permissions:
   contents: write
 jobs:

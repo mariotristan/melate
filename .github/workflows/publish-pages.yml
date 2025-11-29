@@ -1,14 +1,7 @@
-name: 📄 Publish to GitHub Pages
 
+name: 📄 Publish to GitHub Pages
 on:
-  # Run after the daily analysis completes
-  workflow_run:
-    workflows: ["🎲 Melate Retro Analysis"]
-    types:
-      - completed
-  
-  # Allow manual trigger
-  workflow_dispatch:
+    workflow_dispatch:
 
 permissions:
   contents: read
@@ -23,16 +16,14 @@ jobs:
   build:
     name: 🏗️ Build GitHub Pages
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+    if: ${{ github.event_name == 'workflow_dispatch' }}
     
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
         with:
-            # Use the branch from the triggering workflow run when available (workflow_run),
-            # otherwise fall back to the workflow ref. This allows running the Pages publish
-            # manually on `feat/graficas` so the generated docs include that branch's plots.
-            ref: ${{ github.event.workflow_run.head_branch || github.ref }}
+            # Usar la referencia del workflow_dispatch
+            ref: ${{ github.ref }}
      
       - name: 🐍 Set up Python
         uses: actions/setup-python@v5
