@@ -423,33 +423,16 @@ with open("ANALISIS.md", "w", encoding="utf-8") as f:
     f.write(f"  - ⭐ Revanchita: {len(revanchita_df):,}\n\n")
     f.write("---\n\n")
     
-    # Top números
-    f.write("## 🎱 Top 20 Números Más Frecuentes\n\n")
-    
-    # Calcular estadísticas
-    avg_freq = sum(freq.values()) / len(freq)
-    expected_freq = total_draws * 6 / 56  # Frecuencia esperada si todos fueran equiprobables
-    
+    # Frecuencia de todos los números (1-56)
+    f.write("## 🎱 Frecuencia de Todos los Números (1-56)\n\n")
     f.write("<table>\n")
-    f.write("<thead><tr><th>Pos</th><th>Número</th><th>Frecuencia</th><th>% Sorteos</th><th>Desviación</th><th>Estado</th></tr></thead>\n")
+    f.write("<thead><tr><th>Núm</th><th>Frecuencia</th><th>% Sorteos</th><th>Desviación</th><th>Estado</th></tr></thead>\n")
     f.write("<tbody>\n")
-    for i, (num, p) in enumerate(ranking[:20], 1):
-        pct_sorteos = (freq[num] / total_draws) * 100
-        deviation = ((freq[num] - expected_freq) / expected_freq) * 100
-        if deviation > 10:
-            estado = "🔥 Muy caliente"
-        elif deviation > 5:
-            estado = "🌡️ Caliente"
-        elif deviation > -5:
-            estado = "➡️ Normal"
-        elif deviation > -10:
-            estado = "❄️ Frío"
-        else:
-            estado = "🧊 Muy frío"
-        f.write(f"<tr><td>{i}</td><td><b>{int(num)}</b></td><td>{freq[num]}</td><td>{pct_sorteos:.1f}%</td><td>{deviation:+.1f}%</td><td>{estado}</td></tr>\n")
+    for _, deviation, num, fnum, pct_sorteos, estado in tabla_frecuencias:
+        f.write(f"<tr><td><b>{int(num)}</b></td><td>{fnum}</td><td>{pct_sorteos:.1f}%</td><td>{deviation:+.1f}%</td><td>{estado}</td></tr>\n")
     f.write("</tbody></table>\n")
-    # --- Recomendación de estrategia según tendencia de calor ---
     f.write("\n\n")
+    # --- Recomendación de estrategia según tendencia de calor ---
     f.write("## 🤔 Recomendación de Estrategia según Tendencia de Calor\n\n")
     # Analizar tendencia del último sorteo principal (Melate)
     if analisis_melate:
@@ -478,8 +461,8 @@ with open("ANALISIS.md", "w", encoding="utf-8") as f:
             f.write("**Razonamiento:** Cuando no hay predominio de calientes ni fríos, conviene diversificar y equilibrar el riesgo.")
         else:
             f.write("**Tendencia observada:** El último sorteo fue mixto.\n\n")
-            f.write("**Recomendación:** La estrategia **balanceada** es la más robusta, pero puedes probar también la **serendipity** para diversificar.\n\n")
-            f.write("**Razonamiento:** En escenarios mixtos, el equilibrio y la aleatoriedad controlada suelen ser óptimos.")
+            f.write("**Recomendación:** Diversifica entre todas las estrategias, ya que no hay una tendencia dominante.\n\n")
+            f.write("**Razonamiento:** La mezcla de tendencias sugiere que no hay patrón claro, por lo que conviene no concentrar apuestas en una sola estrategia.")
     else:
         f.write("No se pudo analizar la tendencia de calor del último sorteo.\n\n")
     f.write("---\n\n")
@@ -649,7 +632,7 @@ with open("ANALISIS.md", "w", encoding="utf-8") as f:
             selected = hot + cold
         
         selected.sort()
-        strategy_name = ["📋 Híbrida", "🔥 Conservadora", "🧊 Contrarian", "⚖️ Balanceada"][strategy_choice - 1]
+        strategy_name = ["Híbrida", "Conservadora", "Contrarian", "Balanceada"][strategy_choice - 1]
         nums_str = " - ".join([f"{n:02d}" for n in selected])
         f.write(f"| {i} | {strategy_name} | **{nums_str}** |\n")
     
