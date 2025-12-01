@@ -123,51 +123,41 @@ analisis_revancha = analizar_ultimo_sorteo(ultimo_revancha, "Revancha", fecha_re
 analisis_revanchita = analizar_ultimo_sorteo(ultimo_revanchita, "Revanchita", fecha_revanchita) if ultimo_revanchita else None
 
 print("=" * 85)
-print("🎱 TOP 20 NÚMEROS MÁS FRECUENTES")
+
+print("🎱 FRECUENCIA DE TODOS LOS NÚMEROS (1-56)")
 print("=" * 85)
-print(f"{'Pos':>3} │ {'Núm':>3} │ {'Frec':>5} │ {'%Sorteos':>9} │ {'Desv':>7} │ {'Estado'}")
+print(f"{'Núm':>3} │ {'Frec':>5} │ {'%Sorteos':>9} │ {'Desv':>7} │ {'Estado'}")
 print("─" * 85)
-for i, (num, p) in enumerate(ranking[:20], 1):
-    pct_sorteos = (freq[num] / total_draws) * 100
-    deviation = ((freq[num] - expected_freq) / expected_freq) * 100
-    
-    # Indicador de estado
+
+# Calcular estado y preparar lista ordenada
+tabla_frecuencias = []
+for num in range(1, 57):
+    f = freq.get(num, 0)
+    pct_sorteos = (f / total_draws) * 100
+    deviation = ((f - expected_freq) / expected_freq) * 100
     if deviation > 10:
         estado = "🔥 Muy caliente"
+        orden = 0
     elif deviation > 5:
         estado = "🌡️ Caliente"
+        orden = 1
     elif deviation > -5:
         estado = "➡️ Normal"
+        orden = 2
     elif deviation > -10:
         estado = "❄️ Frío"
+        orden = 3
     else:
         estado = "🧊 Muy frío"
-    
-    print(f"{i:3} │ {int(num):3} │ {freq[num]:5} │ {pct_sorteos:8.1f}% │ {deviation:+6.1f}% │ {estado}")
+        orden = 4
+    tabla_frecuencias.append((orden, deviation, num, f, pct_sorteos, estado))
+
+# Ordenar por estado y luego por desviación descendente
+tabla_frecuencias.sort(key=lambda x: (x[0], -x[1]))
+for _, deviation, num, f, pct_sorteos, estado in tabla_frecuencias:
+    print(f"{num:3} │ {f:5} │ {pct_sorteos:8.1f}% │ {deviation:+6.1f}% │ {estado}")
 
 # 1.5 Números más fríos
-print("\n" + "=" * 85)
-print("🧊 TOP 20 NÚMEROS MÁS FRÍOS (MENOS FRECUENTES)")
-print("=" * 85)
-print(f"{'Pos':>3} │ {'Núm':>3} │ {'Frec':>5} │ {'%Sorteos':>9} │ {'Desv':>7} │ {'Estado'}")
-print("─" * 85)
-for i, (num, p) in enumerate(reversed(ranking[-20:]), 1):
-    pct_sorteos = (freq[num] / total_draws) * 100
-    deviation = ((freq[num] - expected_freq) / expected_freq) * 100
-    
-    # Indicador de estado
-    if deviation > 10:
-        estado = "🔥 Muy caliente"
-    elif deviation > 5:
-        estado = "🌡️ Caliente"
-    elif deviation > -5:
-        estado = "➡️ Normal"
-    elif deviation > -10:
-        estado = "❄️ Frío"
-    else:
-        estado = "🧊 Muy frío"
-    
-    print(f"{i:3} │ {int(num):3} │ {freq[num]:5} │ {pct_sorteos:8.1f}% │ {deviation:+6.1f}% │ {estado}")
 
 # Mostrar indicador de calor de últimos sorteos
 if analisis_melate or analisis_revancha or analisis_revanchita:
