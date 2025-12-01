@@ -1,6 +1,6 @@
 # 📊 Análisis de Lotería Melate
 
-**Fecha del análisis**: 30/11/2025 23:15:01
+**Fecha del análisis**: 01/12/2025 05:17:57
 
 📚 **[Leer Metodología y Fundamentos Estadísticos](https://mariotristan.github.io/melate/METODOLOGIA)** - Comprende los fundamentos teóricos, estrategias y limitaciones del análisis.
 
@@ -10,18 +10,18 @@
 
 | Archivo | Última Actualización | Sorteos |
 |:-------:|:--------------------:|:-------:|
-| 🎱 Melate.csv | 23/11/2025 14:41:47 | 4,138 |
-| 🔄 Revancha.csv | 23/11/2025 14:41:47 | 3,130 |
-| ⭐ Revanchita.csv | 23/11/2025 14:41:47 | 1,768 |
+| 🎱 Melate.csv | 01/12/2025 05:17:52 | 4,141 |
+| 🔄 Revancha.csv | 01/12/2025 05:17:54 | 3,133 |
+| ⭐ Revanchita.csv | 01/12/2025 05:17:56 | 1,771 |
 
 ---
 
 ## 📈 Resumen General
 
-- **Total de sorteos analizados**: 9,036
-  - 🎱 Melate: 4,138
-  - 🔄 Revancha: 3,130
-  - ⭐ Revanchita: 1,768
+- **Total de sorteos analizados**: 9,045
+  - 🎱 Melate: 4,141
+  - 🔄 Revancha: 3,133
+  - ⭐ Revanchita: 1,771
 
 ---
 
@@ -30,36 +30,36 @@
 <table>
 <thead><tr><th>Pos</th><th>Número</th><th>Frecuencia</th><th>% Sorteos</th><th>Desviación</th><th>Estado</th></tr></thead>
 <tbody>
-<tr><td>1</td><td><b>24</b></td><td>1120</td><td>12.4%</td><td>+15.7%</td><td>🔥 Muy caliente</td></tr>
-<tr><td>2</td><td><b>32</b></td><td>1097</td><td>12.1%</td><td>+13.3%</td><td>🔥 Muy caliente</td></tr>
-<tr><td>3</td><td><b>5</b></td><td>1093</td><td>12.1%</td><td>+12.9%</td><td>🔥 Muy caliente</td></tr>
-<tr><td>4</td><td><b>29</b></td><td>1089</td><td>12.1%</td><td>+12.5%</td><td>🔥 Muy caliente</td></tr>
-<tr><td>5</td><td><b>30</b></td><td>1086</td><td>12.0%</td><td>+12.2%</td><td>🔥 Muy caliente</td></tr>
-<tr><td>6</td><td><b>13</b></td><td>1086</td><td>12.0%</td><td>+12.2%</td><td>🔥 Muy caliente</td></tr>
-<tr><td>7</td><td><b>2</b></td><td>1085</td><td>12.0%</td><td>+12.1%</td><td>🔥 Muy caliente</td></tr>
-<tr><td>8</td><td><b>15</b></td><td>1076</td><td>11.9%</td><td>+11.1%</td><td>🔥 Muy caliente</td></tr>
-<tr><td>9</td><td><b>1</b></td><td>1074</td><td>11.9%</td><td>+10.9%</td><td>🔥 Muy caliente</td></tr>
-<tr><td>10</td><td><b>36</b></td><td>1072</td><td>11.9%</td><td>+10.7%</td><td>🔥 Muy caliente</td></tr>
-<tr><td>11</td><td><b>18</b></td><td>1065</td><td>11.8%</td><td>+10.0%</td><td>🔥 Muy caliente</td></tr>
-<tr><td>12</td><td><b>28</b></td><td>1065</td><td>11.8%</td><td>+10.0%</td><td>🔥 Muy caliente</td></tr>
-<tr><td>13</td><td><b>7</b></td><td>1064</td><td>11.8%</td><td>+9.9%</td><td>🌡️ Caliente</td></tr>
-<tr><td>14</td><td><b>3</b></td><td>1062</td><td>11.8%</td><td>+9.7%</td><td>🌡️ Caliente</td></tr>
-<tr><td>15</td><td><b>14</b></td><td>1061</td><td>11.7%</td><td>+9.6%</td><td>🌡️ Caliente</td></tr>
-<tr><td>16</td><td><b>35</b></td><td>1059</td><td>11.7%</td><td>+9.4%</td><td>🌡️ Caliente</td></tr>
-<tr><td>17</td><td><b>33</b></td><td>1059</td><td>11.7%</td><td>+9.4%</td><td>🌡️ Caliente</td></tr>
-<tr><td>18</td><td><b>17</b></td><td>1058</td><td>11.7%</td><td>+9.3%</td><td>🌡️ Caliente</td></tr>
-<tr><td>19</td><td><b>19</b></td><td>1056</td><td>11.7%</td><td>+9.1%</td><td>🌡️ Caliente</td></tr>
-<tr><td>20</td><td><b>37</b></td><td>1055</td><td>11.7%</td><td>+9.0%</td><td>🌡️ Caliente</td></tr>
+<tr><td>1</td><td><b>24</b></td><td>1121</td><td>12.4%</td><td>+15.7%</td><td>🔥 Muy caliente</td></tr>
+<tr><td>2</td><td><b>32</b></td><td>1099</td><td>12.2%</td><td>+13.4%</td><td>🔥 Muy caliente</td></tr>
+<tr><td>3</td><td><b>5</b></td><td>1093</td><td>12.1%</td><td>+12.8%</td><td>🔥 Muy caliente</td></tr>
+<tr><td>4</td><td><b>29</b></td><td>1090</td><td>12.1%</td><td>+12.5%</td><td>🔥 Muy caliente</td></tr>
+<tr><td>5</td><td><b>13</b></td><td>1088</td><td>12.0%</td><td>+12.3%</td><td>🔥 Muy caliente</td></tr>
+<tr><td>6</td><td><b>30</b></td><td>1087</td><td>12.0%</td><td>+12.2%</td><td>🔥 Muy caliente</td></tr>
+<tr><td>7</td><td><b>2</b></td><td>1086</td><td>12.0%</td><td>+12.1%</td><td>🔥 Muy caliente</td></tr>
+<tr><td>8</td><td><b>15</b></td><td>1076</td><td>11.9%</td><td>+11.0%</td><td>🔥 Muy caliente</td></tr>
+<tr><td>9</td><td><b>1</b></td><td>1074</td><td>11.9%</td><td>+10.8%</td><td>🔥 Muy caliente</td></tr>
+<tr><td>10</td><td><b>36</b></td><td>1072</td><td>11.9%</td><td>+10.6%</td><td>🔥 Muy caliente</td></tr>
+<tr><td>11</td><td><b>28</b></td><td>1066</td><td>11.8%</td><td>+10.0%</td><td>🌡️ Caliente</td></tr>
+<tr><td>12</td><td><b>7</b></td><td>1066</td><td>11.8%</td><td>+10.0%</td><td>🌡️ Caliente</td></tr>
+<tr><td>13</td><td><b>18</b></td><td>1065</td><td>11.8%</td><td>+9.9%</td><td>🌡️ Caliente</td></tr>
+<tr><td>14</td><td><b>3</b></td><td>1063</td><td>11.8%</td><td>+9.7%</td><td>🌡️ Caliente</td></tr>
+<tr><td>15</td><td><b>14</b></td><td>1062</td><td>11.7%</td><td>+9.6%</td><td>🌡️ Caliente</td></tr>
+<tr><td>16</td><td><b>33</b></td><td>1060</td><td>11.7%</td><td>+9.4%</td><td>🌡️ Caliente</td></tr>
+<tr><td>17</td><td><b>35</b></td><td>1059</td><td>11.7%</td><td>+9.3%</td><td>🌡️ Caliente</td></tr>
+<tr><td>18</td><td><b>17</b></td><td>1058</td><td>11.7%</td><td>+9.2%</td><td>🌡️ Caliente</td></tr>
+<tr><td>19</td><td><b>16</b></td><td>1056</td><td>11.7%</td><td>+9.0%</td><td>🌡️ Caliente</td></tr>
+<tr><td>20</td><td><b>19</b></td><td>1056</td><td>11.7%</td><td>+9.0%</td><td>🌡️ Caliente</td></tr>
 </tbody></table>
 
 
 ## 🤔 Recomendación de Estrategia según Tendencia de Calor
 
-**Tendencia observada:** El último sorteo fue mixto.
+**Tendencia observada:** El último sorteo tuvo mayoría de números calientes.
 
-**Recomendación:** La estrategia **balanceada** es la más robusta, pero puedes probar también la **serendipity** para diversificar.
+**Recomendación:** Evita la estrategia conservadora (solo calientes), ya que es probable que los números calientes hayan sido sobreutilizados. Opta por la estrategia **balanceada** (3 calientes + 3 fríos) o la **contrarian** (fríos), buscando reversión estadística.
 
-**Razonamiento:** En escenarios mixtos, el equilibrio y la aleatoriedad controlada suelen ser óptimos.---
+**Razonamiento:** Cuando los números calientes dominan, la probabilidad de que sigan saliendo disminuye por regresión a la media. Apostar por equilibrio o por fríos puede aprovechar ciclos de reversión.---
 
 ## ⚠️ Disclaimer
 
@@ -67,41 +67,61 @@
 
 ---
 
-*Generado automáticamente el 30/11/2025 a las 23:15:01*
+*Generado automáticamente el 01/12/2025 a las 05:17:57*
 ## 🌡️ Indicador de Calor - Últimos Resultados
 
 Esta sección compara los números del último sorteo de cada lotería contra las categorías de temperatura (caliente/frío) basadas en su frecuencia histórica.
 
-### 🎰 Melate - Sorteo del 21/11/2025
+### 🎰 Melate - Sorteo del 28/11/2025
 
 | Número | Frecuencia | Desviación | Estado |
 |:------:|:----------:|:----------:|:------:|
-| **5** | 1093 | +12.9% | 🔥 Muy caliente |
-| **8** | 1024 | +5.8% | 🌡️ Caliente |
-| **29** | 1089 | +12.5% | 🔥 Muy caliente |
-| **42** | 980 | +1.2% | ➡️ Normal |
-| **47** | 736 | -24.0% | 🧊 Muy frío |
-| **56** | 644 | -33.5% | 🧊 Muy frío |
+| **6** | 1038 | +7.1% | 🌡️ Caliente |
+| **9** | 1018 | +5.0% | 🌡️ Caliente |
+| **13** | 1088 | +12.3% | 🔥 Muy caliente |
+| **22** | 1019 | +5.1% | 🌡️ Caliente |
+| **34** | 1024 | +5.7% | 🌡️ Caliente |
+| **53** | 627 | -35.3% | 🧊 Muy frío |
 
 **📊 Distribución de temperatura:**
-- 🔥 Muy calientes: 2
-- 🌡️ Calientes: 1
-- ➡️ Normales: 1
+- 🔥 Muy calientes: 1
+- 🌡️ Calientes: 4
+- ➡️ Normales: 0
 - ❄️ Fríos: 0
-- 🧊 Muy fríos: 2
+- 🧊 Muy fríos: 1
 
 ![Distribución de temperatura - Melate](plots/indicador_calor_melate.png)
 
-### 🎰 Revancha - Sorteo del 21/11/2025
+### 🎰 Revancha - Sorteo del 28/11/2025
 
 | Número | Frecuencia | Desviación | Estado |
 |:------:|:----------:|:----------:|:------:|
-| **4** | 1049 | +8.4% | 🌡️ Caliente |
-| **5** | 1093 | +12.9% | 🔥 Muy caliente |
-| **26** | 1026 | +6.0% | 🌡️ Caliente |
-| **31** | 1039 | +7.3% | 🌡️ Caliente |
-| **33** | 1059 | +9.4% | 🌡️ Caliente |
-| **44** | 974 | +0.6% | ➡️ Normal |
+| **22** | 1019 | +5.1% | 🌡️ Caliente |
+| **29** | 1090 | +12.5% | 🔥 Muy caliente |
+| **34** | 1024 | +5.7% | 🌡️ Caliente |
+| **41** | 930 | -4.0% | ➡️ Normal |
+| **44** | 975 | +0.6% | ➡️ Normal |
+| **52** | 629 | -35.1% | 🧊 Muy frío |
+
+**📊 Distribución de temperatura:**
+- 🔥 Muy calientes: 1
+- 🌡️ Calientes: 2
+- ➡️ Normales: 2
+- ❄️ Fríos: 0
+- 🧊 Muy fríos: 1
+
+![Distribución de temperatura - Revancha](plots/indicador_calor_revancha.png)
+
+### 🎰 Revanchita - Sorteo del 28/11/2025
+
+| Número | Frecuencia | Desviación | Estado |
+|:------:|:----------:|:----------:|:------:|
+| **7** | 1066 | +10.0% | 🌡️ Caliente |
+| **26** | 1027 | +6.0% | 🌡️ Caliente |
+| **30** | 1087 | +12.2% | 🔥 Muy caliente |
+| **31** | 1040 | +7.3% | 🌡️ Caliente |
+| **34** | 1024 | +5.7% | 🌡️ Caliente |
+| **41** | 930 | -4.0% | ➡️ Normal |
 
 **📊 Distribución de temperatura:**
 - 🔥 Muy calientes: 1
@@ -109,26 +129,6 @@ Esta sección compara los números del último sorteo de cada lotería contra la
 - ➡️ Normales: 1
 - ❄️ Fríos: 0
 - 🧊 Muy fríos: 0
-
-![Distribución de temperatura - Revancha](plots/indicador_calor_revancha.png)
-
-### 🎰 Revanchita - Sorteo del 21/11/2025
-
-| Número | Frecuencia | Desviación | Estado |
-|:------:|:----------:|:----------:|:------:|
-| **2** | 1085 | +12.1% | 🔥 Muy caliente |
-| **5** | 1093 | +12.9% | 🔥 Muy caliente |
-| **14** | 1061 | +9.6% | 🌡️ Caliente |
-| **38** | 1026 | +6.0% | 🌡️ Caliente |
-| **51** | 632 | -34.7% | 🧊 Muy frío |
-| **53** | 625 | -35.4% | 🧊 Muy frío |
-
-**📊 Distribución de temperatura:**
-- 🔥 Muy calientes: 2
-- 🌡️ Calientes: 2
-- ➡️ Normales: 0
-- ❄️ Fríos: 0
-- 🧊 Muy fríos: 2
 
 ![Distribución de temperatura - Revanchita](plots/indicador_calor_revanchita.png)
 
@@ -139,13 +139,13 @@ Esta sección compara los números del último sorteo de cada lotería contra la
 | Posición | Par | Frecuencia |
 |:--------:|:---:|:----------:|
 | 1 | (24, 28) | 152 veces |
-| 2 | (1, 5) | 143 veces |
-| 3 | (13, 22) | 142 veces |
+| 2 | (13, 22) | 143 veces |
+| 3 | (1, 5) | 143 veces |
 | 4 | (5, 15) | 140 veces |
 | 5 | (15, 17) | 138 veces |
-| 6 | (24, 32) | 136 veces |
-| 7 | (13, 14) | 133 veces |
-| 8 | (24, 38) | 131 veces |
+| 6 | (24, 32) | 137 veces |
+| 7 | (13, 14) | 134 veces |
+| 8 | (24, 38) | 132 veces |
 | 9 | (18, 20) | 130 veces |
 | 10 | (1, 15) | 129 veces |
 
@@ -214,7 +214,7 @@ Esta sección compara los números del último sorteo de cada lotería contra la
 
 ---
 
-## 🎲 Recomendaciones del Día (30/11/2025)
+## 🎲 Recomendaciones del Día (01/12/2025)
 
 ### 📊 Cinco Estrategias Diferentes
 
@@ -226,11 +226,11 @@ Combina números de alta frecuencia con selección aleatoria para diversificar e
 
 | # | Combinación |
 |:-:|:-----------|
-| 1 | **02 - 06 - 12 - 13 - 38 - 45** |
-| 2 | **08 - 13 - 17 - 24 - 36 - 56** |
-| 3 | **05 - 06 - 10 - 28 - 30 - 35** |
-| 4 | **12 - 15 - 19 - 29 - 37 - 41** |
-| 5 | **02 - 12 - 17 - 33 - 37 - 54** |
+| 1 | **26 - 29 - 30 - 32 - 33 - 43** |
+| 2 | **04 - 05 - 08 - 10 - 14 - 36** |
+| 3 | **16 - 18 - 19 - 29 - 32 - 56** |
+| 4 | **13 - 15 - 20 - 28 - 39 - 52** |
+| 5 | **06 - 10 - 18 - 22 - 36 - 47** |
 
 #### 🔥 Estrategia 2: CONSERVADORA (solo números calientes)
 
@@ -238,11 +238,11 @@ Apuesta exclusivamente por los números más frecuentes históricamente.
 
 | # | Combinación |
 |:-:|:-----------|
-| 1 | **07 - 13 - 19 - 29 - 32 - 33** |
-| 2 | **07 - 14 - 19 - 28 - 30 - 35** |
-| 3 | **03 - 17 - 19 - 29 - 36 - 37** |
-| 4 | **07 - 14 - 15 - 17 - 32 - 36** |
-| 5 | **03 - 05 - 07 - 18 - 19 - 29** |
+| 1 | **02 - 07 - 15 - 24 - 28 - 30** |
+| 2 | **03 - 05 - 07 - 24 - 28 - 35** |
+| 3 | **13 - 17 - 28 - 29 - 30 - 35** |
+| 4 | **07 - 14 - 15 - 18 - 28 - 35** |
+| 5 | **02 - 14 - 16 - 17 - 24 - 32** |
 
 #### 🧊 Estrategia 3: CONTRARIAN (números fríos)
 
@@ -250,11 +250,11 @@ Apuesta a la reversión: números que han salido menos podrían "compensar" esta
 
 | # | Combinación |
 |:-:|:-----------|
-| 1 | **41 - 47 - 49 - 51 - 55 - 56** |
-| 2 | **42 - 46 - 48 - 50 - 52 - 54** |
-| 3 | **44 - 45 - 48 - 52 - 53 - 56** |
-| 4 | **44 - 46 - 51 - 52 - 53 - 54** |
-| 5 | **44 - 49 - 50 - 52 - 53 - 54** |
+| 1 | **42 - 45 - 46 - 49 - 50 - 53** |
+| 2 | **42 - 44 - 45 - 46 - 52 - 54** |
+| 3 | **42 - 44 - 45 - 48 - 49 - 52** |
+| 4 | **42 - 48 - 49 - 52 - 53 - 56** |
+| 5 | **41 - 44 - 47 - 48 - 51 - 56** |
 
 #### ⚖️ Estrategia 4: BALANCEADA (3 calientes + 3 fríos)
 
@@ -262,11 +262,11 @@ Equilibrio perfecto entre números frecuentes y poco frecuentes.
 
 | # | Combinación |
 |:-:|:-----------|
-| 1 | **03 - 05 - 14 - 47 - 49 - 55** |
-| 2 | **15 - 24 - 28 - 51 - 52 - 56** |
-| 3 | **13 - 14 - 32 - 48 - 51 - 56** |
-| 4 | **14 - 18 - 28 - 49 - 53 - 54** |
-| 5 | **02 - 07 - 30 - 47 - 48 - 55** |
+| 1 | **01 - 07 - 28 - 48 - 54 - 56** |
+| 2 | **03 - 13 - 29 - 46 - 51 - 54** |
+| 3 | **13 - 18 - 29 - 47 - 49 - 51** |
+| 4 | **01 - 24 - 29 - 47 - 48 - 56** |
+| 5 | **03 - 14 - 29 - 47 - 50 - 53** |
 
 #### ✨ Estrategia 5: SERENDIPITY (mezcla de todas)
 
@@ -274,11 +274,11 @@ Cada combinación usa aleatoriamente una de las 4 estrategias anteriores. ¡Deja
 
 | # | Estrategia | Combinación |
 |:-:|:----------:|:-----------|
-| 1 | 🧊 Contrarian | **44 - 47 - 48 - 49 - 50 - 56** |
-| 2 | 📋 Híbrida | **13 - 22 - 35 - 36 - 39 - 44** |
-| 3 | 📋 Híbrida | **01 - 02 - 03 - 06 - 31 - 53** |
-| 4 | 🔥 Conservadora | **01 - 13 - 17 - 28 - 30 - 32** |
-| 5 | 🔥 Conservadora | **01 - 02 - 17 - 32 - 33 - 36** |
+| 1 | 🔥 Conservadora | **01 - 05 - 07 - 14 - 18 - 19** |
+| 2 | 🔥 Conservadora | **07 - 13 - 17 - 19 - 33 - 36** |
+| 3 | 🧊 Contrarian | **41 - 44 - 46 - 50 - 53 - 55** |
+| 4 | 📋 Híbrida | **01 - 03 - 07 - 25 - 39 - 41** |
+| 5 | 🔥 Conservadora | **02 - 05 - 07 - 19 - 33 - 35** |
 
 ---
 
@@ -288,4 +288,4 @@ Cada combinación usa aleatoriamente una de las 4 estrategias anteriores. ¡Deja
 
 ---
 
-*Generado automáticamente el 30/11/2025 a las 23:15:01*
+*Generado automáticamente el 01/12/2025 a las 05:17:57*
