@@ -171,8 +171,93 @@ def generar_reporte(df, counts, freq, desviacion, calor):
                 sel = func()
                 f.write(f"- Combinación {i}: {sel}\n")
             f.write("\n")
+        # Estrategia recomendada basada en combinaciones y clusters
+        f.write("## 🧠 Estrategia Recomendada Basada en Combinaciones y Clusters\n\n")
+        f.write("Para maximizar tus probabilidades en Tris, sigue esta estrategia combinando los patrones históricos:\n\n")
+        f.write("1. **Juega las combinaciones exactas más repetidas:**\n   Compra boletos con las 10 combinaciones que más veces han salido:\n")
+        combo_counts = df[num_cols].apply(lambda row: tuple(row.values), axis=1).value_counts()
+        for comb, count in combo_counts.head(10).items():
+            f.write(f"   - {[int(float(x)) for x in comb]}\n")
+        f.write("\n2. **Aprovecha los clusters más frecuentes:**\n   Para cada uno de los 5 clusters más frecuentes, genera combinaciones variando el quinto dígito:\n")
+        # Calcular los clusters más frecuentes
+        from collections import Counter
+        def valid_subcombos(row):
+            vals = [v for v in row.values if pd.notnull(v)]
+            combos = []
+            for i in range(len(vals)):
+                sub = [int(float(x)) for j, x in enumerate(vals) if j != i and pd.notnull(x)]
+                if len(sub) == 4:
+                    combos.append(tuple(sorted(sub)))
+            return combos
+        subcombos = df[num_cols].apply(valid_subcombos, axis=1)
+        flat_subcombos = [sc for sublist in subcombos for sc in sublist]
+        subcombo_counts = Counter(flat_subcombos)
+        clusters_top5 = [list(cluster) for cluster, _ in subcombo_counts.most_common(5)]
+        for cluster in clusters_top5:
+            f.write(f"   - Ejemplo para el cluster {cluster}:\n")
+            # Generar ejemplos variando el quinto dígito
+            usados = set(cluster)
+            ejemplos = []
+            for d in range(10):
+                if d not in usados:
+                    ejemplos.append(cluster + [d])
+                if len(ejemplos) == 3:
+                    break
+            for ej in ejemplos:
+                f.write(f"     - {ej}\n")
+        f.write("   Haz esto para los 5 clusters principales, eligiendo dígitos que no repitan los 4 ya presentes.\n\n")
+        f.write("3. **Diversifica entre clusters:**\n   No concentres todos tus boletos en un solo cluster. Elige los 5-10 clusters más frecuentes y genera combinaciones para cada uno.\n\n")
+        f.write("**Ejemplo de compra para 20 boletos:**\n- 10 boletos: Las combinaciones más repetidas.\n- 10 boletos: Para cada uno de los 5 clusters más frecuentes, genera 2 combinaciones variando el quinto dígito.\n\n")
+        f.write("**Ventaja:**\n- Cubres patrones que han demostrado repetirse históricamente.\n- Aprovechas la tendencia de clusters, aumentando la probabilidad de acertar 4 dígitos y acercarte a la combinación ganadora.\n\n")
+        f.write("> Juega responsablemente. Esta estrategia maximiza cobertura histórica, pero no garantiza resultados.\n\n")
         f.write("## ⚠️ Disclaimer\n\n")
         f.write("Este análisis es meramente estadístico y no garantiza resultados. Juega responsablemente.\n")
+        f.write("## 🧮 50 Combinaciones Recomendadas para Tris\n\n")
+        f.write("Estas combinaciones cubren todo el rango del 0 al 9 y maximizan la diversidad, evitando repeticiones:\n\n")
+        # Generar 50 combinaciones únicas
+        todos = list(range(10))
+        random.seed(seed)
+        combinaciones = set()
+        while len(combinaciones) < 50:
+            comb = tuple(sorted(random.sample(todos, 5)))
+            combinaciones.add(comb)
+        f.write("```")
+        for c in sorted(combinaciones):
+            f.write(f"\n{list(c)}")
+        f.write("\n```")
+        f.write("\n\nCada combinación cuesta $1 peso. Si alguna resulta ganadora, el premio es de $50,000.\n")
+        # Combinaciones más repetidas
+        f.write("## 🔁 Combinaciones Más Repetidas en la Historia de Tris\n\n")
+        # Contar combinaciones completas
+        combo_counts = df[num_cols].apply(lambda row: tuple(row.values), axis=1).value_counts()
+        f.write("| Combinación | Veces |\n")
+        f.write("|:-----------:|:-----:|\n")
+        def format_combo(comb):
+            return str([int(float(x)) for x in comb])
+        for comb, count in combo_counts.head(10).items():
+            f.write(f"| {format_combo(comb)} | {count} |\n")
+        f.write("\nEstas son las 10 combinaciones de 5 dígitos que más veces han salido en la historia de Tris.\n\n")
+        # Clusters de combinaciones (grupos que comparten 4 dígitos)
+        f.write("## 🧩 Clusters de Combinaciones en Tris\n\n")
+        from collections import Counter
+        # Para cada combinación histórica, generar todas las subcombinaciones de 4 dígitos, ignorando NaN
+        def valid_subcombos(row):
+            vals = [v for v in row.values if pd.notnull(v)]
+            combos = []
+            for i in range(len(vals)):
+                sub = [int(float(x)) for j, x in enumerate(vals) if j != i and pd.notnull(x)]
+                if len(sub) == 4:
+                    combos.append(tuple(sorted(sub)))
+            return combos
+        subcombos = df[num_cols].apply(valid_subcombos, axis=1)
+        flat_subcombos = [sc for sublist in subcombos for sc in sublist]
+        subcombo_counts = Counter(flat_subcombos)
+        # Mostrar los 10 clusters (subcombinaciones de 4 dígitos) más frecuentes
+        f.write("| Cluster (4 dígitos) | Veces |\n")
+        f.write("|:-------------------:|:-----:|\n")
+        for cluster, count in subcombo_counts.most_common(10):
+            f.write(f"| {list(cluster)} | {count} |\n")
+        f.write("\nEstos clusters representan grupos de combinaciones que comparten 4 dígitos y han aparecido con mayor frecuencia en la historia de Tris.\n\n")
 
 
 def main():
